@@ -1,0 +1,92 @@
+A51 MACRO ASSEMBLER  ASSEMB                                                               05/21/2013 15:05:07 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.01
+OBJECT MODULE PLACED IN assemb.OBJ
+ASSEMBLER INVOKED BY: d:\Keil4\C51\BIN\A51.EXE assemb.src PR(.\assemb.ls1) EP DEBUG
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ; .\assemb.SRC generated from: assemb.c
+                       2     ; COMPILER INVOKED BY:
+                       3     ;        d:\Keil4\C51\BIN\C51.EXE assemb.c LARGE OPTIMIZE(0,SPEED) BROWSE NOAREGS DEBUG OBJ
+                             ECTEXTEND CODE LISTINCLUDE SYMBOLS TABS(2) SRC(.\assemb.SRC)
+                       4     
+                       5     
+                       6     NAME    ASSEMB
+                       7     
+                       8     ?PR?lbuf_cop?ASSEMB  SEGMENT CODE 
+                       9             PUBLIC  lbuf_cop
+                      10     ;                               
+                      11     ; 
+                      12     ;  // #include "main.h"
+                      13     ;  // #define LBUF_SIZE    28
+                      14     ; 
+                      15     ; //extern  xdata unsigned char  lbuf [LBUF_SIZE];         // первые 64
+                      16     ; //extern xdata unsigned char  lbuf_dn [LBUF_SIZE];
+                      17     ; 
+                      18     ; void lbuf_cop () //using 0
+                      19     
+----                  20             RSEG  ?PR?lbuf_cop?ASSEMB
+0000                  21     lbuf_cop:
+                      22             USING   0
+                      23                             ; SOURCE LINE # 9
+                      24     ; {//   data unsigned char j3;
+                      25                             ; SOURCE LINE # 10
+                      26     ;  
+                      27     ;   //  for(j3=0;j3<LBUF_SIZE-1;j3++)   {                
+                      28     ; //      lbuf_dn[j3]=lbuf[j3]; }
+                      29     ; 
+                      30     ; #pragma asm
+                      31     ; 
+                      32               
+                      33     ;       mov r0,#0
+0000 7800             34               mov r0,#0
+                      35     ;       mov r1,#192
+0002 79C0             36               mov r1,#192
+                      37     ;       mov r3,#28
+0004 7B1C             38               mov r3,#28
+                      39     ;   l1:
+0006                  40               l1:
+                      41     ;       MOVx A,@R0
+0006 E2               42               MOVx A,@R0
+                      43     ;       movx @r1,a
+0007 F3               44               movx @r1,a
+                      45     ;       inc r0
+0008 08               46               inc r0
+                      47     ;       inc r1
+0009 09               48               inc r1
+                      49     ;       djnz r3,  l1
+000A DBFA             50               djnz r3,  l1
+                      51     ; 
+                      52               
+                      53     ; #pragma endasm
+                      54     ; 
+                      55     ; }
+                      56                             ; SOURCE LINE # 29
+000C                  57     ?C0001:
+A51 MACRO ASSEMBLER  ASSEMB                                                               05/21/2013 15:05:07 PAGE     2
+
+000C 22               58             RET     
+                      59     ; END OF lbuf_cop
+                      60     
+                      61             END
+A51 MACRO ASSEMBLER  ASSEMB                                                               05/21/2013 15:05:07 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E              T Y P E  V A L U E   ATTRIBUTES
+
+?C0001. . . . . . .  C ADDR   000CH   R   SEG=?PR?LBUF_COP?ASSEMB
+?PR?LBUF_COP?ASSEMB  C SEG    000DH       REL=UNIT
+ASSEMB. . . . . . .  N NUMB   -----       
+L1. . . . . . . . .  C ADDR   0006H   R   SEG=?PR?LBUF_COP?ASSEMB
+LBUF_COP. . . . . .  C ADDR   0000H   R   SEG=?PR?LBUF_COP?ASSEMB
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

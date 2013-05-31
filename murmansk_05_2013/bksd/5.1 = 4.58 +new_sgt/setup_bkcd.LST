@@ -1,0 +1,1471 @@
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE SETUP_BKCD
+OBJECT MODULE PLACED IN setup_bkcd.OBJ
+COMPILER INVOKED BY: d:\Keil4\C51\BIN\C51.EXE setup_bkcd.c LARGE OPTIMIZE(0,SPEED) BROWSE NOAREGS DEBUG OBJECTEXTEND COD
+                    -E LISTINCLUDE SYMBOLS TABS(2)
+
+line level    source
+
+   1          
+   2          
+   3          // ИЗМЕРИТЕЛЬНЫЙ МОДУЛЬ (BKCD ADuC 848)   2005г.
+   4          
+   5          
+   6          //#include <reg816.h>
+   7          #include "aduc848.h"
+   1      =1  /*REV.  0.1 (pmg.)   1st August 2003
+   2      =1    ADuC845.h MCV Software Group, Analog Devices Inc.*/
+   3      =1  
+   4      =1  /*  BYTE Registers  */
+   5      =1  sfr P0      = 0x80;
+   6      =1  sfr SP      = 0x81;
+   7      =1  sfr DPL     = 0x82;
+   8      =1  sfr DPH     = 0x83;
+   9      =1  sfr DPP     = 0x84;
+  10      =1  sfr PCON    = 0x87;
+  11      =1  sfr TCON    = 0x88;
+  12      =1  sfr TMOD    = 0x89;
+  13      =1  sfr TL0     = 0x8A;
+  14      =1  sfr TL1     = 0x8B;
+  15      =1  sfr TH0     = 0x8C;
+  16      =1  sfr TH1     = 0x8D;
+  17      =1  sfr P1      = 0x90;
+  18      =1  sfr SCON    = 0x98;
+  19      =1  sfr SBUF    = 0x99;
+  20      =1  sfr I2CDAT = 0x9A;
+  21      =1  sfr I2CADD = 0x9B;
+  22      =1  sfr T3FD    = 0x9D;
+  23      =1  sfr T3CON   = 0x9E;
+  24      =1  sfr P2      = 0xA0;
+  25      =1  sfr TIMECON = 0xA1;
+  26      =1  sfr HTHSEC  = 0xA2;
+  27      =1  sfr SEC     = 0xA3;
+  28      =1  sfr MIN     = 0xA4;
+  29      =1  sfr HOUR    = 0xA5;
+  30      =1  sfr INTVAL  = 0xA6;
+  31      =1  sfr DPCON   = 0xA7;
+  32      =1  sfr IE      = 0xA8;
+  33      =1  sfr IEIP2   = 0xA9;
+  34      =1  sfr PWMCON  = 0xAE;
+  35      =1  sfr CFG848  = 0xAF;
+  36      =1  sfr P3      = 0xB0;
+  37      =1  sfr PWM0L   = 0xB1;
+  38      =1  sfr PWM0H   = 0xB2;
+  39      =1  sfr PWM1L   = 0xB3;
+  40      =1  sfr PWM1H   = 0xB4;
+  41      =1  sfr SPH     = 0xB7;
+  42      =1  sfr IP      = 0xB8;
+  43      =1  sfr ECON    = 0xB9;
+  44      =1  sfr EDATA1  = 0xBC;
+  45      =1  sfr EDATA2  = 0xBD;
+  46      =1  sfr EDATA3  = 0xBE;
+  47      =1  sfr EDATA4  = 0xBF;
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 2   
+
+  48      =1  sfr WDCON   = 0xC0;
+  49      =1  sfr CHIPID  = 0xC2;
+  50      =1  sfr EADRL   = 0xC6;
+  51      =1  sfr EADRH   = 0xC7;
+  52      =1  sfr T2CON   = 0xC8;
+  53      =1  sfr RCAP2L  = 0xCA;
+  54      =1  sfr RCAP2H  = 0xCB;
+  55      =1  sfr TL2     = 0xCC;
+  56      =1  sfr TH2     = 0xCD;
+  57      =1  sfr PSW     = 0xD0;
+  58      =1  sfr ADCMODE = 0xD1;
+  59      =1  sfr ADC0CON1 = 0xD2;
+  60      =1  sfr SF      = 0xD4;
+  61      =1  sfr ICON    = 0xD5;
+  62      =1  sfr PLLCON  = 0xD7;
+  63      =1  sfr ADCSTAT = 0xD8;
+  64      =1  sfr ADC0L   = 0xD9;
+  65      =1  sfr ADC0M   = 0xDA;
+  66      =1  sfr ADC0H   = 0xDB;
+  67      =1  sfr PSMCON  = 0xDF;
+  68      =1  sfr ACC     = 0xE0;
+  69      =1  sfr OF0L    = 0xE1;
+  70      =1  sfr OF0M    = 0xE2;
+  71      =1  sfr OF0H    = 0xE3;
+  72      =1  sfr ADC0CON2 = 0xE6;
+  73      =1  sfr I2CCON  = 0xE8;
+  74      =1  sfr GN0L    = 0xE9;
+  75      =1  sfr GN0M    = 0xEA;
+  76      =1  sfr GN0H    = 0xEB;
+  77      =1  sfr B       = 0xF0;
+  78      =1  sfr I2CADD1 = 0xF2;
+  79      =1  sfr SPIDAT  = 0xF7;
+  80      =1  sfr SPICON  = 0xF8;
+  81      =1  sfr DACL  = 0xFB;
+  82      =1  sfr DACH  = 0xFC;
+  83      =1  sfr DACCON  = 0xFD;
+  84      =1  /*  BIT Registers  */
+  85      =1  /*  PSW  */
+  86      =1  sbit CY    = PSW^7;
+  87      =1  sbit AC    = PSW^6;
+  88      =1  sbit F0    = PSW^5;
+  89      =1  sbit RS1   = PSW^4;
+  90      =1  sbit RS0   = PSW^3;
+  91      =1  sbit OV    = PSW^2;
+  92      =1  sbit F1    = PSW^1;
+  93      =1  sbit P     = PSW^0;
+  94      =1  /*  TCON  */
+  95      =1  sbit TF1   = TCON^7;
+  96      =1  sbit TR1   = TCON^6;
+  97      =1  sbit TF0   = TCON^5;
+  98      =1  sbit TR0   = TCON^4;
+  99      =1  sbit IE1   = TCON^3;
+ 100      =1  sbit IT1   = TCON^2;
+ 101      =1  sbit IE0   = TCON^1;
+ 102      =1  sbit IT0   = TCON^0;
+ 103      =1  /*  IE  */
+ 104      =1  sbit EA    = IE^7;
+ 105      =1  sbit EADC  = IE^6;
+ 106      =1  sbit ET2   = IE^5;
+ 107      =1  sbit ES    = IE^4;
+ 108      =1  sbit ET1   = IE^3;
+ 109      =1  sbit EX1   = IE^2;
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 3   
+
+ 110      =1  sbit ET0   = IE^1;
+ 111      =1  sbit EX0   = IE^0;
+ 112      =1  /*  IP  */
+ 113      =1  //sbit PS1   = IP^7;
+ 114      =1  sbit PADC  = IP^6;
+ 115      =1  sbit PT2   = IP^5;
+ 116      =1  sbit PS    = IP^4;
+ 117      =1  sbit PT1   = IP^3;
+ 118      =1  sbit PX1   = IP^2;
+ 119      =1  sbit PT0   = IP^1;
+ 120      =1  sbit PX0   = IP^0;
+ 121      =1  /*  P3  */
+ 122      =1  sbit RELE1 = P0^3;
+ 123      =1  sbit int0 = P3^2;
+ 124      =1  sbit RD    = P3^7;
+ 125      =1  sbit WR    = P3^6;
+ 126      =1  sbit T1    = P3^5;
+ 127      =1  sbit T0    = P3^4;
+ 128      =1  sbit INT1  = P3^3;
+ 129      =1  sbit INT0  = P3^2;
+ 130      =1  sbit TXD   = P3^1;
+ 131      =1  sbit RXD   = P3^0;
+ 132      =1  /*  SCON  */
+ 133      =1  sbit SM0   = SCON^7;
+ 134      =1  sbit SM1   = SCON^6;
+ 135      =1  sbit SM2   = SCON^5;
+ 136      =1  sbit REN   = SCON^4;
+ 137      =1  sbit TB8   = SCON^3;
+ 138      =1  sbit RB8   = SCON^2;
+ 139      =1  sbit TI    = SCON^1;
+ 140      =1  sbit RI    = SCON^0;
+ 141      =1  /*  P1  */
+ 142      =1  sbit T2EX  = P1^1;
+ 143      =1  sbit T2    = P1^0;
+ 144      =1  
+ 145      =1  /*  T2CON  */
+ 146      =1  sbit TF2    = T2CON^7;
+ 147      =1  sbit EXF2   = T2CON^6;
+ 148      =1  sbit RCLK   = T2CON^5;
+ 149      =1  sbit TCLK   = T2CON^4;
+ 150      =1  sbit EXEN2  = T2CON^3;
+ 151      =1  sbit TR2    = T2CON^2;
+ 152      =1  sbit CNT2   = T2CON^1;
+ 153      =1  sbit CAP2   = T2CON^0;
+ 154      =1  /*  WDCON  */
+ 155      =1  sbit PRE3   = WDCON^7;
+ 156      =1  sbit PRE2   = WDCON^6;
+ 157      =1  sbit PRE1   = WDCON^5;
+ 158      =1  sbit PRE0   = WDCON^4;
+ 159      =1  sbit WDIR   = WDCON^3;
+ 160      =1  sbit WDS    = WDCON^2;
+ 161      =1  sbit WDE    = WDCON^1;
+ 162      =1  sbit WDWR   = WDCON^0;
+ 163      =1  /*  ADCSTAT  */        
+ 164      =1  sbit RDY0   = ADCSTAT^7;
+ 165      =1  sbit RDY1   = ADCSTAT^6;
+ 166      =1  sbit CAL    = ADCSTAT^5;
+ 167      =1  sbit NOXREF = ADCSTAT^4;
+ 168      =1  sbit ERR0   = ADCSTAT^3;
+ 169      =1  sbit ERR1   = ADCSTAT^2;
+ 170      =1  /*  I2CCON  */
+ 171      =1  sbit MDO   = I2CCON^7;
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 4   
+
+ 172      =1  sbit MDE   = I2CCON^6;
+ 173      =1  sbit MCO   = I2CCON^5;
+ 174      =1  sbit MDI   = I2CCON^4;
+ 175      =1  sbit I2CM  = I2CCON^3;
+ 176      =1  sbit I2CRS = I2CCON^2;
+ 177      =1  sbit I2CTX = I2CCON^1;
+ 178      =1  sbit I2CI  = I2CCON^0;
+ 179      =1  /*  DCON  */
+ 180      =1  //sbit D1     = DCON^7;
+ 181      =1  //sbit D1EN   = DCON^6;
+ 182      =1  //sbit D0     = DCON^5;
+ 183      =1  //sbit D0EN   = DCON^3;
+ 184      =1  /*  SPICON  */
+ 185      =1  sbit ISPI   = SPICON^7;
+ 186      =1  sbit WCOL   = SPICON^6;
+ 187      =1  sbit SPE    = SPICON^5;
+ 188      =1  sbit SPIM   = SPICON^4;
+ 189      =1  sbit CPOL   = SPICON^3;
+ 190      =1  sbit CPHA   = SPICON^2;
+ 191      =1  sbit SPR1   = SPICON^1;
+ 192      =1  sbit SPR0   = SPICON^0;
+   8          #include "r_main.h"
+   1      =1  
+   2      =1  /*--------------------------------------------------------------------------
+   3      =1  
+   4      =1  Header file for program.
+   5      =1  Copyright (c) 2005 Novosibirsk Morozov A.V.****
+   6      =1  All rights reserved.
+   7      =1  --------------------------------------------------------------------------*/
+   8      =1  #define LBUF_SIZE    28
+   9      =1  #define BUFOUT_SIZE  34
+  10      =1  #define XBUFIN_SIZE  34
+  11      =1  #define BUFOUT_LINE_SIZE  34
+  12      =1  /*
+  13      =1  #define LBUF_SIZE    32
+  14      =1  #define BUFOUT_SIZE  32
+  15      =1  #define XBUFIN_SIZE  32
+  16      =1  #define BUFOUT_LINE_SIZE  32*/
+  17      =1  //#define LTKH  11 //размер буфера int BX[]
+  18      =1  //#define ATKH  0 //начальный адрес таблицы преобразования
+  19      =1  /*--------------------------------------------------------------------
+  20      =1  конфигурация констант выбора кристалов(cs)по интерфейсу SPI(порт-P2)
+  21      =1  память FLASH D9(P2.6);
+  22      =1  ---------------------------------------------------------------------*/
+  23      =1  #define MOD_FL1  //микросхемы D9
+  24      =1  #define TASK2_2 1     //порядок выполнения задач(0,1,2,2,0..)
+  25      =1  #define ADC_MULT 1     //модуль 
+  26      =1  
+  27      =1  //#define INT_60  //интервал прерывания таймер1 - 60мкс.
+  28      =1  //#define INT_501  //интервал прерывания таймер1 - 501 мкс.
+  29      =1  #define INT_250 //интервал прерывания таймер1 - 250 мкс.
+  30      =1  #ifdef  INT_60 
+           =1 #define R_INT_TMR1_L -240 //-17 
+           =1 #define R_INT_TMR1_H -3
+           =1 #endif
+  34      =1  #ifdef  INT_501 
+           =1 #define R_INT_TMR1_L -0x17//-0x40 //-17 
+           =1 #define R_INT_TMR1_H -0x19
+           =1 #define I_TMR1 1
+           =1 #endif
+  39      =1  #ifdef  INT_250  
+  40      =1  #define R_INT_TMR1_L -46//-44//-46    превышение интервала 250
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 5   
+
+  41      =1  #define R_INT_TMR1_H -13  //по 250 мкс
+  42      =1  #define I_TMR1 2
+  43      =1  #endif
+  44      =1  #ifdef  MOD_FL1 // FLASH D9(P2.6);
+  45      =1  #define Cfl_L  0x0BF
+  46      =1  #define Cfl_R  0x40
+  47      =1  #endif
+  48      =1  
+  49      =1  //конфигурация интервала прерывания  таймера1 250мkс.
+  50      =1  
+  51      =1  //#define W_INT_TMR1_L -24 
+  52      =1  //#define W_INT_TMR1_H -2
+  53      =1  #define R_INT_TMR1 250 
+  54      =1  #define W_INT_TMR1 280
+  55      =1  //конфигурация скорости передачи в линию (38400;19200;9600)
+  56      =1  //EEPROM ADR=0;PAGE=1  "FFh-38400;09h-9600;01h-19200" 
+  57      =1  #define C_UART_EPR 0 
+  58      =1  #define C_UART 1
+  59      =1  //#define C_UART_19200 0x01 
+  60      =1  //#define C_UART_9600  0x09
+  61      =1  #ifdef  C_UART 
+  62      =1  #define C_UART_D 0xFF  
+  63      =1  #endif
+  64      =1  /*-------------------------------------------------------------------------
+  65      =1                   разбор линейных адресов контроллеров 
+  66      =1   Таблица описания линейных адресов модуля размещена в области EEPROM модуля
+  67      =1   в странице1(Epg1) c адреса Eadr=18h.
+  68      =1  
+  69      =1   В таблице описания линейных адресов модуля присутствует описания двух
+  70      =1   адресов (LADR1,LADR2 )и маски для каждого (MSK_LADR1,MSK_LADR2).
+  71      =1   Если LADR1= LADR_PAK & MSK_LADR1 либо LADR2= LADR_PAK & MSK_LADR2
+  72      =1   (LADR_PAK - адрес в принятом пакете модулем)адресуемый пакет обрабатывается
+  73      =1   модулем.
+  74      =1   В данном случаи в возвращаемом пакете модуля устанавливается адрес возврата
+  75      =1   ADR1_VR (ADR2_VR)из таблицы описания линейных адресов модуля.
+  76      =1   Пакет выдается в линию по истечению заданного интервала времени(мсек) 
+  77      =1   (T_LADR1,T_LADR2 )
+  78      =1    
+  79      =1   LADR1 - линейный адрес 1 (18h) ADR1_VR - возвращаемый адрес 1 (19h)
+  80      =1   LADR2 - линейный адрес 2 (1Ah) ADR2_VR - возвращаемый адрес 2 (1Bh)
+  81      =1   MSK_LADR1 - маска линейного адреса 1 (1Ch)
+  82      =1   T_LADR1   _ заданный интервал времени на передачу пакета по адресу 1 (1Dh)
+  83      =1   MSK_LADR2 - маска линейного адреса 2 (1Eh)
+  84      =1   T_LADR2   _ заданный интервал времени на передачу пакета по адресу 2 (1Fh)
+  85      =1   LADR_PAK - линейный адрес в приемном пакете.
+  86      =1   NEW_CMD - (NEW_CMD1,NEW_REG1,NEW_LDATA) - параметры для LADR2 команда,регистр,
+  87      =1   длина данных (0Ch,0Dh,0Eh)
+  88      =1  -------------------------------------------------------------------------*/  
+  89      =1  /*---определение номера страниц EEPROM*/
+  90      =1  #define  Epg1 0
+  91      =1  #define  Epg2 0x40
+  92      =1  #define  Epg3 0x80
+  93      =1  #define  Epg4 0xC0
+  94      =1  
+  95      =1  /*-----------------------------------------------------
+  96      =1  определение параметров таблицы описания линейных адресов
+  97      =1   модулей в области EEPROM страница1 (Epg1)
+  98      =1  Имя параметра и его значение (адрес в формате HEX)
+  99      =1  -------------------------------------------------------*/
+ 100      =1  #define  LADR1      0x118
+ 101      =1  #define  LADR2      0x11A
+ 102      =1  #define  ADR1_VR    0x119 
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 6   
+
+ 103      =1  #define  ADR2_VR    0x11B
+ 104      =1  #define  MSK_LADR1  0x11C
+ 105      =1  #define  T_LADR1    0x11D  
+ 106      =1  #define  MSK_LADR2  0x11E 
+ 107      =1  #define  T_LADR2    0x11F
+ 108      =1  #define  NEW_CMD    0x10C //структура (NEW_CMD1,NEW_REG1,NEW_LDATA )
+ 109      =1  
+ 110      =1  //#define  TMP_OUT    0x6C //темр вывода EEPROM стр1 адр 6C -3байт
+ 111      =1  #define  TMP_FLASH  0x164  //0x230 //Epg2
+ 112      =1  //структура 4байта CNT_IDF,CNT_IZM,CNT_IDF1,CNT_IZM1(30h-33h) 
+ 113      =1  //#define  MSK_PAR    0x34//MSK_ERR ;MSK_PW1 ;
+ 114      =1  #define  START_ADC  0x140 //старт цепочки измерения ADC
+ 115      =1  #define  FILT_RELE  0x150 //фильтр включения реле               
+ 116      =1  #define  ADR_FLASH  0x160 //текущий адрес FLASH (3bite 1страница)
+ 117      =1  #define  ADR_Vz     0xE4
+ 118      =1  /* ---------------------------------------------------------------------
+ 119      =1  
+ 120      =1  C_SIN_REPR-константа  в мкс подсинхронизации чтения из EEPROM
+ 121      =1  ----------------------------------------------------------------------*/
+ 122      =1  #define C_SIN_REPR 0x0FE //0X0B  //0x78 //0x78 //126mkc
+ 123      =1  /*
+ 124      =1  Макрос  Epr_Rd(Epg,Eadr) прочитать из EEPROM 4байта 
+ 125      =1  по заданной странице pg из диапозона (Epg=1/2/3/4)и адресам Eadr  из диапозона
+ 126      =1  (adr=00h - FFh) c помещением результатов в регистры SFR EDATA1,EDATA2,
+ 127      =1   EDATA3,EDATA4;Epg - константы по определению выше (Epg1,Epg2 ...)
+ 128      =1  ------------------------------------------------------------------*/
+ 129      =1  
+ 130      =1  
+ 131      =1  #define FUM_Epr_Wr(Eadr,E1,E2,E3,E4) { EADRH=(Eadr>>8)&0x03; EADRL=Eadr;ECON=0x01;  \
+ 132      =1          EDATA1=E1;EDATA2=E2;EDATA3=E3;EDATA4=E4;  \
+ 133      =1      EA=0;ECON=0x05;ECON=0x02;EADRH=0;EA=1;\  
+ 134      =1      }
+ 135      =1  
+ 136      =1  #define FUM_Epr_Wrout(Eadr,E1,E2,E3,E4) { EADRH=(Eadr>>8)&0x03; EADRL=Eadr;ECON=0x01; \
+ 137      =1          EDATA1=E1;EDATA2=E2;EDATA3=E3;EDATA4=E4;  \
+ 138      =1      ECON=0x02;EADRH=0;\  
+ 139      =1        }
+ 140      =1  
+ 141      =1  #define FUM_Epr_Rd(Eadr) {  EADRH=(Eadr>>8)&0x03; \
+ 142      =1      EADRL=Eadr;ECON=0x01;EADRH=0;\
+ 143      =1          }
+ 144      =1  /*-----------------------------------------------------------------------*/
+ 145      =1  
+ 146      =1   /*------------------------------------------------------------------
+ 147      =1  Макрос  FUM_MEMO_Rd(ADR_M) прочитать из xdata 2байта
+ 148      =1  из буфера BUF_CMD[256] адрес 0300Н 
+ 149      =1   -ЭТО СТРАНИЦА  ГДЕ РАСПОЛОЖЕНА ПАМЯТЬ ПРОГРАММ АВТОМАТА 
+ 150      =1  while (TH1>C_SIN_REPR);
+ 151      =1  ------------------------------------------------------------------*/
+ 152      =1  //--------------------------------------------------------------------------
+ 153      =1  
+   9          //#include "ADC_bkcd.h"
+  10          #include "define_stuct.h"
+   1      =1  
+   2      =1   
+   3      =1  
+   4      =1  #define BX_RF 0x40  // выбор источника опорного напряжения(внеш -0x40\внутр -0)АЦП  
+   5      =1  #define BX_MD  0x2A //рещим запуска АЦП (2А - однократное измерение в режиме Chop Disable)
+   6      =1  #define BX_CON1 0x27 //unipol преобразование 2.5v 
+   7      =1  #define BX_SF   0x14//0x08 //4.3 мкс//0x10 //7.9 мкс//0x14  - 9.8мкс//0x07  //0x03 // время преобразования
+             - 0.73мс
+   8      =1  
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 7   
+
+   9      =1  #define bx_sf1   0x03 //0x03
+  10      =1  //#define ADR_BASE_CH 0x60 //начальный адрес таблицы расположения каналов
+  11      =1  
+  12      =1  //начальный адрес таблицы размещения результатов измерения  измерения (EEPROM 3страница)
+  13      =1  #define ADR_TAB_DAT  0x7C0  //-43F
+  14      =1  //начальный адрес таблицы режимов измерения (EEPROM 3страница адрес 80h) 
+  15      =1  #define ADR_TAB_IZM 0x780 //-47F
+  16      =1  //начальный адрес таблицы описания аналог.каналов (EEPROM 3страница adres A0)
+  17      =1  #define ADR_TAB_CH   0x680  // - 4FF
+  18      =1  //начальный адрес таблицы преобразования (EEPROM 4,5страницы)
+  19      =1  #define ADR_TAB_PHIZ 0x400 //-7FF
+  20      =1  #define ADR_TAB_PRG  0x5E0 // - 61Fначальный адрес таблицы порогов (EEPROM 6страница)
+  21      =1  #define ADR_TAB_IZM_ZCH  0x6F0 
+  22      =1  // - начальный адрес таблицы описания цифровых каналов)
+  23      =1  
+  24      =1  /*-----макрос MAC_Copy_Epr_Ram_TAB_ALL
+  25      =1  копирование таблиц а EEPROM (адрес 0x0400)
+  26      =1  в XRAM(адрес RAM = 0x0400)
+  27      =1  Размер таблицы 1kбайт
+  28      =1  */
+  29      =1  #define MAC_Copy_Epr_Ram_TAB_ALL(ADR_EP,ADR_MEM) { \
+  30      =1  ADR_E = (ADR_EP -0x100)>>2 ; \
+  31      =1  tmpadc=ADR_MEM;   \
+  32      =1  for(i1=0;i1<128;i1=i1+2)  \
+  33      =1  {                      \
+  34      =1  FUM_Epr_Rd4(ADR_E)  \ 
+  35      =1  CM1=(EDATA1<<8)|EDATA2;CM2=(EDATA3<<8)|EDATA4; \
+  36      =1  *((int xdata*)tmpadc+i1) =CM1; \
+  37      =1  *((int xdata*)tmpadc+i1+1) =CM2;  \
+  38      =1  ADR_E ++;                        \
+  39      =1  }                  \
+  40      =1  }
+  41      =1  
+  42      =1  /*-----макрос MAC_Copy_Epr_Ram_
+  43      =1  копирование таблиц а EEPROM (адрес )
+  44      =1  в XRAM(адрес RAM )
+  45      =1  Размер таблицы (L_DAT)
+  46      =1  */
+  47      =1  #define MAC_Copy_Epr_Ram(ADR_EP,ADR_MEM,L_DAT) { \
+  48      =1  ADR_E = (ADR_EP -0x100)>>2 ; \
+  49      =1  tmpadc=ADR_MEM;   \
+  50      =1  for(i1=0;i1<L_DAT;i1=i1+2)  \
+  51      =1  {                      \
+  52      =1  FUM_Epr_Rd4(ADR_E)  \ 
+  53      =1  CM1=(EDATA1<<8)|EDATA2;CM2=(EDATA3<<8)|EDATA4; \
+  54      =1  *((int xdata*)tmpadc+i1) =CM1; \
+  55      =1  *((int xdata*)tmpadc+i1+1) =CM2;  \
+  56      =1  ADR_E ++;                        \
+  57      =1  }                  \
+  58      =1  }
+  59      =1  
+  60      =1  
+  61      =1  //-----------------------------  
+  62      =1  
+  63      =1  
+  64      =1  /*---MAC_DFN_DAT_PRG
+  65      =1  макрос определение значения порога измеренного аналогового параметра
+  66      =1  по заданной таблице пороговых значений ,размещенной в рабочем буфере
+  67      =1   BX[] RAM (адрес 0x0430)
+  68      =1  //------структура таблиц преобразования
+  69      =1  4байтный заголовок три 4байтных значений для каждого параметра,
+  70      =1  Копируется в рабочий буфер по имяни параметра одна из таблиц
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 8   
+
+  71      =1  FL_PORG[8]
+  72      =1  wadc = Str_BX_A[N_CH].ZGL_BX_A[1] & 0x0F0; \
+  73      =1  if((wadc&0x80)==0x80) \
+  74      =1  {wadc=wadc<<2; \
+  75      =1  if(wadc1==wadc) {FL_PORG[N_CH]=10;FL_ERR=1;} \
+  76      =1  */
+  77      =1  
+  78      =1  
+  79      =1  #define FUM_Epr_Rd4(Eadr) { EA=0; \
+  80      =1          EADRH=(Eadr>>8)&0x03; EADRL=Eadr;ECON=0x01;EADRH=0;\
+  81      =1      EA=1; \
+  82      =1                     }
+  83      =1  /*-----------------------------------------------------------------------*/
+  84      =1  /*------------------------------------------------------------------*/
+  85      =1  
+  86      =1  #define FUM_Epr_Wr4(Eadr,d1,d2,d3,d4) {  EA=0; \
+  87      =1       EADRH=(Eadr>>8)&0x03; EADRL=Eadr;ECON=0x01;\
+  88      =1       EDATA1=d1;EDATA2=d2;EDATA3=d3;EDATA4=d4;ECON=0x05;ECON=0x02;\
+  89      =1       EADRH=0; \ 
+  90      =1     EA=1; \
+  91      =1                  }
+  92      =1  /*-------------------------------------------------------------*/
+  93      =1  /*--------------------------------------------------------------
+  94      =1  // 
+  95      =1  //это вызов MACRO_определения функции загрузки режима работы АЦП
+  96      =1   CH = 5;MD = 6;BX_CH =7; 
+  97      =1  BX_RF =0x40;   
+  98      =1  BX_CON1 = 0x27;  BX_SF = 0x03;BX_MD = 0x22;  
+  99      =1  ------------------------------------------------------------------*/
+ 100      =1  
+ 101      =1  
+ 102      =1  /*макрос вычисление физического значения по таблице описания
+ 103      =1  из рабочего буфера BX[].код измеренного значения - рабочий параметр BX_KOD
+ 104      =1  A_TKH - указатель на начало таблицы в буфере BX[A_TKH]
+ 105      =1  BX[0] - 4байта заголовок. 3,4байты заголовка - длина таблицы
+ 106      =1  BX[i] (i=4,6,..) - значения кода 1 2 3 ..N точек 
+ 107      =1  BX[i] (i=5,7,..) - физические значения 1 2 3 ..N точек 
+ 108      =1   */ 
+ 109      =1  
+ 110      =1   
+ 111      =1  
+ 112      =1  
+ 113      =1  
+ 114      =1  
+ 115      =1  
+ 116      =1      
+ 117      =1  
+ 118      =1  
+ 119      =1  
+  11          //extern bit ffp;//,ffp_l;
+  12          //extern  bit  flagadc,FL_20;
+  13          //extern bit fzb2,fzb1,fzb0; //fepr0,fepr1,fepr2,flagadc;
+  14          //extern  idata unsigned char  bufin[8];
+  15          //extern  idata  unsigned char  bufout [24]; 
+  16          
+  17          //extern  idata unsigned char CLK_DAY,Kld_Month,Kld_Year; //,adcbuf[12];
+  18          
+  19          //extern idata unsigned char T_MS_ADC;
+  20          //extern  data unsigned int CNT_SEC,CM_RAX1;
+  21          //extern  idata unsigned int CM_RAX;
+  22          //extern  data unsigned char  /*adr1,adr2,adr3,*/;
+  23          
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 9   
+
+  24          
+  25          
+  26          //extern idata unsigned int AA;
+  27          //extern idata unsigned char size ; 
+  28          //extern xdata unsigned char MSK_PW1,MSK_PW2,MSK_ERR;
+  29          //extern xdata unsigned char /*buf_msk[17],*/PA_H ,PA_L, ADR_BF;
+  30          
+  31          //extern xdata unsigned char K_PAH;
+  32          //extern data unsigned int tmpadc;
+  33          //extern data unsigned int CM2,CM1;
+  34          //extern data unsigned int CNT_DOL;
+  35          
+  36           //extern data unsigned char status;
+  37           
+  38           void setup (void)
+  39          { 
+  40   1      /*********************************************/
+  41   1      /*           RESET                           */
+  42   1      /*********************************************/
+  43   1      
+  44   1       register unsigned char  i1;//,j2,j;
+  45   1       xdata unsigned int tmpadc;
+  46   1       xdata unsigned int ADR_E;
+  47   1       xdata  unsigned int CM1,CM2;
+  48   1       extern  data  unsigned char  bufcht1[2]; //,wadc;
+  49   1       extern xdata unsigned char DL;
+  50   1       extern  xdata unsigned char  lbuf[LBUF_SIZE];
+  51   1         
+  52   1      /*
+  53   1        PLLCON = 0x0000;
+  54   1        TIMECON = 0x0001;        //start clock 
+  55   1        SPICON= 0x3D;//39
+  56   1      SCON=0x50;
+  57   1      TMOD=0x11;
+  58   1      T3CON=0x84;
+  59   1      T3FD= 0x12; 
+  60   1      
+  61   1        TL1 = -250;//-240;//0xC4;//-200;
+  62   1        TH1 = -6;//-12;//-1;
+  63   1        TI=1;
+  64   1      
+  65   1        */
+  66   1      
+  67   1      //   flagadc = 0;
+  68   1       
+  69   1        TMOD = 0x11;
+  70   1        PLLCON = 0x0000;
+  71   1         EA = 0; 
+  72   1          WDWR=1;WDCON=0x72;   // 0x32 = 125 ms   0x52= 500 ms
+  73   1         EA = 1;
+  74   1      
+  75   1      while (!(PLLCON&0x40))
+  76   1      
+  77   1        SPICON= 0x3D;//39
+  78   1        // CNT_SEC=0;
+  79   1       //  bufcht1[0]=0;
+  80   1        DACCON=0x03;
+  81   1      // EX0=1 ; IT0 = 1;                   // external interrupt enable
+  82   1                 
+  83   1              I2CM=1;MCO=1; MDE=1;MDO=1; //мастер I2c
+  84   1         T2CON = 0x0030;
+  85   1         ET2 = 0;       
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 10  
+
+  86   1         TR2 = 0;
+  87   1         ES = 0;
+  88   1        EADC = 0;
+  89   1              SCON = 0x0050;
+  90   1              PCON = 0x0000;
+  91   1         //        WR =0;                      
+  92   1      //             EADRL = 0x00;
+  93   1      //        ECON =0x01; 
+  94   1      //        lbuf[0] = EDATA1;
+  95   1           
+  96   1        
+  97   1      //-------------------------------
+  98   1             T3CON=0x84;
+  99   1             T3FD= 0x12; 
+ 100   1      
+ 101   1      /*        
+ 102   1                 if(lbuf[0]==1)
+ 103   1                    {
+ 104   1                     T3CON=0x85;                   
+ 105   1                    }
+ 106   1      
+ 107   1                   if(lbuf[0]==9)
+ 108   1                   {                   
+ 109   1                    
+ 110   1                   T3CON=0x86;
+ 111   1                   }
+ 112   1         */     
+ 113   1      //--------------------------------        
+ 114   1                  // TR2 = 1;
+ 115   1      //------------------------------------------------ 
+ 116   1                
+ 117   1      //********************************************              
+ 118   1      
+ 119   1      //--копирование таблиц -----
+ 120   1      
+ 121   1      MAC_Copy_Epr_Ram_TAB_ALL(0x0400,0x0400) //4страница
+ 122   1      MAC_Copy_Epr_Ram_TAB_ALL(0x0500,0x0500)
+ 123   1      MAC_Copy_Epr_Ram_TAB_ALL(0x0600,0x0600)
+ 124   1      MAC_Copy_Epr_Ram_TAB_ALL(0x0700,0x0700)
+ 125   1      //MAC_Copy_Epr_Ram(0x0260,0x0270,24)  
+ 126   1      
+ 127   1        //2страница таблицы режимов записи во FLASH 20 08 08
+ 128   1      //читать часы из модуля часов во внутренние часы контроллера
+ 129   1      //FUM_RD_CLOCK //макрос
+ 130   1      //----------внутренная калибровка 0\1---------------------
+ 131   1      
+ 132   1      ADC0CON2 = BX_RF ; //0x40канал ацп 
+ 133   1      //---запустить измерение заданного параметра
+ 134   1      SF = BX_SF; //0x03
+ 135   1      ADC0CON1 = BX_CON1;//0x27
+ 136   1      ADCMODE = 0x24;//калибровка 0
+ 137   1      while(RDY0 ==0);  
+ 138   1      RDY0 = 0; 
+ 139   1      ADCMODE = 0x25;  //калибровка 1
+ 140   1      while(RDY0 ==0);  
+ 141   1      RDY0 = 0;
+ 142   1      //EADRL = 0x20;       
+ 143   1      //ECON =  0x01;
+ 144   1      //EDATA1= OF0H;
+ 145   1      //EDATA2= OF0M;
+ 146   1      //EDATA3= GN0H;
+ 147   1      //EDATA4= GN0M;
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 11  
+
+ 148   1      //ECON = 0x05;                     
+ 149   1      //ECON = 0x02; 
+ 150   1      //------------------------
+ 151   1      
+ 152   1      return;
+ 153   1      } 
+ 154          
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 12  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION setup (BEGIN)
+                                           ; SOURCE LINE # 38
+                                           ; SOURCE LINE # 39
+                                           ; SOURCE LINE # 69
+0000 758911            MOV     TMOD,#011H
+                                           ; SOURCE LINE # 70
+0003 75D700            MOV     PLLCON,#00H
+                                           ; SOURCE LINE # 71
+0006 C2AF              CLR     EA
+                                           ; SOURCE LINE # 72
+0008 D2C0              SETB    WDWR
+000A 75C072            MOV     WDCON,#072H
+                                           ; SOURCE LINE # 73
+000D D2AF              SETB    EA
+000F         ?C0001:
+                                           ; SOURCE LINE # 75
+000F E5D7              MOV     A,PLLCON
+0011 20E605            JB      ACC.6,?C0002
+                                           ; SOURCE LINE # 77
+0014 75F83D            MOV     SPICON,#03DH
+0017 80F6              SJMP    ?C0001
+0019         ?C0002:
+                                           ; SOURCE LINE # 80
+0019 75FD03            MOV     DACCON,#03H
+                                           ; SOURCE LINE # 83
+001C D2EB              SETB    I2CM
+001E D2ED              SETB    MCO
+0020 D2EE              SETB    MDE
+0022 D2EF              SETB    MDO
+                                           ; SOURCE LINE # 84
+0024 75C830            MOV     T2CON,#030H
+                                           ; SOURCE LINE # 85
+0027 C2AD              CLR     ET2
+                                           ; SOURCE LINE # 86
+0029 C2CA              CLR     TR2
+                                           ; SOURCE LINE # 87
+002B C2AC              CLR     ES
+                                           ; SOURCE LINE # 88
+002D C2AE              CLR     EADC
+                                           ; SOURCE LINE # 89
+002F 759850            MOV     SCON,#050H
+                                           ; SOURCE LINE # 90
+0032 758700            MOV     PCON,#00H
+                                           ; SOURCE LINE # 98
+0035 759E84            MOV     T3CON,#084H
+                                           ; SOURCE LINE # 99
+0038 759D12            MOV     T3FD,#012H
+                                           ; SOURCE LINE # 121
+003B 900000      R     MOV     DPTR,#ADR_E
+003E E4                CLR     A
+003F F0                MOVX    @DPTR,A
+0040 A3                INC     DPTR
+0041 74C0              MOV     A,#0C0H
+0043 F0                MOVX    @DPTR,A
+0044 900000      R     MOV     DPTR,#tmpadc
+0047 7404              MOV     A,#04H
+0049 F0                MOVX    @DPTR,A
+004A A3                INC     DPTR
+004B E4                CLR     A
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 13  
+
+004C F0                MOVX    @DPTR,A
+004D 900000      R     MOV     DPTR,#i1
+0050 E4                CLR     A
+0051 F0                MOVX    @DPTR,A
+0052         ?C0003:
+0052 900000      R     MOV     DPTR,#i1
+0055 E0                MOVX    A,@DPTR
+0056 FF                MOV     R7,A
+0057 EF                MOV     A,R7
+0058 C3                CLR     C
+0059 9480              SUBB    A,#080H
+005B 4003              JC      $ + 5H
+005D 020000      R     LJMP    ?C0004
+0060 C2AF              CLR     EA
+0062 900000      R     MOV     DPTR,#ADR_E
+0065 E0                MOVX    A,@DPTR
+0066 FE                MOV     R6,A
+0067 A3                INC     DPTR
+0068 E0                MOVX    A,@DPTR
+0069 FF                MOV     R7,A
+006A EE                MOV     A,R6
+006B FF                MOV     R7,A
+006C 7E00              MOV     R6,#00H
+006E EF                MOV     A,R7
+006F 5403              ANL     A,#03H
+0071 F5C7              MOV     EADRH,A
+0073 900000      R     MOV     DPTR,#ADR_E
+0076 E0                MOVX    A,@DPTR
+0077 FE                MOV     R6,A
+0078 A3                INC     DPTR
+0079 E0                MOVX    A,@DPTR
+007A FF                MOV     R7,A
+007B 8FC6              MOV     EADRL,R7
+007D 75B901            MOV     ECON,#01H
+0080 75C700            MOV     EADRH,#00H
+0083 D2AF              SETB    EA
+0085 AFBC              MOV     R7,EDATA1
+0087 7E00              MOV     R6,#00H
+0089 EF                MOV     A,R7
+008A 7F00              MOV     R7,#00H
+008C FE                MOV     R6,A
+008D ADBD              MOV     R5,EDATA2
+008F 7C00              MOV     R4,#00H
+0091 EE                MOV     A,R6
+0092 4C                ORL     A,R4
+0093 FE                MOV     R6,A
+0094 EF                MOV     A,R7
+0095 4D                ORL     A,R5
+0096 FF                MOV     R7,A
+0097 900000      R     MOV     DPTR,#CM1
+009A EE                MOV     A,R6
+009B F0                MOVX    @DPTR,A
+009C A3                INC     DPTR
+009D EF                MOV     A,R7
+009E F0                MOVX    @DPTR,A
+009F AFBE              MOV     R7,EDATA3
+00A1 7E00              MOV     R6,#00H
+00A3 EF                MOV     A,R7
+00A4 7F00              MOV     R7,#00H
+00A6 FE                MOV     R6,A
+00A7 ADBF              MOV     R5,EDATA4
+00A9 7C00              MOV     R4,#00H
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 14  
+
+00AB EE                MOV     A,R6
+00AC 4C                ORL     A,R4
+00AD FE                MOV     R6,A
+00AE EF                MOV     A,R7
+00AF 4D                ORL     A,R5
+00B0 FF                MOV     R7,A
+00B1 900000      R     MOV     DPTR,#CM2
+00B4 EE                MOV     A,R6
+00B5 F0                MOVX    @DPTR,A
+00B6 A3                INC     DPTR
+00B7 EF                MOV     A,R7
+00B8 F0                MOVX    @DPTR,A
+00B9 900000      R     MOV     DPTR,#CM1
+00BC E0                MOVX    A,@DPTR
+00BD FE                MOV     R6,A
+00BE A3                INC     DPTR
+00BF E0                MOVX    A,@DPTR
+00C0 FF                MOV     R7,A
+00C1 900000      R     MOV     DPTR,#tmpadc
+00C4 E0                MOVX    A,@DPTR
+00C5 FC                MOV     R4,A
+00C6 A3                INC     DPTR
+00C7 E0                MOVX    A,@DPTR
+00C8 FD                MOV     R5,A
+00C9 8D82              MOV     DPL,R5
+00CB 8C83              MOV     DPH,R4
+00CD C083              PUSH    DPH
+00CF C082              PUSH    DPL
+00D1 900000      R     MOV     DPTR,#i1
+00D4 E0                MOVX    A,@DPTR
+00D5 FD                MOV     R5,A
+00D6 D082              POP     DPL
+00D8 D083              POP     DPH
+00DA 75F002            MOV     B,#02H
+00DD ED                MOV     A,R5
+00DE 120000      E     LCALL   ?C?OFFXADD
+00E1 EE                MOV     A,R6
+00E2 F0                MOVX    @DPTR,A
+00E3 A3                INC     DPTR
+00E4 EF                MOV     A,R7
+00E5 F0                MOVX    @DPTR,A
+00E6 900000      R     MOV     DPTR,#CM2
+00E9 E0                MOVX    A,@DPTR
+00EA FE                MOV     R6,A
+00EB A3                INC     DPTR
+00EC E0                MOVX    A,@DPTR
+00ED FF                MOV     R7,A
+00EE 900000      R     MOV     DPTR,#tmpadc
+00F1 E0                MOVX    A,@DPTR
+00F2 FC                MOV     R4,A
+00F3 A3                INC     DPTR
+00F4 E0                MOVX    A,@DPTR
+00F5 FD                MOV     R5,A
+00F6 8D82              MOV     DPL,R5
+00F8 8C83              MOV     DPH,R4
+00FA C083              PUSH    DPH
+00FC C082              PUSH    DPL
+00FE 900000      R     MOV     DPTR,#i1
+0101 E0                MOVX    A,@DPTR
+0102 FD                MOV     R5,A
+0103 D082              POP     DPL
+0105 D083              POP     DPH
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 15  
+
+0107 75F002            MOV     B,#02H
+010A ED                MOV     A,R5
+010B 120000      E     LCALL   ?C?OFFXADD
+010E A3                INC     DPTR
+010F A3                INC     DPTR
+0110 EE                MOV     A,R6
+0111 F0                MOVX    @DPTR,A
+0112 A3                INC     DPTR
+0113 EF                MOV     A,R7
+0114 F0                MOVX    @DPTR,A
+0115 900000      R     MOV     DPTR,#ADR_E+01H
+0118 E0                MOVX    A,@DPTR
+0119 04                INC     A
+011A F0                MOVX    @DPTR,A
+011B 7006              JNZ     ?C0020
+011D 900000      R     MOV     DPTR,#ADR_E
+0120 E0                MOVX    A,@DPTR
+0121 04                INC     A
+0122 F0                MOVX    @DPTR,A
+0123         ?C0020:
+0123         ?C0005:
+0123 900000      R     MOV     DPTR,#i1
+0126 E0                MOVX    A,@DPTR
+0127 2402              ADD     A,#02H
+0129 F0                MOVX    @DPTR,A
+012A 020000      R     LJMP    ?C0003
+012D         ?C0004:
+                                           ; SOURCE LINE # 122
+012D 900000      R     MOV     DPTR,#ADR_E
+0130 7401              MOV     A,#01H
+0132 F0                MOVX    @DPTR,A
+0133 A3                INC     DPTR
+0134 E4                CLR     A
+0135 F0                MOVX    @DPTR,A
+0136 900000      R     MOV     DPTR,#tmpadc
+0139 7405              MOV     A,#05H
+013B F0                MOVX    @DPTR,A
+013C A3                INC     DPTR
+013D E4                CLR     A
+013E F0                MOVX    @DPTR,A
+013F 900000      R     MOV     DPTR,#i1
+0142 E4                CLR     A
+0143 F0                MOVX    @DPTR,A
+0144         ?C0006:
+0144 900000      R     MOV     DPTR,#i1
+0147 E0                MOVX    A,@DPTR
+0148 FF                MOV     R7,A
+0149 EF                MOV     A,R7
+014A C3                CLR     C
+014B 9480              SUBB    A,#080H
+014D 4003              JC      $ + 5H
+014F 020000      R     LJMP    ?C0007
+0152 C2AF              CLR     EA
+0154 900000      R     MOV     DPTR,#ADR_E
+0157 E0                MOVX    A,@DPTR
+0158 FE                MOV     R6,A
+0159 A3                INC     DPTR
+015A E0                MOVX    A,@DPTR
+015B FF                MOV     R7,A
+015C EE                MOV     A,R6
+015D FF                MOV     R7,A
+015E 7E00              MOV     R6,#00H
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 16  
+
+0160 EF                MOV     A,R7
+0161 5403              ANL     A,#03H
+0163 F5C7              MOV     EADRH,A
+0165 900000      R     MOV     DPTR,#ADR_E
+0168 E0                MOVX    A,@DPTR
+0169 FE                MOV     R6,A
+016A A3                INC     DPTR
+016B E0                MOVX    A,@DPTR
+016C FF                MOV     R7,A
+016D 8FC6              MOV     EADRL,R7
+016F 75B901            MOV     ECON,#01H
+0172 75C700            MOV     EADRH,#00H
+0175 D2AF              SETB    EA
+0177 AFBC              MOV     R7,EDATA1
+0179 7E00              MOV     R6,#00H
+017B EF                MOV     A,R7
+017C 7F00              MOV     R7,#00H
+017E FE                MOV     R6,A
+017F ADBD              MOV     R5,EDATA2
+0181 7C00              MOV     R4,#00H
+0183 EE                MOV     A,R6
+0184 4C                ORL     A,R4
+0185 FE                MOV     R6,A
+0186 EF                MOV     A,R7
+0187 4D                ORL     A,R5
+0188 FF                MOV     R7,A
+0189 900000      R     MOV     DPTR,#CM1
+018C EE                MOV     A,R6
+018D F0                MOVX    @DPTR,A
+018E A3                INC     DPTR
+018F EF                MOV     A,R7
+0190 F0                MOVX    @DPTR,A
+0191 AFBE              MOV     R7,EDATA3
+0193 7E00              MOV     R6,#00H
+0195 EF                MOV     A,R7
+0196 7F00              MOV     R7,#00H
+0198 FE                MOV     R6,A
+0199 ADBF              MOV     R5,EDATA4
+019B 7C00              MOV     R4,#00H
+019D EE                MOV     A,R6
+019E 4C                ORL     A,R4
+019F FE                MOV     R6,A
+01A0 EF                MOV     A,R7
+01A1 4D                ORL     A,R5
+01A2 FF                MOV     R7,A
+01A3 900000      R     MOV     DPTR,#CM2
+01A6 EE                MOV     A,R6
+01A7 F0                MOVX    @DPTR,A
+01A8 A3                INC     DPTR
+01A9 EF                MOV     A,R7
+01AA F0                MOVX    @DPTR,A
+01AB 900000      R     MOV     DPTR,#CM1
+01AE E0                MOVX    A,@DPTR
+01AF FE                MOV     R6,A
+01B0 A3                INC     DPTR
+01B1 E0                MOVX    A,@DPTR
+01B2 FF                MOV     R7,A
+01B3 900000      R     MOV     DPTR,#tmpadc
+01B6 E0                MOVX    A,@DPTR
+01B7 FC                MOV     R4,A
+01B8 A3                INC     DPTR
+01B9 E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 17  
+
+01BA FD                MOV     R5,A
+01BB 8D82              MOV     DPL,R5
+01BD 8C83              MOV     DPH,R4
+01BF C083              PUSH    DPH
+01C1 C082              PUSH    DPL
+01C3 900000      R     MOV     DPTR,#i1
+01C6 E0                MOVX    A,@DPTR
+01C7 FD                MOV     R5,A
+01C8 D082              POP     DPL
+01CA D083              POP     DPH
+01CC 75F002            MOV     B,#02H
+01CF ED                MOV     A,R5
+01D0 120000      E     LCALL   ?C?OFFXADD
+01D3 EE                MOV     A,R6
+01D4 F0                MOVX    @DPTR,A
+01D5 A3                INC     DPTR
+01D6 EF                MOV     A,R7
+01D7 F0                MOVX    @DPTR,A
+01D8 900000      R     MOV     DPTR,#CM2
+01DB E0                MOVX    A,@DPTR
+01DC FE                MOV     R6,A
+01DD A3                INC     DPTR
+01DE E0                MOVX    A,@DPTR
+01DF FF                MOV     R7,A
+01E0 900000      R     MOV     DPTR,#tmpadc
+01E3 E0                MOVX    A,@DPTR
+01E4 FC                MOV     R4,A
+01E5 A3                INC     DPTR
+01E6 E0                MOVX    A,@DPTR
+01E7 FD                MOV     R5,A
+01E8 8D82              MOV     DPL,R5
+01EA 8C83              MOV     DPH,R4
+01EC C083              PUSH    DPH
+01EE C082              PUSH    DPL
+01F0 900000      R     MOV     DPTR,#i1
+01F3 E0                MOVX    A,@DPTR
+01F4 FD                MOV     R5,A
+01F5 D082              POP     DPL
+01F7 D083              POP     DPH
+01F9 75F002            MOV     B,#02H
+01FC ED                MOV     A,R5
+01FD 120000      E     LCALL   ?C?OFFXADD
+0200 A3                INC     DPTR
+0201 A3                INC     DPTR
+0202 EE                MOV     A,R6
+0203 F0                MOVX    @DPTR,A
+0204 A3                INC     DPTR
+0205 EF                MOV     A,R7
+0206 F0                MOVX    @DPTR,A
+0207 900000      R     MOV     DPTR,#ADR_E+01H
+020A E0                MOVX    A,@DPTR
+020B 04                INC     A
+020C F0                MOVX    @DPTR,A
+020D 7006              JNZ     ?C0021
+020F 900000      R     MOV     DPTR,#ADR_E
+0212 E0                MOVX    A,@DPTR
+0213 04                INC     A
+0214 F0                MOVX    @DPTR,A
+0215         ?C0021:
+0215         ?C0008:
+0215 900000      R     MOV     DPTR,#i1
+0218 E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 18  
+
+0219 2402              ADD     A,#02H
+021B F0                MOVX    @DPTR,A
+021C 020000      R     LJMP    ?C0006
+021F         ?C0007:
+                                           ; SOURCE LINE # 123
+021F 900000      R     MOV     DPTR,#ADR_E
+0222 7401              MOV     A,#01H
+0224 F0                MOVX    @DPTR,A
+0225 A3                INC     DPTR
+0226 7440              MOV     A,#040H
+0228 F0                MOVX    @DPTR,A
+0229 900000      R     MOV     DPTR,#tmpadc
+022C 7406              MOV     A,#06H
+022E F0                MOVX    @DPTR,A
+022F A3                INC     DPTR
+0230 E4                CLR     A
+0231 F0                MOVX    @DPTR,A
+0232 900000      R     MOV     DPTR,#i1
+0235 E4                CLR     A
+0236 F0                MOVX    @DPTR,A
+0237         ?C0009:
+0237 900000      R     MOV     DPTR,#i1
+023A E0                MOVX    A,@DPTR
+023B FF                MOV     R7,A
+023C EF                MOV     A,R7
+023D C3                CLR     C
+023E 9480              SUBB    A,#080H
+0240 4003              JC      $ + 5H
+0242 020000      R     LJMP    ?C0010
+0245 C2AF              CLR     EA
+0247 900000      R     MOV     DPTR,#ADR_E
+024A E0                MOVX    A,@DPTR
+024B FE                MOV     R6,A
+024C A3                INC     DPTR
+024D E0                MOVX    A,@DPTR
+024E FF                MOV     R7,A
+024F EE                MOV     A,R6
+0250 FF                MOV     R7,A
+0251 7E00              MOV     R6,#00H
+0253 EF                MOV     A,R7
+0254 5403              ANL     A,#03H
+0256 F5C7              MOV     EADRH,A
+0258 900000      R     MOV     DPTR,#ADR_E
+025B E0                MOVX    A,@DPTR
+025C FE                MOV     R6,A
+025D A3                INC     DPTR
+025E E0                MOVX    A,@DPTR
+025F FF                MOV     R7,A
+0260 8FC6              MOV     EADRL,R7
+0262 75B901            MOV     ECON,#01H
+0265 75C700            MOV     EADRH,#00H
+0268 D2AF              SETB    EA
+026A AFBC              MOV     R7,EDATA1
+026C 7E00              MOV     R6,#00H
+026E EF                MOV     A,R7
+026F 7F00              MOV     R7,#00H
+0271 FE                MOV     R6,A
+0272 ADBD              MOV     R5,EDATA2
+0274 7C00              MOV     R4,#00H
+0276 EE                MOV     A,R6
+0277 4C                ORL     A,R4
+0278 FE                MOV     R6,A
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 19  
+
+0279 EF                MOV     A,R7
+027A 4D                ORL     A,R5
+027B FF                MOV     R7,A
+027C 900000      R     MOV     DPTR,#CM1
+027F EE                MOV     A,R6
+0280 F0                MOVX    @DPTR,A
+0281 A3                INC     DPTR
+0282 EF                MOV     A,R7
+0283 F0                MOVX    @DPTR,A
+0284 AFBE              MOV     R7,EDATA3
+0286 7E00              MOV     R6,#00H
+0288 EF                MOV     A,R7
+0289 7F00              MOV     R7,#00H
+028B FE                MOV     R6,A
+028C ADBF              MOV     R5,EDATA4
+028E 7C00              MOV     R4,#00H
+0290 EE                MOV     A,R6
+0291 4C                ORL     A,R4
+0292 FE                MOV     R6,A
+0293 EF                MOV     A,R7
+0294 4D                ORL     A,R5
+0295 FF                MOV     R7,A
+0296 900000      R     MOV     DPTR,#CM2
+0299 EE                MOV     A,R6
+029A F0                MOVX    @DPTR,A
+029B A3                INC     DPTR
+029C EF                MOV     A,R7
+029D F0                MOVX    @DPTR,A
+029E 900000      R     MOV     DPTR,#CM1
+02A1 E0                MOVX    A,@DPTR
+02A2 FE                MOV     R6,A
+02A3 A3                INC     DPTR
+02A4 E0                MOVX    A,@DPTR
+02A5 FF                MOV     R7,A
+02A6 900000      R     MOV     DPTR,#tmpadc
+02A9 E0                MOVX    A,@DPTR
+02AA FC                MOV     R4,A
+02AB A3                INC     DPTR
+02AC E0                MOVX    A,@DPTR
+02AD FD                MOV     R5,A
+02AE 8D82              MOV     DPL,R5
+02B0 8C83              MOV     DPH,R4
+02B2 C083              PUSH    DPH
+02B4 C082              PUSH    DPL
+02B6 900000      R     MOV     DPTR,#i1
+02B9 E0                MOVX    A,@DPTR
+02BA FD                MOV     R5,A
+02BB D082              POP     DPL
+02BD D083              POP     DPH
+02BF 75F002            MOV     B,#02H
+02C2 ED                MOV     A,R5
+02C3 120000      E     LCALL   ?C?OFFXADD
+02C6 EE                MOV     A,R6
+02C7 F0                MOVX    @DPTR,A
+02C8 A3                INC     DPTR
+02C9 EF                MOV     A,R7
+02CA F0                MOVX    @DPTR,A
+02CB 900000      R     MOV     DPTR,#CM2
+02CE E0                MOVX    A,@DPTR
+02CF FE                MOV     R6,A
+02D0 A3                INC     DPTR
+02D1 E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 20  
+
+02D2 FF                MOV     R7,A
+02D3 900000      R     MOV     DPTR,#tmpadc
+02D6 E0                MOVX    A,@DPTR
+02D7 FC                MOV     R4,A
+02D8 A3                INC     DPTR
+02D9 E0                MOVX    A,@DPTR
+02DA FD                MOV     R5,A
+02DB 8D82              MOV     DPL,R5
+02DD 8C83              MOV     DPH,R4
+02DF C083              PUSH    DPH
+02E1 C082              PUSH    DPL
+02E3 900000      R     MOV     DPTR,#i1
+02E6 E0                MOVX    A,@DPTR
+02E7 FD                MOV     R5,A
+02E8 D082              POP     DPL
+02EA D083              POP     DPH
+02EC 75F002            MOV     B,#02H
+02EF ED                MOV     A,R5
+02F0 120000      E     LCALL   ?C?OFFXADD
+02F3 A3                INC     DPTR
+02F4 A3                INC     DPTR
+02F5 EE                MOV     A,R6
+02F6 F0                MOVX    @DPTR,A
+02F7 A3                INC     DPTR
+02F8 EF                MOV     A,R7
+02F9 F0                MOVX    @DPTR,A
+02FA 900000      R     MOV     DPTR,#ADR_E+01H
+02FD E0                MOVX    A,@DPTR
+02FE 04                INC     A
+02FF F0                MOVX    @DPTR,A
+0300 7006              JNZ     ?C0022
+0302 900000      R     MOV     DPTR,#ADR_E
+0305 E0                MOVX    A,@DPTR
+0306 04                INC     A
+0307 F0                MOVX    @DPTR,A
+0308         ?C0022:
+0308         ?C0011:
+0308 900000      R     MOV     DPTR,#i1
+030B E0                MOVX    A,@DPTR
+030C 2402              ADD     A,#02H
+030E F0                MOVX    @DPTR,A
+030F 020000      R     LJMP    ?C0009
+0312         ?C0010:
+                                           ; SOURCE LINE # 124
+0312 900000      R     MOV     DPTR,#ADR_E
+0315 7401              MOV     A,#01H
+0317 F0                MOVX    @DPTR,A
+0318 A3                INC     DPTR
+0319 7480              MOV     A,#080H
+031B F0                MOVX    @DPTR,A
+031C 900000      R     MOV     DPTR,#tmpadc
+031F 7407              MOV     A,#07H
+0321 F0                MOVX    @DPTR,A
+0322 A3                INC     DPTR
+0323 E4                CLR     A
+0324 F0                MOVX    @DPTR,A
+0325 900000      R     MOV     DPTR,#i1
+0328 E4                CLR     A
+0329 F0                MOVX    @DPTR,A
+032A         ?C0012:
+032A 900000      R     MOV     DPTR,#i1
+032D E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 21  
+
+032E FF                MOV     R7,A
+032F EF                MOV     A,R7
+0330 C3                CLR     C
+0331 9480              SUBB    A,#080H
+0333 4003              JC      $ + 5H
+0335 020000      R     LJMP    ?C0013
+0338 C2AF              CLR     EA
+033A 900000      R     MOV     DPTR,#ADR_E
+033D E0                MOVX    A,@DPTR
+033E FE                MOV     R6,A
+033F A3                INC     DPTR
+0340 E0                MOVX    A,@DPTR
+0341 FF                MOV     R7,A
+0342 EE                MOV     A,R6
+0343 FF                MOV     R7,A
+0344 7E00              MOV     R6,#00H
+0346 EF                MOV     A,R7
+0347 5403              ANL     A,#03H
+0349 F5C7              MOV     EADRH,A
+034B 900000      R     MOV     DPTR,#ADR_E
+034E E0                MOVX    A,@DPTR
+034F FE                MOV     R6,A
+0350 A3                INC     DPTR
+0351 E0                MOVX    A,@DPTR
+0352 FF                MOV     R7,A
+0353 8FC6              MOV     EADRL,R7
+0355 75B901            MOV     ECON,#01H
+0358 75C700            MOV     EADRH,#00H
+035B D2AF              SETB    EA
+035D AFBC              MOV     R7,EDATA1
+035F 7E00              MOV     R6,#00H
+0361 EF                MOV     A,R7
+0362 7F00              MOV     R7,#00H
+0364 FE                MOV     R6,A
+0365 ADBD              MOV     R5,EDATA2
+0367 7C00              MOV     R4,#00H
+0369 EE                MOV     A,R6
+036A 4C                ORL     A,R4
+036B FE                MOV     R6,A
+036C EF                MOV     A,R7
+036D 4D                ORL     A,R5
+036E FF                MOV     R7,A
+036F 900000      R     MOV     DPTR,#CM1
+0372 EE                MOV     A,R6
+0373 F0                MOVX    @DPTR,A
+0374 A3                INC     DPTR
+0375 EF                MOV     A,R7
+0376 F0                MOVX    @DPTR,A
+0377 AFBE              MOV     R7,EDATA3
+0379 7E00              MOV     R6,#00H
+037B EF                MOV     A,R7
+037C 7F00              MOV     R7,#00H
+037E FE                MOV     R6,A
+037F ADBF              MOV     R5,EDATA4
+0381 7C00              MOV     R4,#00H
+0383 EE                MOV     A,R6
+0384 4C                ORL     A,R4
+0385 FE                MOV     R6,A
+0386 EF                MOV     A,R7
+0387 4D                ORL     A,R5
+0388 FF                MOV     R7,A
+0389 900000      R     MOV     DPTR,#CM2
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 22  
+
+038C EE                MOV     A,R6
+038D F0                MOVX    @DPTR,A
+038E A3                INC     DPTR
+038F EF                MOV     A,R7
+0390 F0                MOVX    @DPTR,A
+0391 900000      R     MOV     DPTR,#CM1
+0394 E0                MOVX    A,@DPTR
+0395 FE                MOV     R6,A
+0396 A3                INC     DPTR
+0397 E0                MOVX    A,@DPTR
+0398 FF                MOV     R7,A
+0399 900000      R     MOV     DPTR,#tmpadc
+039C E0                MOVX    A,@DPTR
+039D FC                MOV     R4,A
+039E A3                INC     DPTR
+039F E0                MOVX    A,@DPTR
+03A0 FD                MOV     R5,A
+03A1 8D82              MOV     DPL,R5
+03A3 8C83              MOV     DPH,R4
+03A5 C083              PUSH    DPH
+03A7 C082              PUSH    DPL
+03A9 900000      R     MOV     DPTR,#i1
+03AC E0                MOVX    A,@DPTR
+03AD FD                MOV     R5,A
+03AE D082              POP     DPL
+03B0 D083              POP     DPH
+03B2 75F002            MOV     B,#02H
+03B5 ED                MOV     A,R5
+03B6 120000      E     LCALL   ?C?OFFXADD
+03B9 EE                MOV     A,R6
+03BA F0                MOVX    @DPTR,A
+03BB A3                INC     DPTR
+03BC EF                MOV     A,R7
+03BD F0                MOVX    @DPTR,A
+03BE 900000      R     MOV     DPTR,#CM2
+03C1 E0                MOVX    A,@DPTR
+03C2 FE                MOV     R6,A
+03C3 A3                INC     DPTR
+03C4 E0                MOVX    A,@DPTR
+03C5 FF                MOV     R7,A
+03C6 900000      R     MOV     DPTR,#tmpadc
+03C9 E0                MOVX    A,@DPTR
+03CA FC                MOV     R4,A
+03CB A3                INC     DPTR
+03CC E0                MOVX    A,@DPTR
+03CD FD                MOV     R5,A
+03CE 8D82              MOV     DPL,R5
+03D0 8C83              MOV     DPH,R4
+03D2 C083              PUSH    DPH
+03D4 C082              PUSH    DPL
+03D6 900000      R     MOV     DPTR,#i1
+03D9 E0                MOVX    A,@DPTR
+03DA FD                MOV     R5,A
+03DB D082              POP     DPL
+03DD D083              POP     DPH
+03DF 75F002            MOV     B,#02H
+03E2 ED                MOV     A,R5
+03E3 120000      E     LCALL   ?C?OFFXADD
+03E6 A3                INC     DPTR
+03E7 A3                INC     DPTR
+03E8 EE                MOV     A,R6
+03E9 F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 23  
+
+03EA A3                INC     DPTR
+03EB EF                MOV     A,R7
+03EC F0                MOVX    @DPTR,A
+03ED 900000      R     MOV     DPTR,#ADR_E+01H
+03F0 E0                MOVX    A,@DPTR
+03F1 04                INC     A
+03F2 F0                MOVX    @DPTR,A
+03F3 7006              JNZ     ?C0023
+03F5 900000      R     MOV     DPTR,#ADR_E
+03F8 E0                MOVX    A,@DPTR
+03F9 04                INC     A
+03FA F0                MOVX    @DPTR,A
+03FB         ?C0023:
+03FB         ?C0014:
+03FB 900000      R     MOV     DPTR,#i1
+03FE E0                MOVX    A,@DPTR
+03FF 2402              ADD     A,#02H
+0401 F0                MOVX    @DPTR,A
+0402 020000      R     LJMP    ?C0012
+0405         ?C0013:
+                                           ; SOURCE LINE # 132
+0405 75E640            MOV     ADC0CON2,#040H
+                                           ; SOURCE LINE # 134
+0408 75D414            MOV     SF,#014H
+                                           ; SOURCE LINE # 135
+040B 75D227            MOV     ADC0CON1,#027H
+                                           ; SOURCE LINE # 136
+040E 75D124            MOV     ADCMODE,#024H
+0411         ?C0015:
+                                           ; SOURCE LINE # 137
+0411 30DFFD            JNB     RDY0,?C0015
+0414         ?C0016:
+                                           ; SOURCE LINE # 138
+0414 C2DF              CLR     RDY0
+                                           ; SOURCE LINE # 139
+0416 75D125            MOV     ADCMODE,#025H
+0419         ?C0017:
+                                           ; SOURCE LINE # 140
+0419 30DFFD            JNB     RDY0,?C0017
+041C         ?C0018:
+                                           ; SOURCE LINE # 141
+041C C2DF              CLR     RDY0
+                                           ; SOURCE LINE # 153
+041E         ?C0019:
+041E 22                RET     
+             ; FUNCTION setup (END)
+
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 24  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+EA . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AFH  1
+ADCSTAT. . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D8H  1
+I2CM . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EBH  1
+ADC0CON1 . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D2H  1
+ADC0CON2 . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E6H  1
+EADC . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00AEH  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+EDATA1 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00BCH  1
+T3FD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   009DH  1
+EDATA2 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00BDH  1
+EDATA3 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00BEH  1
+EDATA4 . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00BFH  1
+ES . . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ACH  1
+SF . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D4H  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+RDY0 . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00DFH  1
+I2CCON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E8H  1
+ECON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B9H  1
+DACCON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00FDH  1
+PCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0087H  1
+setup. . . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  i1 . . . . . . . . . . . . . . . . .  AUTO     XDATA  U_CHAR   0000H  1
+  tmpadc . . . . . . . . . . . . . . .  AUTO     XDATA  U_INT    0001H  2
+  ADR_E. . . . . . . . . . . . . . . .  AUTO     XDATA  U_INT    0003H  2
+  CM1. . . . . . . . . . . . . . . . .  AUTO     XDATA  U_INT    0005H  2
+  CM2. . . . . . . . . . . . . . . . .  AUTO     XDATA  U_INT    0007H  2
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TMOD . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0089H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+WDWR . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00C0H  1
+PLLCON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D7H  1
+ET2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ADH  1
+SPICON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F8H  1
+MDE. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EEH  1
+TR2. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00CAH  1
+MCO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EDH  1
+MDO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EFH  1
+EADRH. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C7H  1
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+T3CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   009EH  1
+EADRL. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C6H  1
+ADCMODE. . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D1H  1
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+WDCON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1055    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =      9    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+C51 COMPILER V9.00   SETUP_BKCD                                                            05/21/2013 15:05:04 PAGE 25  
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

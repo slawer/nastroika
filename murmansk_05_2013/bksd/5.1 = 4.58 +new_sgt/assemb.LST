@@ -1,0 +1,74 @@
+C51 COMPILER V9.00   ASSEMB                                                                05/21/2013 15:05:06 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ASSEMB
+NO OBJECT MODULE REQUESTED
+COMPILER INVOKED BY: d:\Keil4\C51\BIN\C51.EXE assemb.c LARGE OPTIMIZE(0,SPEED) BROWSE NOAREGS DEBUG OBJECTEXTEND CODE LI
+                    -STINCLUDE SYMBOLS TABS(2) SRC(.\assemb.SRC)
+
+line level    source
+
+   1                  
+   2          
+   3           // #include "main.h"
+   4           // #define LBUF_SIZE    28
+   5          
+   6          //extern  xdata unsigned char  lbuf [LBUF_SIZE];     // первые 64
+   7          //extern xdata unsigned char  lbuf_dn [LBUF_SIZE];
+   8          
+   9          void lbuf_cop () //using 0
+  10          {// data unsigned char j3;
+  11   1       
+  12   1        //  for(j3=0;j3<LBUF_SIZE-1;j3++)   {      
+  13   1      //    lbuf_dn[j3]=lbuf[j3]; }
+  14   1      
+  15   1      #pragma asm
+  16   1      
+  17   1        mov r0,#0
+  18   1        mov r1,#192
+  19   1        mov r3,#28
+  20   1        l1:
+  21   1        MOVx A,@R0
+  22   1        movx @r1,a
+  23   1        inc r0
+  24   1        inc r1
+  25   1        djnz r3,  l1
+  26   1      
+  27   1      #pragma endasm
+  28   1      
+  29   1      }
+  30           /*
+  31          
+  32          void cop_buf () //using 0
+  33          {// data unsigned char j3;
+  34           
+  35            //  for(j3=0;j3<LBUF_SIZE-1;j3++)   {      
+  36          //    lbuf_dn[j3]=lbuf[j3]; }
+  37          
+  38          
+  39          
+  40          
+  41          }
+  42          
+  43          */
+C51 COMPILER V9.00   ASSEMB                                                                05/21/2013 15:05:06 PAGE 2   
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+lbuf_cop . . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     34    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

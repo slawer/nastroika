@@ -1,0 +1,288 @@
+void ser_int (void) interrupt 4 using 2                             //monitor    monitor
+      
+{
+register unsigned char i,i1,j;
+register unsigned char tmp;
+
+/*
+#pragma asm
+PUSH B
+#pragma endasm
+  */
+
+	    if (RI == 1)
+            { tmp=SBUF;
+			  RI = 0;
+           if (tmp==0x7E)
+		    {nr1=1; goto kon;}
+		   if (nr1==1)
+		    if (tmp==lineadd)
+				{xbufin[0] = 0x7E;
+				 xbufin[1] = lineadd;
+				// xbufin[2] = tmp;
+				 crc=lineadd;
+				 nr1=2;goto kon;}
+			 else
+			 {nr1=0;}
+			if (nr1==2)
+				{Len_p=tmp;
+				 xbufin[2] = tmp;
+				 crc=crc+tmp;
+				 nr=3; 
+				 nr1=0; 
+				 goto kon; }
+
+			if ((nr>Len_p)|(nr>33))
+			{crc=0;
+			 nr=0;}
+			else 
+			 if (nr==Len_p)
+			 { if (crc==tmp)
+			    {  len_o=xbufin[5];
+				   if (len_o>25) {len_o=25;}
+				   for(i=0;i<Len_p;i++)
+                    {                  
+                     zbuf[i]=xbufin[i]; 
+	       
+                     } 
+					  nr++;
+				   zbuf[1]=lineadd|0x80;
+				   zrld=1;
+			//	TH1=-0x32;
+			//	TL1=-0x13;
+				tmo=TM_LINE;
+			//	TR1=1;
+			//	TF1=0;
+			//	ET1=1;
+
+			//	TH1=-0x01;
+			//	TL1=-0x50;
+			//	ET1=1;
+			cmd = zbuf[3] &0x03;
+// читать\писать EEPROM (1 -16 bytes) 7страниц (256 байт)
+if ((zbuf[3]&0xE0)  != 0) 
+{
+  len =(zbuf[3] & 0xE0 )-0x20;  // большая длина какая то..
+ // if (len>0x1C) 
+ // {len=0x1C;}
+  EEPR_ADDBUF[0]=zbuf[4];
+  EEPR_ADDBUF[1]=zbuf[5];
+  TEMP=&zbuf[6];
+  
+  if ((cmd ==1)&(FL_BLOK_EEPR==0))
+  {
+   FU_wepr(TEMP,len,&EEPR_ADDBUF[0]);
+   }                                      // write eeprom
+  if (cmd ==2)
+  {
+   fzb0=0;
+    while(fzb0==0);
+    fzb0 = 0;
+ 
+  // len = zbuf[5]&0x1F;
+   FU_repr(TEMP,len,&EEPR_ADDBUF[0]);
+              
+ //  len = zbuf[5]&0x1F;
+
+   for (i1=0;i1<len_o;i1++)
+    {               
+     bufout[i1+6] = zbuf[i1+6];
+      }
+
+     len_o =len_o+6;// (zbuf[5]&0x1F)+6;  
+     }
+    
+if (cmd ==3)
+  {
+   if(FL_BLOK_EEPR==0)
+   {
+   FU_wepr(TEMP,len,&EEPR_ADDBUF[0]);
+    }
+   FU_repr(TEMP,len,&EEPR_ADDBUF[0]);
+  // len = zbuf[5]&0x1F;
+   for (i1=0;i1<len_o;i1++)
+    {                
+     bufout[i1+6] = zbuf[i1+6];
+      }
+   len_o =len_o+6; 
+   }       // w/r eeprom
+ 
+
+}
+
+//*****************************************
+if ((zbuf[3]&0xE0)  == 0) //no EEPROM
+ {
+  if ((zbuf[3]&0x10) == 0x10)
+   {
+  
+  		 for (i1=0;i1<len_o;i1++)
+   			{
+    		  bufout[i1] = zbuf[i1];
+    	 	}
+       		len_o=len_o-1;
+       		t=1;
+       	//	while (t == 1);while(t1 ==1);         //  ждать окончания передачи
+	} 
+	  j = zbuf[4]&0x0F;
+ 	//  len = zbuf[5]&0x3F;
+      
+	  switch (zbuf[4]&0xF0) 
+      { 
+  		case 0:   // 'это условие определяет что работа происходит с НУЛЕВЫМ РЕГИСТРОМ - БУФЕРОМ ДАННЫХ                         
+		 {        // копируются данные с линии или подаются на линию
+  		   if (cmd == 3)                                      
+        	 {
+        		for (i1=0;i1<len_o ; i1++)
+          			{
+       			    lbuf[j]=zbuf[i1+6];
+					j++;
+              		}                  
+          		len_o= len_o+6;
+				for(i=0;i<len_o-6;i++)
+  				{
+ 				  bufout[i+6] = lbuf[i];
+ 				 }
+			 }
+      		if (cmd == 1)                       
+        	 {                  
+              for (i1=0;i1<len_o ; i1++)
+          	 	{       
+         	    lbuf[j]=zbuf[i1+6];
+				j++;
+         		}
+        	  len_o= len_o+6;
+      		  }
+        if (cmd == 2)                       
+         { for(i=0;i<len_o-6;i++)
+  			{
+ 			  bufout[i+6] = lbuf[i];
+ 			}                           
+           len_o=len_o+6;                     
+         }
+   		break;
+ 		}
+case 0x10:
+ {
+   if ((j+len_o)<40) 
+   {                     
+        if (cmd == 3)                      // write/read bufout                
+         {
+           for (i1=0;i1<len_o ; i1++)
+             {
+              bufout[j+6] = zbuf[i1+6];
+              j++;
+             }                  
+           len_o= len_o+6;
+         }
+        if (cmd == 1)                       //write bufout
+         {                  
+           for (i1=0;i1<len_o ; i1++)
+            {
+              bufout[j+6] = zbuf[i1+6];
+              j++;
+            }
+           len_o= len_o+6;
+         }
+        if (cmd == 2)                       // read bufout
+         {  len_o= len_o+6;                     
+         }
+    }
+  else {len_o=zbuf[2]&0x1F;}                             
+   break;
+ }
+   	case 0x20:                             
+ 	{
+ 	  if((zbuf[6]&0xA0)!=0xA0) {break; }
+ 	  fcoplbuf =0;
+	 // len_o=zbuf[2];
+ 	  FL_21=0;
+ 	  FL_20=1;
+	  len_o= len_o+6; 
+ //	  while(FL_20==1);
+ //	  while(FL_21==1);
+ 	  break;                        
+ 	}          
+ }
+ } 
+
+//status=status|((P2&0xF0)>>4);
+//status = status & (zbuf[len1-1] ^0xFF);                         
+if (((zbuf[3]&0x08)==0)&(cmd==2))
+ {                                            
+   bufout[2]=len_o+1; t = 1;
+ //  while(t==1);
+ }
+              
+if (((zbuf[3] &0x08)==0)&(cmd==3)) 
+ { 
+  
+  //while(t==1);
+   bufout[2]=len_o+1; t = 1;                     
+                 
+ }              
+if (((zbuf[3] &0x0C)==4)&(cmd!=0))  
+ {
+ // while(t==1);
+ // while(ztld ==1);
+  EA = 0; WDWR=1;WDCON=0x52;                     
+  }
+
+				}
+				 
+			  	if (t==1)
+		{nro=1;
+		SBUF=0x7E;
+	    }
+
+				}
+				else
+				{xbufin[nr]=tmp; crc+=tmp;
+				 nr++;}
+					   
+	  }
+
+   if (TI == 1)
+            { 
+			TI=0;
+			//t=0;
+			t1=0;
+			//	nro++;	
+			if (nro==1)
+			 {nro++; SBUF=0x7E; goto kon;}
+			if (nro<=5)
+			{	 if (nro==2)
+				tmp=bufout[2];
+				else 
+				tmp=zbuf[nro];
+			}
+			else 
+				if (nro==len_o)
+					tmp=status;
+				else
+					if (nro==len_o+1)
+						tmp=crco;
+					else
+						if (nro>len_o+1)
+							{crco=0;
+							goto kon;
+							}
+						else
+						tmp=bufout[nro];
+		
+		
+			SBUF=tmp;
+			crco+=tmp;
+			nro++;				 
+				 }
+   kon:
+
+  /*
+
+#pragma asm
+POP B
+#pragma endasm
+  */	
+
+return;
+}

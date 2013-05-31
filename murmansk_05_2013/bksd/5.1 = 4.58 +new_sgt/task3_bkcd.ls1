@@ -1,0 +1,2855 @@
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.00c
+OBJECT MODULE PLACED IN task3_bkcd.OBJ
+ASSEMBLER INVOKED BY: D:\Keil\C51\BIN\A51.EXE task3_bkcd.src PR(.\task3_bkcd.ls1) EP DEBUG
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ; .\task3_bkcd.SRC generated from: task3_bkcd.c
+                       2     ; COMPILER INVOKED BY:
+                       3     ;        D:\Keil\C51\BIN\C51.EXE task3_bkcd.c OPTIMIZE(SIZE) BROWSE DEBUG OBJECTEXTEND SRC(
+                             .\task3_bkcd.SRC)
+                       4     
+                       5     $nomod51 
+                       6     
+                       7     NAME    TASK3_BKCD
+                       8     
+  0080                 9     P0      DATA    080H
+  0090                10     P1      DATA    090H
+  00A0                11     P2      DATA    0A0H
+  00B0                12     P3      DATA    0B0H
+  00B4                13     T0      BIT     0B0H.4
+  00D6                14     AC      BIT     0D0H.6
+  00B5                15     T1      BIT     0B0H.5
+  0090                16     T2      BIT     090H.0
+  00AF                17     EA      BIT     0A8H.7
+  00C8                18     CAP2    BIT     0C8H.0
+  00D8                19     ADCSTAT DATA    0D8H
+  00E8                20     I2CI    BIT     0E8H.0
+  009B                21     I2CADD  DATA    09BH
+  00EB                22     I2CM    BIT     0E8H.3
+  00D2                23     ADC0CON1        DATA    0D2H
+  00E6                24     ADC0CON2        DATA    0E6H
+  00AE                25     EADC    BIT     0A8H.6
+  00EB                26     GN0H    DATA    0EBH
+  00E3                27     OF0H    DATA    0E3H
+  00A8                28     IE      DATA    0A8H
+  00FC                29     DACH    DATA    0FCH
+  00E9                30     GN0L    DATA    0E9H
+  00E1                31     OF0L    DATA    0E1H
+  00BC                32     EDATA1  DATA    0BCH
+  00A1                33     TIMECON DATA    0A1H
+  009D                34     T3FD    DATA    09DH
+  00EA                35     GN0M    DATA    0EAH
+  00E2                36     OF0M    DATA    0E2H
+  00BD                37     EDATA2  DATA    0BDH
+  00BE                38     EDATA3  DATA    0BEH
+  00FB                39     DACL    DATA    0FBH
+  00BF                40     EDATA4  DATA    0BFH
+  00CE                41     EXF2    BIT     0C8H.6
+  00B7                42     RD      BIT     0B0H.7
+  00C4                43     PRE0    BIT     0C0H.4
+  00C9                44     CNT2    BIT     0C8H.1
+  00AC                45     ES      BIT     0A8H.4
+  00C5                46     PRE1    BIT     0C0H.5
+  00BE                47     PADC    BIT     0B8H.6
+  00D4                48     SF      DATA    0D4H
+  00B8                49     IP      DATA    0B8H
+  009A                50     I2CDAT  DATA    09AH
+  00DB                51     ERR0    BIT     0D8H.3
+  00C6                52     PRE2    BIT     0C0H.6
+  00DA                53     ERR1    BIT     0D8H.2
+  00C7                54     PRE3    BIT     0C0H.7
+  0098                55     RI      BIT     098H.0
+  00B2                56     INT0    BIT     0B0H.2
+  00D7                57     CY      BIT     0D0H.7
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     2
+
+  00FA                58     CPHA    BIT     0F8H.2
+  0099                59     TI      BIT     098H.1
+  00B3                60     INT1    BIT     0B0H.3
+  00DF                61     RDY0    BIT     0D8H.7
+  00E8                62     I2CCON  DATA    0E8H
+  00DE                63     RDY1    BIT     0D8H.6
+  00CB                64     RCAP2H  DATA    0CBH
+  00BC                65     PS      BIT     0B8H.4
+  0081                66     SP      DATA    081H
+  0091                67     T2EX    BIT     090H.1
+  00D2                68     OV      BIT     0D0H.2
+  00F8                69     SPR0    BIT     0F8H.0
+  00CA                70     RCAP2L  DATA    0CAH
+  00B9                71     ECON    DATA    0B9H
+  00F9                72     SPR1    BIT     0F8H.1
+  00B6                73     WR      BIT     0B0H.6
+  00FD                74     DACCON  DATA    0FDH
+  00D5                75     ICON    DATA    0D5H
+  00CD                76     RCLK    BIT     0C8H.5
+  00FB                77     CPOL    BIT     0F8H.3
+  00CC                78     TCLK    BIT     0C8H.4
+  0099                79     SBUF    DATA    099H
+  0087                80     PCON    DATA    087H
+  00C2                81     CHIPID  DATA    0C2H
+  0098                82     SCON    DATA    098H
+  0089                83     TMOD    DATA    089H
+  0088                84     TCON    DATA    088H
+  00FE                85     WCOL    BIT     0F8H.6
+  00FF                86     ISPI    BIT     0F8H.7
+  00C3                87     WDIR    BIT     0C0H.3
+  00FC                88     SPIM    BIT     0F8H.4
+  00F2                89     I2CADD1 DATA    0F2H
+  0089                90     IE0     BIT     088H.1
+  008B                91     IE1     BIT     088H.3
+  00A5                92     HOUR    DATA    0A5H
+  00F0                93     B       DATA    0F0H
+  00DB                94     ADC0H   DATA    0DBH
+  00A2                95     HTHSEC  DATA    0A2H
+  00C0                96     WDWR    BIT     0C0H.0
+  00D9                97     ADC0L   DATA    0D9H
+  00DA                98     ADC0M   DATA    0DAH
+  00F7                99     SPIDAT  DATA    0F7H
+  00E0               100     ACC     DATA    0E0H
+  00A9               101     ET0     BIT     0A8H.1
+  00AB               102     ET1     BIT     0A8H.3
+  008D               103     TF0     BIT     088H.5
+  00D7               104     PLLCON  DATA    0D7H
+  00AD               105     ET2     BIT     0A8H.5
+  008F               106     TF1     BIT     088H.7
+  00CF               107     TF2     BIT     0C8H.7
+  009A               108     RB8     BIT     098H.2
+  008C               109     TH0     DATA    08CH
+  00A8               110     EX0     BIT     0A8H.0
+  0088               111     IT0     BIT     088H.0
+  008D               112     TH1     DATA    08DH
+  009B               113     TB8     BIT     098H.3
+  00AA               114     EX1     BIT     0A8H.2
+  008A               115     IT1     BIT     088H.2
+  00F8               116     SPICON  DATA    0F8H
+  00CD               117     TH2     DATA    0CDH
+  00D0               118     P       BIT     0D0H.0
+  00DD               119     CAL     BIT     0D8H.5
+  009F               120     SM0     BIT     098H.7
+  00A6               121     INTVAL  DATA    0A6H
+  008A               122     TL0     DATA    08AH
+  009E               123     SM1     BIT     098H.6
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     3
+
+  008B               124     TL1     DATA    08BH
+  009D               125     SM2     BIT     098H.5
+  00DF               126     PSMCON  DATA    0DFH
+  00CC               127     TL2     DATA    0CCH
+  00DC               128     NOXREF  BIT     0D8H.4
+  00B9               129     PT0     BIT     0B8H.1
+  00BB               130     PT1     BIT     0B8H.3
+  00D3               131     RS0     BIT     0D0H.3
+  00EE               132     MDE     BIT     0E8H.6
+  00BD               133     PT2     BIT     0B8H.5
+  008C               134     TR0     BIT     088H.4
+  00D4               135     RS1     BIT     0D0H.4
+  00AE               136     PWMCON  DATA    0AEH
+  008E               137     TR1     BIT     088H.6
+  00CA               138     TR2     BIT     0C8H.2
+  00B8               139     PX0     BIT     0B8H.0
+  00BA               140     PX1     BIT     0B8H.2
+  00EC               141     MDI     BIT     0E8H.4
+  00A9               142     IEIP2   DATA    0A9H
+  00A3               143     SEC     DATA    0A3H
+  0083               144     DPH     DATA    083H
+  00ED               145     MCO     BIT     0E8H.5
+  00EF               146     MDO     BIT     0E8H.7
+  00C1               147     WDE     BIT     0C0H.1
+  0082               148     DPL     DATA    082H
+  00CB               149     EXEN2   BIT     0C8H.3
+  00EA               150     I2CRS   BIT     0E8H.2
+  00A4               151     MIN     DATA    0A4H
+  0084               152     DPP     DATA    084H
+  009C               153     REN     BIT     098H.4
+  00C7               154     EADRH   DATA    0C7H
+  00C8               155     T2CON   DATA    0C8H
+  00FD               156     SPE     BIT     0F8H.5
+  009E               157     T3CON   DATA    09EH
+  00C6               158     EADRL   DATA    0C6H
+  00E9               159     I2CTX   BIT     0E8H.1
+  00B7               160     SPH     DATA    0B7H
+  00B2               161     PWM0H   DATA    0B2H
+  00C2               162     WDS     BIT     0C0H.2
+  00B0               163     RXD     BIT     0B0H.0
+  00B4               164     PWM1H   DATA    0B4H
+  00D1               165     ADCMODE DATA    0D1H
+  00B1               166     TXD     BIT     0B0H.1
+  00B1               167     PWM0L   DATA    0B1H
+  00B3               168     PWM1L   DATA    0B3H
+  00D5               169     F0      BIT     0D0H.5
+  00AF               170     CFG848  DATA    0AFH
+  00A7               171     DPCON   DATA    0A7H
+  00D1               172     F1      BIT     0D0H.1
+  00D0               173     PSW     DATA    0D0H
+  00C0               174     WDCON   DATA    0C0H
+                     175     ?PR?task_3?TASK3_BKCD                    SEGMENT CODE 
+                     176     ?C_INITSEG           SEGMENT CODE 
+                     177     ?CO?TASK3_BKCD       SEGMENT CODE 
+                     178     ?DT?TASK3_BKCD       SEGMENT DATA 
+                     179     ?ID?TASK3_BKCD       SEGMENT IDATA 
+                     180     ?XD?TASK3_BKCD       SEGMENT XDATA 
+                     181     ?BI?TASK3_BKCD       SEGMENT BIT 
+                     182     ?ID?task_3?TASK3_BKCD                    SEGMENT IDATA OVERLAYABLE 
+                     183             EXTRN   XDATA (kol_ez)
+                     184             EXTRN   XDATA (kol_e)
+                     185             EXTRN   DATA (status)
+                     186             EXTRN   XDATA (z0)
+                     187             EXTRN   XDATA (lbuf)
+                     188             EXTRN   XDATA (z1)
+                     189             EXTRN   XDATA (z2)
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     4
+
+                     190             EXTRN   XDATA (z3)
+                     191             EXTRN   XDATA (z4)
+                     192             EXTRN   XDATA (flz)
+                     193             EXTRN   BIT (rez)
+                     194             EXTRN   XDATA (ob_par)
+                     195             EXTRN   CODE (?C?LSTKXDATA)
+                     196             EXTRN   CODE (?C?LSTIDATA)
+                     197             EXTRN   CODE (?C?LLDXDATA)
+                     198             EXTRN   CODE (?C?LLDIDATA0)
+                     199             EXTRN   CODE (?C?ULCMP)
+                     200             EXTRN   CODE (?C?LSTKIDATA)
+                     201             EXTRN   CODE (?C?LLDIDATA)
+                     202             EXTRN   CODE (?C?LADD)
+                     203             EXTRN   CODE (?C?LSTXDATA)
+                     204             EXTRN   CODE (?C?LMUL)
+                     205             EXTRN   CODE (?C?ULDIV)
+                     206             EXTRN   CODE (?C?LLDXDATA0)
+                     207             EXTRN   CODE (?C?OFFXADD)
+                     208             EXTRN   CODE (?C?LSUB)
+                     209             EXTRN   CODE (?C?ULSHR)
+                     210             PUBLIC  K2
+                     211             PUBLIC  K1
+                     212             PUBLIC  kan_sl
+                     213             PUBLIC  z
+                     214             PUBLIC  CNT_2
+                     215             PUBLIC  CNT_1
+                     216             PUBLIC  A_N
+                     217             PUBLIC  BX1_A
+                     218             PUBLIC  ZG_TABX_DAT
+                     219             PUBLIC  N_CH2
+                     220             PUBLIC  N_CH1
+                     221             PUBLIC  adcbuf
+                     222             PUBLIC  FL_KOLIB
+                     223             PUBLIC  CM_t
+                     224             PUBLIC  tm
+                     225             PUBLIC  a?
+                     226             PUBLIC  BX_KPH
+                     227             PUBLIC  FL_ERR
+                     228             PUBLIC  BX_KOD
+                     229             PUBLIC  Str_BX_A
+                     230             PUBLIC  tmt
+                     231             PUBLIC  BUF_FP
+                     232             PUBLIC  tmpadc_t
+                     233             PUBLIC  TEMP_1
+                     234             PUBLIC  Str_CH_A
+                     235             PUBLIC  HH2
+                     236             PUBLIC  HH1
+                     237             PUBLIC  TABX_CH_A
+                     238             PUBLIC  BX_A
+                     239             PUBLIC  kan
+                     240             PUBLIC  N_CH
+                     241             PUBLIC  pods
+                     242             PUBLIC  AA3
+                     243             PUBLIC  BF_ZP_A
+                     244             PUBLIC  AA2
+                     245             PUBLIC  PNT_BUF_TD
+                     246             PUBLIC  AD_B
+                     247             PUBLIC  zadc
+                     248             PUBLIC  A_N3
+                     249             PUBLIC  wadc
+                     250             PUBLIC  BUF_U
+                     251             PUBLIC  BUF_T
+                     252             PUBLIC  BUF_S
+                     253             PUBLIC  BUF_N
+                     254             PUBLIC  tmadc
+                     255             PUBLIC  BUF_M
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     5
+
+                     256             PUBLIC  Str_BX1_A
+                     257             PUBLIC  TAB_ADC
+                     258             PUBLIC  task_3
+                     259     
+----                 260             XSEG  AT  0400H
+0400                 261           Str_BX1_A:   DS   384
+                     262     
+----                 263             XSEG  AT  0C0H
+00C0                 264               BUF_M:   DS   60
+                     265     
+----                 266             XSEG  AT  0100H
+0100                 267               BUF_N:   DS   60
+                     268     
+----                 269             XSEG  AT  0200H
+0200                 270               BUF_S:   DS   30
+                     271     
+----                 272             XSEG  AT  01C0H
+01C0                 273               BUF_T:   DS   60
+                     274     
+----                 275             XSEG  AT  0140H
+0140                 276               BUF_U:   DS   60
+                     277     
+----                 278             XSEG  AT  0780H
+0780                 279             BF_ZP_A:   DS   16
+                     280     
+----                 281             XSEG  AT  0763H
+0763                 282                 HH1:   DS   2
+                     283     
+----                 284             XSEG  AT  076BH
+076B                 285                 HH2:   DS   4
+                     286     
+----                 287             XSEG  AT  0680H
+0680                 288            Str_CH_A:   DS   208
+                     289     
+----                 290             XSEG  AT  0180H
+0180                 291              BUF_FP:   DS   60
+                     292     
+----                 293             XSEG  AT  05E0H
+05E0                 294            Str_BX_A:   DS   128
+                     295     
+----                 296             XSEG  AT  07B0H
+07B0                 297         ZG_TABX_DAT:   DS   4
+                     298     
+----                 299             XSEG  AT  0760H
+0760                 300                  K1:   DS   2
+                     301     
+----                 302             XSEG  AT  0766H
+0766                 303                  K2:   DS   4
+                     304     
+----                 305             RSEG  ?DT?TASK3_BKCD
+0000                 306               tmadc:   DS   2
+0002                 307                wadc:   DS   1
+0003                 308                AD_B:   DS   1
+0004                 309                 AA2:   DS   2
+0006                 310                 AA3:   DS   2
+0008                 311                N_CH:   DS   1
+0009                 312                  tm:   DS   4
+                     313     
+----                 314             RSEG  ?ID?TASK3_BKCD
+0000                 315                A_N3:   DS   1
+0001                 316                zadc:   DS   1
+0002                 317          PNT_BUF_TD:   DS   4
+0006                 318                 kan:   DS   1
+0007                 319              TEMP_1:   DS   4
+000B                 320            tmpadc_t:   DS   4
+000F                 321                 tmt:   DS   1
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     6
+
+0010                 322              BX_KOD:   DS   4
+0014                 323              BX_KPH:   DS   4
+0018                 324                  a?:   DS   1
+0019                 325                CM_t:   DS   4
+001D                 326              adcbuf:   DS   12
+0029                 327               N_CH1:   DS   1
+002A                 328               N_CH2:   DS   1
+002B                 329                 A_N:   DS   1
+002C                 330               CNT_1:   DS   4
+0030                 331               CNT_2:   DS   4
+0034                 332                   z:   DS   1
+0035                 333              kan_sl:   DS   1
+                     334     
+----                 335             RSEG  ?XD?TASK3_BKCD
+0000                 336                pods:   DS   2
+0002                 337                BX_A:   DS   16
+0012                 338           TABX_CH_A:   DS   16
+0022                 339               BX1_A:   DS   48
+                     340     
+----                 341             RSEG  ?BI?TASK3_BKCD
+0000                 342              FL_ERR:   DBIT   1
+0001                 343            FL_KOLIB:   DBIT   1
+                     344     
+----                 345             RSEG  ?ID?task_3?TASK3_BKCD
+0000                 346             i11?040:   DS   1
+                     347     
+----                 348             RSEG  ?ID?task_3?TASK3_BKCD
+0001                 349             per?041:   DS   4
+                     350     
+----                 351             RSEG  ?CO?TASK3_BKCD
+0000                 352     TAB_ADC:
+0000 0000            353             DW      00000H
+0002 0000            354             DW      00000H
+0004 0000            355             DW      00000H
+0006 0000            356             DW      00000H
+0008 0000            357             DW      00000H
+000A 0000            358             DW      00000H
+000C 0000            359             DW      00000H
+000E 0000            360             DW      00000H
+0010 0000            361             DW      00000H
+0012 0000            362             DW      00000H
+0014 0000            363             DW      00000H
+0016 0108            364             DW      00108H
+0018 0280            365             DW      00280H
+001A 0388            366             DW      00388H
+001C 0420            367             DW      00420H
+001E 0528            368             DW      00528H
+0020 00A0            369             DW      000A0H
+0022 00A8            370             DW      000A8H
+0024 0000            371             DW      00000H
+0026 0600            372             DW      00600H
+0028 0608            373             DW      00608H
+002A 0680            374             DW      00680H
+002C 0688            375             DW      00688H
+002E 0620            376             DW      00620H
+0030 0628            377             DW      00628H
+0032 00A0            378             DW      000A0H
+0034 00A8            379             DW      000A8H
+0036 0000            380             DW      00000H
+0038 0000            381             DW      00000H
+003A 0108            382             DW      00108H
+003C 0280            383             DW      00280H
+003E 0388            384             DW      00388H
+0040 0420            385             DW      00420H
+0042 0528            386             DW      00528H
+0044 00A0            387             DW      000A0H
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     7
+
+0046 00A8            388             DW      000A8H
+                     389     
+                     390     
+----                 391             RSEG  ?C_INITSEG
+0000 01              392             DB      001H
+0001 00       F      393             DB      kan
+0002 00              394             DB      000H
+                     395     
+0003 01              396             DB      001H
+0004 00       F      397             DB      kan_sl
+0005 00              398             DB      000H
+                     399     
+0006 C100     F      400             DB      0C1H, FL_KOLIB + 000H   ; bit-init
+                     401     
+                     402     ; /*
+                     403     ;  ИЗМЕРИТЕЛЬНЫЙ МОДУЛЬ (BKCD ADuC 848)   2005г.
+                     404     ; Задача3 функция измерения 8 аналоговых каналов ( период 100мс.2измерения для каждого),
+                     405     ; 8 битовый цифровой канал(состояния ключей упраыления,период обработки - 100мс)
+                     406     ; */
+                     407     ; // FUNCTION task_3 (BEGIN)
+                     408     ; 
+                     409     ; //#include <math.h>
+                     410     ; //#include "reg816.h"
+                     411     ; #include "aduc848.h"
+                     412     ; #include "r_main.h"
+                     413     ; //#include "ADC_bkcd.h"
+                     414     ; #include "define_stuct.h"
+                     415     ; #include "Опис_Таб_Кан.h"
+                     416     ; 
+                     417     ; //extern  xdata unsigned int K1;
+                     418     ; 
+                     419     ;  //extern xdata unsigned int H1;
+                     420     ; 
+                     421     ; // extern   xdata unsigned int K2;
+                     422     ; 
+                     423     ; //extern  xdata unsigned int H2; 
+                     424     ; 
+                     425     ; extern xdata unsigned char flz; // флаг защиты буфера результатов
+                     426     ; xdata unsigned int pods;
+                     427     ; extern xdata unsigned char ob_par;
+                     428     ; 
+                     429     ; 
+                     430     ; extern xdata unsigned char    z0,z1,z2,z3,z4; // переменные для перекопирования параметра
+                              в случае его порчи
+                     431     ; extern  xdata unsigned char  lbuf [LBUF_SIZE];
+                     432     ; //extern bit ff1,FCNT_SEC;
+                     433     ; extern bit got,t,rld,tld,endrx,FL_CMR;
+                     434     ; //extern  data unsigned int CNT_SEC;
+                     435     ; extern data unsigned char bufcht1[2];
+                     436     ; 
+                     437     ; idata unsigned long PNT_BUF_TD;
+                     438     ; 
+                     439     ; idata unsigned long tmpadc_t, CM_t;
+                     440     ; 
+                     441     ; 
+                     442     ; extern xdata unsigned int kol_e,kol_ez;
+                     443     ; 
+                     444     ; extern xdata unsigned int buf_adccon2[8];
+                     445     ; extern code unsigned int  TAB_ADC[4][9] ;
+                     446     ; idata unsigned char  kan=0,kan_sl=0;
+                     447     ; idata unsigned long  BX_KPH; 
+                     448     ; 
+                     449     ; idata unsigned long BX_KOD;
+                     450     ; 
+                     451     ; bit FL_KOLIB=0, FL_ERR;
+                     452     ; 
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     8
+
+                     453     ; //extern MAC_ADC_PHIZ_TAB(BX1);
+                     454     ; 
+                     455     ; extern code unsigned int  TAB_NO_LINE_1[32],TAB_NO_LINE_2[32],TAB_NO_LINE_3[32] ;//******
+                             ***************************************
+                     456     ; 
+                     457     ; extern idata unsigned int cnt_dol;
+                     458     ; extern xdata unsigned long rasx1_s,rasx2_s;
+                     459     ; extern xdata unsigned long CNT_T,VR_P;
+                     460     ; 
+                     461     ;  
+                     462     ; 
+                     463     ; data  unsigned char  wadc,AD_B;
+                     464     ; idata unsigned char  adcbuf[12];
+                     465     ; idata unsigned char  tmt;
+                     466     ; 
+                     467     ; 
+                     468     ; idata unsigned char z,zadc,a,A_N,A_N3,N_CH1,N_CH2;//,N_RZ;
+                     469     ; 
+                     470     ; //idata short  BX_KPH;
+                     471     ; idata unsigned long BX_KPH;
+                     472     ; //idata unsigned int CMRX_K1,CMRX1_K1,CMRX1_K2,CMRX_K2,SHIFT_A;
+                     473     ; 
+                     474     ; idata unsigned long CNT_1,CNT_2;
+                     475     ; 
+                     476     ; 
+                     477     ; //xdata unsigned int CMRX2_K1,CMRX3_K1,CMRX2_K2;
+                     478     ; data unsigned int AA2,AA3;
+                     479     ; data unsigned int tmadc;
+                     480     ; data unsigned char N_CH;
+                     481     ; idata unsigned long TEMP_1;
+                     482     ; 
+                     483     ; 
+                     484     ;               //extern xdata struct BUF_FL_D lst_PAR[8];
+                     485     ; //extern xdata struct lst_PAR;
+                     486     ; 
+                     487     ; extern xdata struct  TABX_CH_A Str_CH_A[13];
+                     488     ; //extern xdata struct  BX1_A Str_BX1_A[8];
+                     489     ; 
+                     490     ;  extern xdata unsigned char ZG_TABX_DAT[4];
+                     491     ;  extern xdata unsigned char  BF_ZP_A[16];
+                     492     ; 
+                     493     ; extern xdata unsigned char ZG_TABX_DAT[4];
+                     494     ; 
+                     495     ; 
+                     496     ; //idata unsigned int CMRX_K1,CMRX1_K1,CMRX1_K2,CMRX_K2,SHIFT_A=0;
+                     497     ; 
+                     498     ; extern idata unsigned int cnt_dol, rasx1, rasx2;
+                     499     ; extern data unsigned char status;
+                     500     ; 
+                     501     ; 
+                     502     ; 
+                     503     ; extern void ser_int (void);
+                     504     ; extern void timer1int (void);
+                     505     ; 
+                     506     ; extern bit rez;
+                     507     ; data unsigned long tm;
+                     508     ; 
+                     509     ; 
+                     510     ; 
+                     511     ; void task_3 (void) //using 0
+                     512     
+----                 513             RSEG  ?PR?task_3?TASK3_BKCD
+0000                 514     task_3:
+                     515             USING   0
+                     516                             ; SOURCE LINE # 110
+                     517     ; {
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE     9
+
+                     518                             ; SOURCE LINE # 111
+                     519     ; register idata unsigned char i11;
+                     520     ; register idata unsigned long per;
+                     521     ; //register idata unsigned char i1,j2;
+                     522     ; //xdata unsigned char Kf_Flt;
+                     523     ; //data unsigned long DAT_TEK;
+                     524     ; //data unsigned int DAT_IZM;
+                     525     ; //xdata unsigned int DAT_MAX;
+                     526     ; //data  unsigned int tm;
+                     527     ; 
+                     528     ; 
+                     529     ;  #pragma asm
+                     530     ;       PUSH ACC
+0000 C0E0            531               PUSH ACC
+                     532     ;       PUSH B
+0002 C0F0            533               PUSH B
+                     534     ;       PUSH DPH
+0004 C083            535               PUSH DPH
+                     536     ;       PUSH DPL
+0006 C082            537               PUSH DPL
+                     538     ;       PUSH PSW
+0008 C0D0            539               PUSH PSW
+                     540     ; #pragma endasm
+                     541     ;       
+                     542     ; 
+                     543     ;  
+                     544     ; if (rez==1)
+                     545                             ; SOURCE LINE # 132
+                     546     ; {
+                     547                             ; SOURCE LINE # 133
+                     548     ; // for(i11=0;i11<15;i11++)
+                     549     ;  //  {
+                     550     ;    
+                     551     ;    //  BUF_S[i11]=0;
+                     552     ;       //      BUF_T[i11]=0x4321;
+                     553     ;       //      BUF_M[i11]=0x1234;
+                     554     ;       //      BUF_N[i11]=0xABCD;
+                     555     ;       //      BUF_U[i11]=0xDCAB;
+                     556     ;       //      BUF_FP[i11]=0x6789;
+                     557     ; //    }
+                     558     ; //goto PPK;
+                     559     ;  }
+                     560                             ; SOURCE LINE # 145
+000A                 561     ?C0001:
+                     562     ; 
+                     563     ; //if (kan>zadc)
+                     564     ; //{
+                     565     ; //    kan=0;
+                     566     ; //}
+                     567     ; 
+                     568     ;  
+                     569     ; if (Str_CH_A[kan].NAME_PAR==0xFF)
+                     570                             ; SOURCE LINE # 153
+000A 7800     F      571             MOV     R0,#LOW (kan)
+000C E6              572             MOV     A,@R0
+000D FF              573             MOV     R7,A
+000E C4              574             SWAP    A
+000F 54F0            575             ANL     A,#0F0H
+0011 2480            576             ADD     A,#LOW (Str_CH_A)
+0013 F582            577             MOV     DPL,A
+0015 E4              578             CLR     A
+0016 3406            579             ADDC    A,#HIGH (Str_CH_A)
+0018 F583            580             MOV     DPH,A
+001A E0              581             MOVX    A,@DPTR
+001B FE              582             MOV     R6,A
+001C B4FF05          583             CJNE    A,#0FFH,?C0002
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    10
+
+                     584     ;  {
+                     585                             ; SOURCE LINE # 154
+                     586     ;  kan=0;
+                     587                             ; SOURCE LINE # 155
+001F E4              588             CLR     A
+0020 F6              589             MOV     @R0,A
+                     590     ;  goto PPK;
+                     591                             ; SOURCE LINE # 156
+0021 020000   F      592             LJMP    ?task_3?PPK
+                     593     ;  }
+                     594                             ; SOURCE LINE # 157
+0024                 595     ?C0002:
+                     596     ;   N_CH=kan;
+                     597                             ; SOURCE LINE # 158
+0024 7800     F      598             MOV     R0,#LOW (kan)
+0026 E6              599             MOV     A,@R0
+0027 F500     F      600             MOV     N_CH,A
+                     601     ; 
+                     602     ;  if (Str_CH_A[kan].NAME_PAR==0x33)
+                     603                             ; SOURCE LINE # 160
+0029 EE              604             MOV     A,R6
+002A 6433            605             XRL     A,#033H
+002C 6003            606             JZ      $ + 5H
+002E 020000   F      607             LJMP    ?C0004
+                     608     ;  {
+                     609                             ; SOURCE LINE # 161
+                     610     ; 
+                     611     ; // i11=Str_CH_A[kan].KF_KORZ1;
+                     612     ; // i11=Str_CH_A[1].KF_KORZ1;
+                     613     ;  z1=HOUR;
+                     614                             ; SOURCE LINE # 165
+0031 900000   F      615             MOV     DPTR,#z1
+0034 E5A5            616             MOV     A,HOUR
+0036 F0              617             MOVX    @DPTR,A
+                     618     ;  z2=MIN;
+                     619                             ; SOURCE LINE # 166
+0037 900000   F      620             MOV     DPTR,#z2
+003A E5A4            621             MOV     A,MIN
+003C F0              622             MOVX    @DPTR,A
+                     623     ;  z3=SEC;
+                     624                             ; SOURCE LINE # 167
+003D 900000   F      625             MOV     DPTR,#z3
+0040 E5A3            626             MOV     A,SEC
+0042 F0              627             MOVX    @DPTR,A
+                     628     ;  z4=HTHSEC;
+                     629                             ; SOURCE LINE # 168
+0043 900000   F      630             MOV     DPTR,#z4
+0046 E5A2            631             MOV     A,HTHSEC
+0048 F0              632             MOVX    @DPTR,A
+                     633     ;  i11=Str_CH_A[N_CH].KF_CRD>>3;
+                     634                             ; SOURCE LINE # 169
+0049 E500     F      635             MOV     A,N_CH
+004B C4              636             SWAP    A
+004C 54F0            637             ANL     A,#0F0H
+004E 248A            638             ADD     A,#LOW (Str_CH_A+0AH)
+0050 F582            639             MOV     DPL,A
+0052 E4              640             CLR     A
+0053 3406            641             ADDC    A,#HIGH (Str_CH_A+0AH)
+0055 F583            642             MOV     DPH,A
+0057 E0              643             MOVX    A,@DPTR
+0058 13              644             RRC     A
+0059 13              645             RRC     A
+005A 13              646             RRC     A
+005B 541F            647             ANL     A,#01FH
+005D FE              648             MOV     R6,A
+005E 7800     F      649             MOV     R0,#LOW (i11?040)
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    11
+
+0060 F6              650             MOV     @R0,A
+                     651     ;       status=0x77;
+                     652                             ; SOURCE LINE # 170
+0061 750077   F      653             MOV     status,#077H
+                     654     ;       z0=4;
+                     655                             ; SOURCE LINE # 171
+0064 900000   F      656             MOV     DPTR,#z0
+0067 7404            657             MOV     A,#04H
+0069 F0              658             MOVX    @DPTR,A
+                     659     ;       flz=i11;
+                     660                             ; SOURCE LINE # 172
+006A 900000   F      661             MOV     DPTR,#flz
+006D EE              662             MOV     A,R6
+006E F0              663             MOVX    @DPTR,A
+                     664     ; 
+                     665     ;  lbuf[i11]=HOUR;
+                     666                             ; SOURCE LINE # 174
+006F 2400     F      667             ADD     A,#LOW (lbuf)
+0071 F582            668             MOV     DPL,A
+0073 E4              669             CLR     A
+0074 3400     F      670             ADDC    A,#HIGH (lbuf)
+0076 F583            671             MOV     DPH,A
+0078 E5A5            672             MOV     A,HOUR
+007A F0              673             MOVX    @DPTR,A
+                     674     ;  lbuf[i11+1]=MIN;
+                     675                             ; SOURCE LINE # 175
+007B 7400     F      676             MOV     A,#LOW (lbuf+01H)
+007D 2E              677             ADD     A,R6
+007E F582            678             MOV     DPL,A
+0080 E4              679             CLR     A
+0081 3400     F      680             ADDC    A,#HIGH (lbuf+01H)
+0083 F583            681             MOV     DPH,A
+0085 E5A4            682             MOV     A,MIN
+0087 F0              683             MOVX    @DPTR,A
+                     684     ;  lbuf[i11+2]=SEC;
+                     685                             ; SOURCE LINE # 176
+0088 7400     F      686             MOV     A,#LOW (lbuf+02H)
+008A 2E              687             ADD     A,R6
+008B F582            688             MOV     DPL,A
+008D E4              689             CLR     A
+008E 3400     F      690             ADDC    A,#HIGH (lbuf+02H)
+0090 F583            691             MOV     DPH,A
+0092 E5A3            692             MOV     A,SEC
+0094 F0              693             MOVX    @DPTR,A
+                     694     ;  lbuf[i11+3]=HTHSEC;
+                     695                             ; SOURCE LINE # 177
+0095 7400     F      696             MOV     A,#LOW (lbuf+03H)
+0097 2E              697             ADD     A,R6
+0098 F582            698             MOV     DPL,A
+009A E4              699             CLR     A
+009B 3400     F      700             ADDC    A,#HIGH (lbuf+03H)
+009D F583            701             MOV     DPH,A
+009F E5A2            702             MOV     A,HTHSEC
+00A1 F0              703             MOVX    @DPTR,A
+                     704     ;  flz=0xFF;
+                     705                             ; SOURCE LINE # 178
+00A2 900000   F      706             MOV     DPTR,#flz
+00A5 74FF            707             MOV     A,#0FFH
+00A7 F0              708             MOVX    @DPTR,A
+                     709     ;  status=0x55;
+                     710                             ; SOURCE LINE # 179
+00A8 750055   F      711             MOV     status,#055H
+                     712     ;  kan++;
+                     713                             ; SOURCE LINE # 180
+                     714     ;  goto PPK;
+                     715                             ; SOURCE LINE # 181
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    12
+
+00AB 020000   F      716             LJMP    ?C0071
+                     717     ;  }
+                     718                             ; SOURCE LINE # 182
+00AE                 719     ?C0004:
+                     720     ; 
+                     721     ; 
+                     722     ;   if ((ob_par==Str_CH_A[kan].NAME_PAR)&(ob_par!=0xFF))
+                     723                             ; SOURCE LINE # 185
+00AE EF              724             MOV     A,R7
+00AF C4              725             SWAP    A
+00B0 54F0            726             ANL     A,#0F0H
+00B2 2480            727             ADD     A,#LOW (Str_CH_A)
+00B4 F582            728             MOV     DPL,A
+00B6 E4              729             CLR     A
+00B7 3406            730             ADDC    A,#HIGH (Str_CH_A)
+00B9 F583            731             MOV     DPH,A
+00BB E0              732             MOVX    A,@DPTR
+00BC FF              733             MOV     R7,A
+00BD 900000   F      734             MOV     DPTR,#ob_par
+00C0 E0              735             MOVX    A,@DPTR
+00C1 FE              736             MOV     R6,A
+00C2 B50704          737             CJNE    A,AR7,?C0006
+00C5 7F01            738             MOV     R7,#01H
+00C7 8002            739             SJMP    ?C0007
+00C9                 740     ?C0006:
+00C9 7F00            741             MOV     R7,#00H
+00CB                 742     ?C0007:
+00CB EE              743             MOV     A,R6
+00CC F4              744             CPL     A
+00CD 6004            745             JZ      ?C0008
+00CF 7E01            746             MOV     R6,#01H
+00D1 8002            747             SJMP    ?C0009
+00D3                 748     ?C0008:
+00D3 7E00            749             MOV     R6,#00H
+00D5                 750     ?C0009:
+00D5 EE              751             MOV     A,R6
+00D6 5F              752             ANL     A,R7
+00D7 6071            753             JZ      ?C0005
+                     754     ;   {
+                     755                             ; SOURCE LINE # 186
+                     756     ;        BUF_T[kan]=0;
+                     757                             ; SOURCE LINE # 187
+00D9 7800     F      758             MOV     R0,#LOW (kan)
+00DB E6              759             MOV     A,@R0
+00DC FB              760             MOV     R3,A
+00DD 25E0            761             ADD     A,ACC
+00DF 25E0            762             ADD     A,ACC
+00E1 24C0            763             ADD     A,#LOW (BUF_T)
+00E3 F582            764             MOV     DPL,A
+00E5 E4              765             CLR     A
+00E6 3401            766             ADDC    A,#HIGH (BUF_T)
+00E8 F583            767             MOV     DPH,A
+00EA 120000   F      768             LCALL   ?C?LSTKXDATA
+00ED 00              769             DB      00H
+00EE 00              770             DB      00H
+00EF 00              771             DB      00H
+00F0 00              772             DB      00H
+                     773     ;        BUF_M[kan]=0;
+                     774                             ; SOURCE LINE # 188
+00F1 EB              775             MOV     A,R3
+00F2 25E0            776             ADD     A,ACC
+00F4 25E0            777             ADD     A,ACC
+00F6 24C0            778             ADD     A,#LOW (BUF_M)
+00F8 F582            779             MOV     DPL,A
+00FA E4              780             CLR     A
+00FB 3400            781             ADDC    A,#HIGH (BUF_M)
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    13
+
+00FD F583            782             MOV     DPH,A
+00FF 120000   F      783             LCALL   ?C?LSTKXDATA
+0102 00              784             DB      00H
+0103 00              785             DB      00H
+0104 00              786             DB      00H
+0105 00              787             DB      00H
+                     788     ;        BUF_N[kan]=0;
+                     789                             ; SOURCE LINE # 189
+0106 7800     F      790             MOV     R0,#LOW (kan)
+0108 E6              791             MOV     A,@R0
+0109 FB              792             MOV     R3,A
+010A 25E0            793             ADD     A,ACC
+010C 25E0            794             ADD     A,ACC
+010E 2400            795             ADD     A,#LOW (BUF_N)
+0110 F582            796             MOV     DPL,A
+0112 E4              797             CLR     A
+0113 3401            798             ADDC    A,#HIGH (BUF_N)
+0115 F583            799             MOV     DPH,A
+0117 120000   F      800             LCALL   ?C?LSTKXDATA
+011A 00              801             DB      00H
+011B 00              802             DB      00H
+011C 00              803             DB      00H
+011D 00              804             DB      00H
+                     805     ;        BUF_S[kan]=0;
+                     806                             ; SOURCE LINE # 190
+011E EB              807             MOV     A,R3
+011F 25E0            808             ADD     A,ACC
+0121 2400            809             ADD     A,#LOW (BUF_S)
+0123 F582            810             MOV     DPL,A
+0125 E4              811             CLR     A
+0126 3402            812             ADDC    A,#HIGH (BUF_S)
+0128 F583            813             MOV     DPH,A
+012A E4              814             CLR     A
+012B F0              815             MOVX    @DPTR,A
+012C A3              816             INC     DPTR
+012D F0              817             MOVX    @DPTR,A
+                     818     ;        BUF_U[kan]=0;
+                     819                             ; SOURCE LINE # 191
+012E 7800     F      820             MOV     R0,#LOW (kan)
+0130 E6              821             MOV     A,@R0
+0131 25E0            822             ADD     A,ACC
+0133 25E0            823             ADD     A,ACC
+0135 2440            824             ADD     A,#LOW (BUF_U)
+0137 F582            825             MOV     DPL,A
+0139 E4              826             CLR     A
+013A 3401            827             ADDC    A,#HIGH (BUF_U)
+013C F583            828             MOV     DPH,A
+013E 120000   F      829             LCALL   ?C?LSTKXDATA
+0141 00              830             DB      00H
+0142 00              831             DB      00H
+0143 00              832             DB      00H
+0144 00              833             DB      00H
+                     834     ;        ob_par=0;
+                     835                             ; SOURCE LINE # 192
+0145 E4              836             CLR     A
+0146 900000   F      837             MOV     DPTR,#ob_par
+0149 F0              838             MOVX    @DPTR,A
+                     839     ;   }
+                     840                             ; SOURCE LINE # 193
+014A                 841     ?C0005:
+                     842     ;  // для аналоговых каналов
+                     843     ;  //     K1=0x3000;
+                     844     ;         if (N_CH==0)
+                     845                             ; SOURCE LINE # 196
+014A E500     F      846             MOV     A,N_CH
+014C 7010            847             JNZ     ?C0010
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    14
+
+                     848     ;                PNT_BUF_TD=K1;
+                     849                             ; SOURCE LINE # 197
+014E 900760          850             MOV     DPTR,#K1
+0151 E0              851             MOVX    A,@DPTR
+0152 FE              852             MOV     R6,A
+0153 A3              853             INC     DPTR
+0154 E0              854             MOVX    A,@DPTR
+0155 FF              855             MOV     R7,A
+0156 E4              856             CLR     A
+0157 FC              857             MOV     R4,A
+0158 FD              858             MOV     R5,A
+0159 7800     F      859             MOV     R0,#LOW (PNT_BUF_TD)
+015B 120000   F      860             LCALL   ?C?LSTIDATA
+015E                 861     ?C0010:
+                     862     ;         if (N_CH==1)
+                     863                             ; SOURCE LINE # 198
+015E E500     F      864             MOV     A,N_CH
+0160 6401            865             XRL     A,#01H
+0162 704E            866             JNZ     ?C0011
+                     867     ;                {      PNT_BUF_TD=BUF_T[kan];
+                     868                             ; SOURCE LINE # 199
+0164 7800     F      869             MOV     R0,#LOW (kan)
+0166 E6              870             MOV     A,@R0
+0167 25E0            871             ADD     A,ACC
+0169 25E0            872             ADD     A,ACC
+016B 24C0            873             ADD     A,#LOW (BUF_T)
+016D F582            874             MOV     DPL,A
+016F E4              875             CLR     A
+0170 3401            876             ADDC    A,#HIGH (BUF_T)
+0172 F583            877             MOV     DPH,A
+0174 120000   F      878             LCALL   ?C?LLDXDATA
+0177 7800     F      879             MOV     R0,#LOW (PNT_BUF_TD)
+0179 120000   F      880             LCALL   ?C?LSTIDATA
+                     881     ;                       if (PNT_BUF_TD>HH1)
+                     882                             ; SOURCE LINE # 200
+017C 900763          883             MOV     DPTR,#HH1
+017F E0              884             MOVX    A,@DPTR
+0180 FE              885             MOV     R6,A
+0181 A3              886             INC     DPTR
+0182 E0              887             MOVX    A,@DPTR
+0183 FF              888             MOV     R7,A
+0184 E4              889             CLR     A
+0185 FC              890             MOV     R4,A
+0186 FD              891             MOV     R5,A
+0187 7800     F      892             MOV     R0,#LOW (PNT_BUF_TD)
+0189 120000   F      893             LCALL   ?C?LLDIDATA0
+018C D3              894             SETB    C
+018D 120000   F      895             LCALL   ?C?ULCMP
+0190 4017            896             JC      ?C0012
+                     897     ;                               BUF_T[kan]=0;
+                     898                             ; SOURCE LINE # 201
+0192 7800     F      899             MOV     R0,#LOW (kan)
+0194 E6              900             MOV     A,@R0
+0195 25E0            901             ADD     A,ACC
+0197 25E0            902             ADD     A,ACC
+0199 24C0            903             ADD     A,#LOW (BUF_T)
+019B F582            904             MOV     DPL,A
+019D E4              905             CLR     A
+019E 3401            906             ADDC    A,#HIGH (BUF_T)
+01A0 F583            907             MOV     DPH,A
+01A2 120000   F      908             LCALL   ?C?LSTKXDATA
+01A5 00              909             DB      00H
+01A6 00              910             DB      00H
+01A7 00              911             DB      00H
+01A8 00              912             DB      00H
+01A9                 913     ?C0012:
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    15
+
+                     914     ;                       PNT_BUF_TD=1;
+                     915                             ; SOURCE LINE # 202
+01A9 7800     F      916             MOV     R0,#LOW (PNT_BUF_TD)
+01AB 120000   F      917             LCALL   ?C?LSTKIDATA
+01AE 00              918             DB      00H
+01AF 00              919             DB      00H
+01B0 00              920             DB      00H
+01B1 01              921             DB      01H
+                     922     ;                }
+                     923                             ; SOURCE LINE # 203
+01B2                 924     ?C0011:
+                     925     ;         if (N_CH==2)
+                     926                             ; SOURCE LINE # 204
+01B2 E500     F      927             MOV     A,N_CH
+01B4 B4020B          928             CJNE    A,#02H,?C0013
+                     929     ;                PNT_BUF_TD=K2;
+                     930                             ; SOURCE LINE # 205
+01B7 900766          931             MOV     DPTR,#K2
+01BA 120000   F      932             LCALL   ?C?LLDXDATA
+01BD 7800     F      933             MOV     R0,#LOW (PNT_BUF_TD)
+01BF 120000   F      934             LCALL   ?C?LSTIDATA
+01C2                 935     ?C0013:
+                     936     ;         if (N_CH==3)
+                     937                             ; SOURCE LINE # 206
+01C2 E500     F      938             MOV     A,N_CH
+01C4 6403            939             XRL     A,#03H
+01C6 7049            940             JNZ     ?C0014
+                     941     ;                {      PNT_BUF_TD=BUF_T[kan];
+                     942                             ; SOURCE LINE # 207
+01C8 7800     F      943             MOV     R0,#LOW (kan)
+01CA E6              944             MOV     A,@R0
+01CB 25E0            945             ADD     A,ACC
+01CD 25E0            946             ADD     A,ACC
+01CF 24C0            947             ADD     A,#LOW (BUF_T)
+01D1 F582            948             MOV     DPL,A
+01D3 E4              949             CLR     A
+01D4 3401            950             ADDC    A,#HIGH (BUF_T)
+01D6 F583            951             MOV     DPH,A
+01D8 120000   F      952             LCALL   ?C?LLDXDATA
+01DB 7800     F      953             MOV     R0,#LOW (PNT_BUF_TD)
+01DD 120000   F      954             LCALL   ?C?LSTIDATA
+                     955     ;                       if (PNT_BUF_TD>HH2)
+                     956                             ; SOURCE LINE # 208
+01E0 90076B          957             MOV     DPTR,#HH2
+01E3 120000   F      958             LCALL   ?C?LLDXDATA
+01E6 7800     F      959             MOV     R0,#LOW (PNT_BUF_TD)
+01E8 120000   F      960             LCALL   ?C?LLDIDATA0
+01EB D3              961             SETB    C
+01EC 120000   F      962             LCALL   ?C?ULCMP
+01EF 4017            963             JC      ?C0015
+                     964     ;                               BUF_T[kan]=0;
+                     965                             ; SOURCE LINE # 209
+01F1 7800     F      966             MOV     R0,#LOW (kan)
+01F3 E6              967             MOV     A,@R0
+01F4 25E0            968             ADD     A,ACC
+01F6 25E0            969             ADD     A,ACC
+01F8 24C0            970             ADD     A,#LOW (BUF_T)
+01FA F582            971             MOV     DPL,A
+01FC E4              972             CLR     A
+01FD 3401            973             ADDC    A,#HIGH (BUF_T)
+01FF F583            974             MOV     DPH,A
+0201 120000   F      975             LCALL   ?C?LSTKXDATA
+0204 00              976             DB      00H
+0205 00              977             DB      00H
+0206 00              978             DB      00H
+0207 00              979             DB      00H
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    16
+
+0208                 980     ?C0015:
+                     981     ;                 PNT_BUF_TD=1;
+                     982                             ; SOURCE LINE # 210
+0208 7800     F      983             MOV     R0,#LOW (PNT_BUF_TD)
+020A 120000   F      984             LCALL   ?C?LSTKIDATA
+020D 00              985             DB      00H
+020E 00              986             DB      00H
+020F 00              987             DB      00H
+0210 01              988             DB      01H
+                     989     ;                }
+                     990                             ; SOURCE LINE # 211
+0211                 991     ?C0014:
+                     992     ;         if (N_CH==4)
+                     993                             ; SOURCE LINE # 212
+0211 E500     F      994             MOV     A,N_CH
+0213 B4042F          995             CJNE    A,#04H,?C0016
+                     996     ;         {      PNT_BUF_TD=BUF_T[kan];
+                     997                             ; SOURCE LINE # 213
+0216 7800     F      998             MOV     R0,#LOW (kan)
+0218 E6              999             MOV     A,@R0
+0219 25E0           1000             ADD     A,ACC
+021B 25E0           1001             ADD     A,ACC
+021D 24C0           1002             ADD     A,#LOW (BUF_T)
+021F F582           1003             MOV     DPL,A
+0221 E4             1004             CLR     A
+0222 3401           1005             ADDC    A,#HIGH (BUF_T)
+0224 F583           1006             MOV     DPH,A
+0226 120000   F     1007             LCALL   ?C?LLDXDATA
+0229 7800     F     1008             MOV     R0,#LOW (PNT_BUF_TD)
+022B 120000   F     1009             LCALL   ?C?LSTIDATA
+                    1010     ;                PNT_BUF_TD++;
+                    1011                             ; SOURCE LINE # 214
+022E 7800     F     1012             MOV     R0,#LOW (PNT_BUF_TD)
+0230 120000   F     1013             LCALL   ?C?LLDIDATA
+0233 EF             1014             MOV     A,R7
+0234 2401           1015             ADD     A,#01H
+0236 FF             1016             MOV     R7,A
+0237 E4             1017             CLR     A
+0238 3E             1018             ADDC    A,R6
+0239 FE             1019             MOV     R6,A
+023A E4             1020             CLR     A
+023B 3D             1021             ADDC    A,R5
+023C FD             1022             MOV     R5,A
+023D E4             1023             CLR     A
+023E 3C             1024             ADDC    A,R4
+023F FC             1025             MOV     R4,A
+0240 7800     F     1026             MOV     R0,#LOW (PNT_BUF_TD)
+0242 120000   F     1027             LCALL   ?C?LSTIDATA
+                    1028     ; 
+                    1029     ;         }
+                    1030                             ; SOURCE LINE # 216
+0245                1031     ?C0016:
+                    1032     ; 
+                    1033     ;         if (N_CH==6)
+                    1034                             ; SOURCE LINE # 218
+0245 E500     F     1035             MOV     A,N_CH
+0247 B40610         1036             CJNE    A,#06H,?C0017
+                    1037     ;         {      PNT_BUF_TD=kol_ez;
+                    1038                             ; SOURCE LINE # 219
+024A 900000   F     1039             MOV     DPTR,#kol_ez
+024D E0             1040             MOVX    A,@DPTR
+024E FE             1041             MOV     R6,A
+024F A3             1042             INC     DPTR
+0250 E0             1043             MOVX    A,@DPTR
+0251 FF             1044             MOV     R7,A
+0252 E4             1045             CLR     A
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    17
+
+0253 FC             1046             MOV     R4,A
+0254 FD             1047             MOV     R5,A
+0255 7800     F     1048             MOV     R0,#LOW (PNT_BUF_TD)
+0257 120000   F     1049             LCALL   ?C?LSTIDATA
+                    1050     ;         }
+                    1051                             ; SOURCE LINE # 220
+025A                1052     ?C0017:
+                    1053     ; 
+                    1054     ;         if (N_CH==7)
+                    1055                             ; SOURCE LINE # 222
+025A E500     F     1056             MOV     A,N_CH
+025C B40710         1057             CJNE    A,#07H,?C0018
+                    1058     ;         {      PNT_BUF_TD=kol_e;
+                    1059                             ; SOURCE LINE # 223
+025F 900000   F     1060             MOV     DPTR,#kol_e
+0262 E0             1061             MOVX    A,@DPTR
+0263 FE             1062             MOV     R6,A
+0264 A3             1063             INC     DPTR
+0265 E0             1064             MOVX    A,@DPTR
+0266 FF             1065             MOV     R7,A
+0267 E4             1066             CLR     A
+0268 FC             1067             MOV     R4,A
+0269 FD             1068             MOV     R5,A
+026A 7800     F     1069             MOV     R0,#LOW (PNT_BUF_TD)
+026C 120000   F     1070             LCALL   ?C?LSTIDATA
+                    1071     ;         }
+                    1072                             ; SOURCE LINE # 224
+026F                1073     ?C0018:
+                    1074     ; 
+                    1075     ; 
+                    1076     ; 
+                    1077     ;        if (((Str_CH_A[kan].NAME_PAR&0x0F)==0x05))
+                    1078                             ; SOURCE LINE # 228
+026F 7800     F     1079             MOV     R0,#LOW (kan)
+0271 E6             1080             MOV     A,@R0
+0272 FF             1081             MOV     R7,A
+0273 C4             1082             SWAP    A
+0274 54F0           1083             ANL     A,#0F0H
+0276 2480           1084             ADD     A,#LOW (Str_CH_A)
+0278 F582           1085             MOV     DPL,A
+027A E4             1086             CLR     A
+027B 3406           1087             ADDC    A,#HIGH (Str_CH_A)
+027D F583           1088             MOV     DPH,A
+027F E0             1089             MOVX    A,@DPTR
+0280 540F           1090             ANL     A,#0FH
+0282 FE             1091             MOV     R6,A
+0283 BE053E         1092             CJNE    R6,#05H,?C0019
+                    1093     ;        {
+                    1094                             ; SOURCE LINE # 229
+                    1095     ;          BUF_T[kan]+=PNT_BUF_TD;
+                    1096                             ; SOURCE LINE # 230
+0286 EF             1097             MOV     A,R7
+0287 25E0           1098             ADD     A,ACC
+0289 25E0           1099             ADD     A,ACC
+028B 24C0           1100             ADD     A,#LOW (BUF_T)
+028D F582           1101             MOV     DPL,A
+028F E4             1102             CLR     A
+0290 3401           1103             ADDC    A,#HIGH (BUF_T)
+0292 F583           1104             MOV     DPH,A
+0294 C083           1105             PUSH    DPH
+0296 C082           1106             PUSH    DPL
+0298 120000   F     1107             LCALL   ?C?LLDXDATA
+029B 7800     F     1108             MOV     R0,#LOW (PNT_BUF_TD)
+029D 120000   F     1109             LCALL   ?C?LLDIDATA0
+02A0 120000   F     1110             LCALL   ?C?LADD
+02A3 D082           1111             POP     DPL
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    18
+
+02A5 D083           1112             POP     DPH
+02A7 120000   F     1113             LCALL   ?C?LSTXDATA
+                    1114     ;          PNT_BUF_TD=BUF_T[kan];
+                    1115                             ; SOURCE LINE # 231
+02AA 7800     F     1116             MOV     R0,#LOW (kan)
+02AC E6             1117             MOV     A,@R0
+02AD 25E0           1118             ADD     A,ACC
+02AF 25E0           1119             ADD     A,ACC
+02B1 24C0           1120             ADD     A,#LOW (BUF_T)
+02B3 F582           1121             MOV     DPL,A
+02B5 E4             1122             CLR     A
+02B6 3401           1123             ADDC    A,#HIGH (BUF_T)
+02B8 F583           1124             MOV     DPH,A
+02BA 120000   F     1125             LCALL   ?C?LLDXDATA
+02BD 7800     F     1126             MOV     R0,#LOW (PNT_BUF_TD)
+02BF 120000   F     1127             LCALL   ?C?LSTIDATA
+                    1128     ;        }
+                    1129                             ; SOURCE LINE # 232
+02C2 8018           1130             SJMP    ?C0020
+02C4                1131     ?C0019:
+                    1132     ;        else
+                    1133     ;               BUF_T[kan]=PNT_BUF_TD;
+                    1134                             ; SOURCE LINE # 234
+02C4 7800     F     1135             MOV     R0,#LOW (PNT_BUF_TD)
+02C6 120000   F     1136             LCALL   ?C?LLDIDATA
+02C9 7800     F     1137             MOV     R0,#LOW (kan)
+02CB E6             1138             MOV     A,@R0
+02CC 25E0           1139             ADD     A,ACC
+02CE 25E0           1140             ADD     A,ACC
+02D0 24C0           1141             ADD     A,#LOW (BUF_T)
+02D2 F582           1142             MOV     DPL,A
+02D4 E4             1143             CLR     A
+02D5 3401           1144             ADDC    A,#HIGH (BUF_T)
+02D7 F583           1145             MOV     DPH,A
+02D9 120000   F     1146             LCALL   ?C?LSTXDATA
+02DC                1147     ?C0020:
+                    1148     ;  
+                    1149     ;         if (PNT_BUF_TD>BUF_M[kan])
+                    1150                             ; SOURCE LINE # 236
+02DC 7800     F     1151             MOV     R0,#LOW (kan)
+02DE E6             1152             MOV     A,@R0
+02DF 25E0           1153             ADD     A,ACC
+02E1 25E0           1154             ADD     A,ACC
+02E3 24C0           1155             ADD     A,#LOW (BUF_M)
+02E5 F582           1156             MOV     DPL,A
+02E7 E4             1157             CLR     A
+02E8 3400           1158             ADDC    A,#HIGH (BUF_M)
+02EA F583           1159             MOV     DPH,A
+02EC 120000   F     1160             LCALL   ?C?LLDXDATA
+02EF 7800     F     1161             MOV     R0,#LOW (PNT_BUF_TD)
+02F1 120000   F     1162             LCALL   ?C?LLDIDATA0
+02F4 D3             1163             SETB    C
+02F5 120000   F     1164             LCALL   ?C?ULCMP
+02F8 4018           1165             JC      ?C0021
+                    1166     ;         {             BUF_M[kan]=PNT_BUF_TD;
+                    1167                             ; SOURCE LINE # 237
+02FA 7800     F     1168             MOV     R0,#LOW (PNT_BUF_TD)
+02FC 120000   F     1169             LCALL   ?C?LLDIDATA
+02FF 7800     F     1170             MOV     R0,#LOW (kan)
+0301 E6             1171             MOV     A,@R0
+0302 25E0           1172             ADD     A,ACC
+0304 25E0           1173             ADD     A,ACC
+0306 24C0           1174             ADD     A,#LOW (BUF_M)
+0308 F582           1175             MOV     DPL,A
+030A E4             1176             CLR     A
+030B 3400           1177             ADDC    A,#HIGH (BUF_M)
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    19
+
+030D F583           1178             MOV     DPH,A
+030F 120000   F     1179             LCALL   ?C?LSTXDATA
+                    1180     ;         }
+                    1181                             ; SOURCE LINE # 238
+0312                1182     ?C0021:
+                    1183     ; //      status=kan;
+                    1184     ; 
+                    1185     ;                       tmpadc_t=100; //множитель(V)
+                    1186                             ; SOURCE LINE # 241
+0312 7800     F     1187             MOV     R0,#LOW (tmpadc_t)
+0314 120000   F     1188             LCALL   ?C?LSTKIDATA
+0317 00             1189             DB      00H
+0318 00             1190             DB      00H
+0319 00             1191             DB      00H
+031A 64             1192             DB      064H
+                    1193     ;                       CM_t=Str_CH_A[kan].KF_KORZ;  //делитель (KF_RD)
+                    1194                             ; SOURCE LINE # 242
+031B 7800     F     1195             MOV     R0,#LOW (kan)
+031D E6             1196             MOV     A,@R0
+031E FB             1197             MOV     R3,A
+031F C4             1198             SWAP    A
+0320 54F0           1199             ANL     A,#0F0H
+0322 248C           1200             ADD     A,#LOW (Str_CH_A+0CH)
+0324 F582           1201             MOV     DPL,A
+0326 E4             1202             CLR     A
+0327 3406           1203             ADDC    A,#HIGH (Str_CH_A+0CH)
+0329 F583           1204             MOV     DPH,A
+032B E0             1205             MOVX    A,@DPTR
+032C FE             1206             MOV     R6,A
+032D A3             1207             INC     DPTR
+032E E0             1208             MOVX    A,@DPTR
+032F FF             1209             MOV     R7,A
+0330 E4             1210             CLR     A
+0331 FC             1211             MOV     R4,A
+0332 FD             1212             MOV     R5,A
+0333 7800     F     1213             MOV     R0,#LOW (CM_t)
+0335 120000   F     1214             LCALL   ?C?LSTIDATA
+                    1215     ;                       wadc = Str_CH_A[kan].Frm_Dat & 0xC0;  
+                    1216                             ; SOURCE LINE # 243
+0338 EB             1217             MOV     A,R3
+0339 C4             1218             SWAP    A
+033A 54F0           1219             ANL     A,#0F0H
+033C 2482           1220             ADD     A,#LOW (Str_CH_A+02H)
+033E F582           1221             MOV     DPL,A
+0340 E4             1222             CLR     A
+0341 3406           1223             ADDC    A,#HIGH (Str_CH_A+02H)
+0343 F583           1224             MOV     DPH,A
+0345 E0             1225             MOVX    A,@DPTR
+0346 54C0           1226             ANL     A,#0C0H
+0348 F500     F     1227             MOV     wadc,A
+                    1228     ;                       TEMP_1=0;
+                    1229                             ; SOURCE LINE # 244
+034A 7800     F     1230             MOV     R0,#LOW (TEMP_1)
+034C 120000   F     1231             LCALL   ?C?LSTKIDATA
+034F 00             1232             DB      00H
+0350 00             1233             DB      00H
+0351 00             1234             DB      00H
+0352 00             1235             DB      00H
+                    1236     ; 
+                    1237     ;                       if (CM_t>0xFFFF)
+                    1238                             ; SOURCE LINE # 246
+0353 E4             1239             CLR     A
+0354 7FFF           1240             MOV     R7,#0FFH
+0356 7EFF           1241             MOV     R6,#0FFH
+0358 FD             1242             MOV     R5,A
+0359 FC             1243             MOV     R4,A
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    20
+
+035A 7800     F     1244             MOV     R0,#LOW (CM_t)
+035C 120000   F     1245             LCALL   ?C?LLDIDATA0
+035F D3             1246             SETB    C
+0360 120000   F     1247             LCALL   ?C?ULCMP
+0363 4009           1248             JC      ?C0022
+                    1249     ;                               CM_t=0;
+                    1250                             ; SOURCE LINE # 247
+0365 7800     F     1251             MOV     R0,#LOW (CM_t)
+0367 120000   F     1252             LCALL   ?C?LSTKIDATA
+036A 00             1253             DB      00H
+036B 00             1254             DB      00H
+036C 00             1255             DB      00H
+036D 00             1256             DB      00H
+036E                1257     ?C0022:
+                    1258     ; 
+                    1259     ;                       if ((tmpadc_t>1)&(tmpadc_t<50000))
+                    1260                             ; SOURCE LINE # 249
+036E E4             1261             CLR     A
+036F 7F01           1262             MOV     R7,#01H
+0371 FE             1263             MOV     R6,A
+0372 FD             1264             MOV     R5,A
+0373 FC             1265             MOV     R4,A
+0374 7800     F     1266             MOV     R0,#LOW (tmpadc_t)
+0376 120000   F     1267             LCALL   ?C?LLDIDATA0
+0379 D3             1268             SETB    C
+037A 120000   F     1269             LCALL   ?C?ULCMP
+037D 4006           1270             JC      ?C0024
+037F 7F01           1271             MOV     R7,#01H
+0381 C007           1272             PUSH    AR7
+0383 8004           1273             SJMP    ?C0025
+0385                1274     ?C0024:
+0385 7F00           1275             MOV     R7,#00H
+0387 C007           1276             PUSH    AR7
+0389                1277     ?C0025:
+0389 E4             1278             CLR     A
+038A 7F50           1279             MOV     R7,#050H
+038C 7EC3           1280             MOV     R6,#0C3H
+038E FD             1281             MOV     R5,A
+038F FC             1282             MOV     R4,A
+0390 7800     F     1283             MOV     R0,#LOW (tmpadc_t)
+0392 120000   F     1284             LCALL   ?C?LLDIDATA0
+0395 C3             1285             CLR     C
+0396 120000   F     1286             LCALL   ?C?ULCMP
+0399 5004           1287             JNC     ?C0026
+039B 7E01           1288             MOV     R6,#01H
+039D 8002           1289             SJMP    ?C0027
+039F                1290     ?C0026:
+039F 7E00           1291             MOV     R6,#00H
+03A1                1292     ?C0027:
+03A1 D0E0           1293             POP     ACC
+03A3 5E             1294             ANL     A,R6
+03A4 7003           1295             JNZ     $ + 5H
+03A6 020000   F     1296             LJMP    ?C0023
+                    1297     ;                       {
+                    1298                             ; SOURCE LINE # 250
+                    1299     ;                       if ((CM_t!=0)&(CM_t!=0xFFFFFFFF))//&(Str_CH_A[kan].KF_WIND==2))
+                    1300                             ; SOURCE LINE # 251
+03A9 74FF           1301             MOV     A,#0FFH
+03AB FF             1302             MOV     R7,A
+03AC FE             1303             MOV     R6,A
+03AD FD             1304             MOV     R5,A
+03AE FC             1305             MOV     R4,A
+03AF 7800     F     1306             MOV     R0,#LOW (CM_t)
+03B1 120000   F     1307             LCALL   ?C?LLDIDATA0
+03B4 C3             1308             CLR     C
+03B5 120000   F     1309             LCALL   ?C?ULCMP
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    21
+
+03B8 6006           1310             JZ      ?C0029
+03BA 7F01           1311             MOV     R7,#01H
+03BC C007           1312             PUSH    AR7
+03BE 8004           1313             SJMP    ?C0030
+03C0                1314     ?C0029:
+03C0 7F00           1315             MOV     R7,#00H
+03C2 C007           1316             PUSH    AR7
+03C4                1317     ?C0030:
+03C4 E4             1318             CLR     A
+03C5 FF             1319             MOV     R7,A
+03C6 FE             1320             MOV     R6,A
+03C7 FD             1321             MOV     R5,A
+03C8 FC             1322             MOV     R4,A
+03C9 7800     F     1323             MOV     R0,#LOW (CM_t)
+03CB 120000   F     1324             LCALL   ?C?LLDIDATA0
+03CE C3             1325             CLR     C
+03CF 120000   F     1326             LCALL   ?C?ULCMP
+03D2 6004           1327             JZ      ?C0031
+03D4 7E01           1328             MOV     R6,#01H
+03D6 8002           1329             SJMP    ?C0032
+03D8                1330     ?C0031:
+03D8 7E00           1331             MOV     R6,#00H
+03DA                1332     ?C0032:
+03DA D0E0           1333             POP     ACC
+03DC 5E             1334             ANL     A,R6
+03DD 6066           1335             JZ      ?C0028
+                    1336     ;                       {
+                    1337                             ; SOURCE LINE # 252
+                    1338     ;                               PNT_BUF_TD=PNT_BUF_TD*CM_t;
+                    1339                             ; SOURCE LINE # 253
+03DF 7800     F     1340             MOV     R0,#LOW (PNT_BUF_TD)
+03E1 120000   F     1341             LCALL   ?C?LLDIDATA
+03E4 7800     F     1342             MOV     R0,#LOW (CM_t)
+03E6 120000   F     1343             LCALL   ?C?LLDIDATA0
+03E9 120000   F     1344             LCALL   ?C?LMUL
+03EC 7800     F     1345             MOV     R0,#LOW (PNT_BUF_TD)
+03EE 120000   F     1346             LCALL   ?C?LSTIDATA
+                    1347     ;                       //      PNT_BUF_TD=PNT_BUF_TD/tmpadc_t;
+                    1348     ; //                            status|=0x10;
+                    1349     ;                               if (wadc==0xC0)
+                    1350                             ; SOURCE LINE # 256
+03F1 E500     F     1351             MOV     A,wadc
+03F3 B4C013         1352             CJNE    A,#0C0H,?C0033
+                    1353     ;                               {       PNT_BUF_TD=PNT_BUF_TD*10;          //  три сдвига -
+                              до тысячных
+                    1354                             ; SOURCE LINE # 257
+03F6 7800     F     1355             MOV     R0,#LOW (PNT_BUF_TD)
+03F8 120000   F     1356             LCALL   ?C?LLDIDATA
+03FB E4             1357             CLR     A
+03FC 7B0A           1358             MOV     R3,#0AH
+03FE FA             1359             MOV     R2,A
+03FF F9             1360             MOV     R1,A
+0400 F8             1361             MOV     R0,A
+0401 120000   F     1362             LCALL   ?C?LMUL
+0404 7800     F     1363             MOV     R0,#LOW (PNT_BUF_TD)
+0406 120000   F     1364             LCALL   ?C?LSTIDATA
+                    1365     ;                               }  
+                    1366                             ; SOURCE LINE # 258
+0409                1367     ?C0033:
+                    1368     ;                               if (wadc==0x00)
+                    1369                             ; SOURCE LINE # 259
+0409 E500     F     1370             MOV     A,wadc
+040B 7013           1371             JNZ     ?C0034
+                    1372     ;                               {       PNT_BUF_TD=PNT_BUF_TD/100;   //нет сдвигов цедлое
+                    1373                             ; SOURCE LINE # 260
+040D 7800     F     1374             MOV     R0,#LOW (PNT_BUF_TD)
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    22
+
+040F 120000   F     1375             LCALL   ?C?LLDIDATA
+0412 E4             1376             CLR     A
+0413 7B64           1377             MOV     R3,#064H
+0415 FA             1378             MOV     R2,A
+0416 F9             1379             MOV     R1,A
+0417 F8             1380             MOV     R0,A
+0418 120000   F     1381             LCALL   ?C?ULDIV
+041B 7800     F     1382             MOV     R0,#LOW (PNT_BUF_TD)
+041D 120000   F     1383             LCALL   ?C?LSTIDATA
+                    1384     ;                               }  
+                    1385                             ; SOURCE LINE # 261
+0420                1386     ?C0034:
+                    1387     ;                               if (wadc==0x80)
+                    1388                             ; SOURCE LINE # 262
+0420 E500     F     1389             MOV     A,wadc
+0422 B4800A         1390             CJNE    A,#080H,?C0035
+                    1391     ;                               {  PNT_BUF_TD=PNT_BUF_TD;         // два сдвига - сотые дол
+                             и значит
+                    1392                             ; SOURCE LINE # 263
+0425 7800     F     1393             MOV     R0,#LOW (PNT_BUF_TD)
+0427 120000   F     1394             LCALL   ?C?LLDIDATA
+042A 7800     F     1395             MOV     R0,#LOW (PNT_BUF_TD)
+042C 120000   F     1396             LCALL   ?C?LSTIDATA
+                    1397     ;                               }  
+                    1398                             ; SOURCE LINE # 264
+042F                1399     ?C0035:
+                    1400     ;                               if (wadc==0x40)
+                    1401                             ; SOURCE LINE # 265
+042F E500     F     1402             MOV     A,wadc
+0431 6440           1403             XRL     A,#040H
+0433 7059           1404             JNZ     ?C0023
+                    1405     ;                               {  PNT_BUF_TD=PNT_BUF_TD/10;            // один сдвигг - де
+                             сятые долии
+                    1406                             ; SOURCE LINE # 266
+0435 7800     F     1407             MOV     R0,#LOW (PNT_BUF_TD)
+0437 120000   F     1408             LCALL   ?C?LLDIDATA
+043A E4             1409             CLR     A
+043B 7B0A           1410             MOV     R3,#0AH
+043D FA             1411             MOV     R2,A
+043E F9             1412             MOV     R1,A
+043F F8             1413             MOV     R0,A
+0440 120000   F     1414             LCALL   ?C?ULDIV
+                    1415     ;                               }  
+                    1416                             ; SOURCE LINE # 267
+                    1417     ;                       }
+                    1418                             ; SOURCE LINE # 268
+0443 8044           1419             SJMP    ?C0072
+0445                1420     ?C0028:
+                    1421     ;                       else
+                    1422     ;                       {
+                    1423                             ; SOURCE LINE # 270
+                    1424     ;                               if (wadc==0xC0)
+                    1425                             ; SOURCE LINE # 271
+0445 E500     F     1426             MOV     A,wadc
+0447 B4C014         1427             CJNE    A,#0C0H,?C0038
+                    1428     ;                               {       PNT_BUF_TD=PNT_BUF_TD*1000;        //  три сдвига -
+                              до тысячных
+                    1429                             ; SOURCE LINE # 272
+044A 7800     F     1430             MOV     R0,#LOW (PNT_BUF_TD)
+044C 120000   F     1431             LCALL   ?C?LLDIDATA
+044F E4             1432             CLR     A
+0450 7BE8           1433             MOV     R3,#0E8H
+0452 7A03           1434             MOV     R2,#03H
+0454 F9             1435             MOV     R1,A
+0455 F8             1436             MOV     R0,A
+0456 120000   F     1437             LCALL   ?C?LMUL
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    23
+
+0459 7800     F     1438             MOV     R0,#LOW (PNT_BUF_TD)
+045B 120000   F     1439             LCALL   ?C?LSTIDATA
+                    1440     ;                               }  
+                    1441                             ; SOURCE LINE # 273
+045E                1442     ?C0038:
+                    1443     ;                               if (wadc==0x00)
+                    1444                             ; SOURCE LINE # 274
+                    1445     ;                               {       //PNT_BUF_TD=PNT_BUF_TD;   //нет сдвигов цедлое
+                    1446                             ; SOURCE LINE # 275
+                    1447     ;                               }  
+                    1448                             ; SOURCE LINE # 276
+045E                1449     ?C0039:
+                    1450     ;                               if (wadc==0x80)
+                    1451                             ; SOURCE LINE # 277
+045E E500     F     1452             MOV     A,wadc
+0460 B48013         1453             CJNE    A,#080H,?C0040
+                    1454     ;                               {  PNT_BUF_TD=PNT_BUF_TD*100;     // два сдвига - сотые дол
+                             и значит
+                    1455                             ; SOURCE LINE # 278
+0463 7800     F     1456             MOV     R0,#LOW (PNT_BUF_TD)
+0465 120000   F     1457             LCALL   ?C?LLDIDATA
+0468 E4             1458             CLR     A
+0469 7B64           1459             MOV     R3,#064H
+046B FA             1460             MOV     R2,A
+046C F9             1461             MOV     R1,A
+046D F8             1462             MOV     R0,A
+046E 120000   F     1463             LCALL   ?C?LMUL
+0471 7800     F     1464             MOV     R0,#LOW (PNT_BUF_TD)
+0473 120000   F     1465             LCALL   ?C?LSTIDATA
+                    1466     ;                               }  
+                    1467                             ; SOURCE LINE # 279
+0476                1468     ?C0040:
+                    1469     ;                               if (wadc==0x40)
+                    1470                             ; SOURCE LINE # 280
+0476 E500     F     1471             MOV     A,wadc
+0478 B44013         1472             CJNE    A,#040H,?C0023
+                    1473     ;                               {  PNT_BUF_TD=PNT_BUF_TD*10;            // один сдвигг - де
+                             сятые долии
+                    1474                             ; SOURCE LINE # 281
+047B 7800     F     1475             MOV     R0,#LOW (PNT_BUF_TD)
+047D 120000   F     1476             LCALL   ?C?LLDIDATA
+0480 E4             1477             CLR     A
+0481 7B0A           1478             MOV     R3,#0AH
+0483 FA             1479             MOV     R2,A
+0484 F9             1480             MOV     R1,A
+0485 F8             1481             MOV     R0,A
+0486 120000   F     1482             LCALL   ?C?LMUL
+0489                1483     ?C0072:
+0489 7800     F     1484             MOV     R0,#LOW (PNT_BUF_TD)
+048B 120000   F     1485             LCALL   ?C?LSTIDATA
+                    1486     ;                               }  
+                    1487                             ; SOURCE LINE # 282
+                    1488     ;                       }       
+                    1489                             ; SOURCE LINE # 283
+                    1490     ; 
+                    1491     ;                       
+                    1492     ;                       }       
+                    1493                             ; SOURCE LINE # 286
+048E                1494     ?C0023:
+                    1495     ; 
+                    1496     ; 
+                    1497     ; 
+                    1498     ;       per=BUF_S[kan];
+                    1499                             ; SOURCE LINE # 290
+048E 7800     F     1500             MOV     R0,#LOW (kan)
+0490 E6             1501             MOV     A,@R0
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    24
+
+0491 FB             1502             MOV     R3,A
+0492 25E0           1503             ADD     A,ACC
+0494 2400           1504             ADD     A,#LOW (BUF_S)
+0496 F582           1505             MOV     DPL,A
+0498 E4             1506             CLR     A
+0499 3402           1507             ADDC    A,#HIGH (BUF_S)
+049B F583           1508             MOV     DPH,A
+049D E0             1509             MOVX    A,@DPTR
+049E FE             1510             MOV     R6,A
+049F A3             1511             INC     DPTR
+04A0 E0             1512             MOVX    A,@DPTR
+04A1 FF             1513             MOV     R7,A
+04A2 E4             1514             CLR     A
+04A3 FC             1515             MOV     R4,A
+04A4 FD             1516             MOV     R5,A
+04A5 7800     F     1517             MOV     R0,#LOW (per?041)
+04A7 120000   F     1518             LCALL   ?C?LSTIDATA
+                    1519     ;       tm=BUF_N[kan];
+                    1520                             ; SOURCE LINE # 291
+04AA EB             1521             MOV     A,R3
+04AB 25E0           1522             ADD     A,ACC
+04AD 25E0           1523             ADD     A,ACC
+04AF 2400           1524             ADD     A,#LOW (BUF_N)
+04B1 F582           1525             MOV     DPL,A
+04B3 E4             1526             CLR     A
+04B4 3401           1527             ADDC    A,#HIGH (BUF_N)
+04B6 F583           1528             MOV     DPH,A
+04B8 120000   F     1529             LCALL   ?C?LLDXDATA
+04BB 8F00     F     1530             MOV     tm+03H,R7
+04BD 8E00     F     1531             MOV     tm+02H,R6
+04BF 8D00     F     1532             MOV     tm+01H,R5
+04C1 8C00     F     1533             MOV     tm,R4
+                    1534     ; //    pods=pods&0xFF00;
+                    1535     ;       pods=Str_CH_A[kan].KF_KORZ1;
+                    1536                             ; SOURCE LINE # 293
+04C3 7800     F     1537             MOV     R0,#LOW (kan)
+04C5 E6             1538             MOV     A,@R0
+04C6 C4             1539             SWAP    A
+04C7 54F0           1540             ANL     A,#0F0H
+04C9 248E           1541             ADD     A,#LOW (Str_CH_A+0EH)
+04CB F582           1542             MOV     DPL,A
+04CD E4             1543             CLR     A
+04CE 3406           1544             ADDC    A,#HIGH (Str_CH_A+0EH)
+04D0 F583           1545             MOV     DPH,A
+04D2 E0             1546             MOVX    A,@DPTR
+04D3 FF             1547             MOV     R7,A
+04D4 A3             1548             INC     DPTR
+04D5 E0             1549             MOVX    A,@DPTR
+04D6 900000   F     1550             MOV     DPTR,#pods
+04D9 CF             1551             XCH     A,R7
+04DA F0             1552             MOVX    @DPTR,A
+04DB A3             1553             INC     DPTR
+04DC EF             1554             MOV     A,R7
+04DD F0             1555             MOVX    @DPTR,A
+                    1556     ;     if ((per<pods)&(tm<tm+ PNT_BUF_TD))
+                    1557                             ; SOURCE LINE # 294
+04DE 7800     F     1558             MOV     R0,#LOW (PNT_BUF_TD)
+04E0 120000   F     1559             LCALL   ?C?LLDIDATA
+04E3 E500     F     1560             MOV     A,tm+03H
+04E5 2F             1561             ADD     A,R7
+04E6 FF             1562             MOV     R7,A
+04E7 E500     F     1563             MOV     A,tm+02H
+04E9 3E             1564             ADDC    A,R6
+04EA FE             1565             MOV     R6,A
+04EB E500     F     1566             MOV     A,tm+01H
+04ED 3D             1567             ADDC    A,R5
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    25
+
+04EE FD             1568             MOV     R5,A
+04EF E500     F     1569             MOV     A,tm
+04F1 3C             1570             ADDC    A,R4
+04F2 FC             1571             MOV     R4,A
+04F3 AB00     F     1572             MOV     R3,tm+03H
+04F5 AA00     F     1573             MOV     R2,tm+02H
+04F7 A900     F     1574             MOV     R1,tm+01H
+04F9 A800     F     1575             MOV     R0,tm
+04FB C3             1576             CLR     C
+04FC 120000   F     1577             LCALL   ?C?ULCMP
+04FF 5006           1578             JNC     ?C0043
+0501 7B01           1579             MOV     R3,#01H
+0503 C003           1580             PUSH    AR3
+0505 8004           1581             SJMP    ?C0044
+0507                1582     ?C0043:
+0507 7B00           1583             MOV     R3,#00H
+0509 C003           1584             PUSH    AR3
+050B                1585     ?C0044:
+050B 900000   F     1586             MOV     DPTR,#pods
+050E E0             1587             MOVX    A,@DPTR
+050F FE             1588             MOV     R6,A
+0510 A3             1589             INC     DPTR
+0511 E0             1590             MOVX    A,@DPTR
+0512 FF             1591             MOV     R7,A
+0513 E4             1592             CLR     A
+0514 FC             1593             MOV     R4,A
+0515 FD             1594             MOV     R5,A
+0516 7800     F     1595             MOV     R0,#LOW (per?041)
+0518 120000   F     1596             LCALL   ?C?LLDIDATA0
+051B C3             1597             CLR     C
+051C 120000   F     1598             LCALL   ?C?ULCMP
+051F 5004           1599             JNC     ?C0045
+0521 7F01           1600             MOV     R7,#01H
+0523 8002           1601             SJMP    ?C0046
+0525                1602     ?C0045:
+0525 7F00           1603             MOV     R7,#00H
+0527                1604     ?C0046:
+0527 D0E0           1605             POP     ACC
+0529 5F             1606             ANL     A,R7
+052A 6036           1607             JZ      ?C0042
+                    1608     ;       { 
+                    1609                             ; SOURCE LINE # 295
+                    1610     ;               tm+=PNT_BUF_TD;
+                    1611                             ; SOURCE LINE # 296
+052C 7800     F     1612             MOV     R0,#LOW (PNT_BUF_TD)
+052E 120000   F     1613             LCALL   ?C?LLDIDATA
+0531 E500     F     1614             MOV     A,tm+03H
+0533 2F             1615             ADD     A,R7
+0534 FF             1616             MOV     R7,A
+0535 E500     F     1617             MOV     A,tm+02H
+0537 3E             1618             ADDC    A,R6
+0538 FE             1619             MOV     R6,A
+0539 E500     F     1620             MOV     A,tm+01H
+053B 3D             1621             ADDC    A,R5
+053C FD             1622             MOV     R5,A
+053D E500     F     1623             MOV     A,tm
+053F 3C             1624             ADDC    A,R4
+0540 8F00     F     1625             MOV     tm+03H,R7
+0542 8E00     F     1626             MOV     tm+02H,R6
+0544 8D00     F     1627             MOV     tm+01H,R5
+0546 F500     F     1628             MOV     tm,A
+                    1629     ;               per++;
+                    1630                             ; SOURCE LINE # 297
+0548 7800     F     1631             MOV     R0,#LOW (per?041)
+054A 120000   F     1632             LCALL   ?C?LLDIDATA
+054D EF             1633             MOV     A,R7
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    26
+
+054E 2401           1634             ADD     A,#01H
+0550 FF             1635             MOV     R7,A
+0551 E4             1636             CLR     A
+0552 3E             1637             ADDC    A,R6
+0553 FE             1638             MOV     R6,A
+0554 E4             1639             CLR     A
+0555 3D             1640             ADDC    A,R5
+0556 FD             1641             MOV     R5,A
+0557 E4             1642             CLR     A
+0558 3C             1643             ADDC    A,R4
+0559 FC             1644             MOV     R4,A
+055A 7800     F     1645             MOV     R0,#LOW (per?041)
+055C 120000   F     1646             LCALL   ?C?LSTIDATA
+                    1647     ; //            status|=0x20;                   
+                    1648     ; 
+                    1649     ;        }
+                    1650                             ; SOURCE LINE # 300
+055F 020000   F     1651             LJMP    ?C0047
+0562                1652     ?C0042:
+                    1653     ;        else
+                    1654     ;        { 
+                    1655                             ; SOURCE LINE # 302
+                    1656     ;               tmpadc_t=tm-BUF_U[kan]+PNT_BUF_TD;
+                    1657                             ; SOURCE LINE # 303
+0562 7800     F     1658             MOV     R0,#LOW (kan)
+0564 E6             1659             MOV     A,@R0
+0565 25E0           1660             ADD     A,ACC
+0567 25E0           1661             ADD     A,ACC
+0569 2440           1662             ADD     A,#LOW (BUF_U)
+056B F582           1663             MOV     DPL,A
+056D E4             1664             CLR     A
+056E 3401           1665             ADDC    A,#HIGH (BUF_U)
+0570 F583           1666             MOV     DPH,A
+0572 120000   F     1667             LCALL   ?C?LLDXDATA0
+0575 C3             1668             CLR     C
+0576 E500     F     1669             MOV     A,tm+03H
+0578 9B             1670             SUBB    A,R3
+0579 FF             1671             MOV     R7,A
+057A E500     F     1672             MOV     A,tm+02H
+057C 9A             1673             SUBB    A,R2
+057D FE             1674             MOV     R6,A
+057E E500     F     1675             MOV     A,tm+01H
+0580 99             1676             SUBB    A,R1
+0581 FD             1677             MOV     R5,A
+0582 E500     F     1678             MOV     A,tm
+0584 98             1679             SUBB    A,R0
+0585 FC             1680             MOV     R4,A
+0586 7800     F     1681             MOV     R0,#LOW (PNT_BUF_TD)
+0588 120000   F     1682             LCALL   ?C?LLDIDATA0
+058B 120000   F     1683             LCALL   ?C?LADD
+058E 7800     F     1684             MOV     R0,#LOW (tmpadc_t)
+0590 120000   F     1685             LCALL   ?C?LSTIDATA
+                    1686     ;               if (BUF_U[kan]<PNT_BUF_TD)
+                    1687                             ; SOURCE LINE # 304
+0593 7800     F     1688             MOV     R0,#LOW (kan)
+0595 E6             1689             MOV     A,@R0
+0596 25E0           1690             ADD     A,ACC
+0598 25E0           1691             ADD     A,ACC
+059A 2440           1692             ADD     A,#LOW (BUF_U)
+059C F582           1693             MOV     DPL,A
+059E E4             1694             CLR     A
+059F 3401           1695             ADDC    A,#HIGH (BUF_U)
+05A1 F583           1696             MOV     DPH,A
+05A3 120000   F     1697             LCALL   ?C?LLDXDATA
+05A6 7800     F     1698             MOV     R0,#LOW (PNT_BUF_TD)
+05A8 120000   F     1699             LCALL   ?C?LLDIDATA0
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    27
+
+05AB D3             1700             SETB    C
+05AC 120000   F     1701             LCALL   ?C?ULCMP
+05AF 4029           1702             JC      ?C0048
+                    1703     ;               {       if (tm<tmpadc_t)
+                    1704                             ; SOURCE LINE # 305
+05B1 7800     F     1705             MOV     R0,#LOW (tmpadc_t)
+05B3 120000   F     1706             LCALL   ?C?LLDIDATA
+05B6 AB00     F     1707             MOV     R3,tm+03H
+05B8 AA00     F     1708             MOV     R2,tm+02H
+05BA A900     F     1709             MOV     R1,tm+01H
+05BC A800     F     1710             MOV     R0,tm
+05BE C3             1711             CLR     C
+05BF 120000   F     1712             LCALL   ?C?ULCMP
+05C2 5002           1713             JNC     ?C0049
+                    1714     ;                               tm=tmpadc_t;
+                    1715                             ; SOURCE LINE # 306
+05C4 8014           1716             SJMP    ?C0073
+05C6                1717     ?C0049:
+                    1718     ;                       else
+                    1719     ;                       {
+                    1720                             ; SOURCE LINE # 308
+                    1721     ;                               tm=0;
+                    1722                             ; SOURCE LINE # 309
+05C6 E4             1723             CLR     A
+05C7 F500     F     1724             MOV     tm+03H,A
+05C9 F500     F     1725             MOV     tm+02H,A
+05CB F500     F     1726             MOV     tm+01H,A
+05CD F500     F     1727             MOV     tm,A
+                    1728     ;                               per=0;
+                    1729                             ; SOURCE LINE # 310
+05CF 7800     F     1730             MOV     R0,#LOW (per?041)
+05D1 120000   F     1731             LCALL   ?C?LSTKIDATA
+05D4 00             1732             DB      00H
+05D5 00             1733             DB      00H
+05D6 00             1734             DB      00H
+05D7 00             1735             DB      00H
+                    1736     ;                       }
+                    1737                             ; SOURCE LINE # 311
+                    1738     ;               }
+                    1739                             ; SOURCE LINE # 312
+05D8 800D           1740             SJMP    ?C0047
+05DA                1741     ?C0048:
+                    1742     ;               else
+                    1743     ;               tm=tmpadc_t;
+                    1744                             ; SOURCE LINE # 314
+05DA                1745     ?C0073:
+05DA 7800     F     1746             MOV     R0,#LOW (tmpadc_t)
+05DC 120000   F     1747             LCALL   ?C?LLDIDATA
+05DF 8F00     F     1748             MOV     tm+03H,R7
+05E1 8E00     F     1749             MOV     tm+02H,R6
+05E3 8D00     F     1750             MOV     tm+01H,R5
+05E5 8C00     F     1751             MOV     tm,R4
+                    1752     ; //            status|=0x40;   
+                    1753     ;        }
+                    1754                             ; SOURCE LINE # 316
+05E7                1755     ?C0047:
+                    1756     ; 
+                    1757     ; 
+                    1758     ;       if (per==0) 
+                    1759                             ; SOURCE LINE # 319
+05E7 E4             1760             CLR     A
+05E8 FF             1761             MOV     R7,A
+05E9 FE             1762             MOV     R6,A
+05EA FD             1763             MOV     R5,A
+05EB FC             1764             MOV     R4,A
+05EC 7800     F     1765             MOV     R0,#LOW (per?041)
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    28
+
+05EE 120000   F     1766             LCALL   ?C?LLDIDATA0
+05F1 C3             1767             CLR     C
+05F2 120000   F     1768             LCALL   ?C?ULCMP
+05F5 700C           1769             JNZ     ?C0052
+                    1770     ;       {
+                    1771                             ; SOURCE LINE # 320
+                    1772     ;               //BX_KOD=BUF_T[kan];
+                    1773     ;               BX_KOD=PNT_BUF_TD;
+                    1774                             ; SOURCE LINE # 322
+05F7 7800     F     1775             MOV     R0,#LOW (PNT_BUF_TD)
+05F9 120000   F     1776             LCALL   ?C?LLDIDATA
+05FC 7800     F     1777             MOV     R0,#LOW (BX_KOD)
+05FE 120000   F     1778             LCALL   ?C?LSTIDATA
+                    1779     ; //            status|=0x80;
+                    1780     ;       }
+                    1781                             ; SOURCE LINE # 324
+0601 802D           1782             SJMP    ?C0053
+0603                1783     ?C0052:
+                    1784     ;       else
+                    1785     ;       { 
+                    1786                             ; SOURCE LINE # 326
+                    1787     ;               BX_KOD=tm/per;
+                    1788                             ; SOURCE LINE # 327
+0603 7800     F     1789             MOV     R0,#LOW (per?041)
+0605 120000   F     1790             LCALL   ?C?LLDIDATA0
+0608 AF00     F     1791             MOV     R7,tm+03H
+060A AE00     F     1792             MOV     R6,tm+02H
+060C AD00     F     1793             MOV     R5,tm+01H
+060E AC00     F     1794             MOV     R4,tm
+0610 120000   F     1795             LCALL   ?C?ULDIV
+0613 7800     F     1796             MOV     R0,#LOW (BX_KOD)
+0615 120000   F     1797             LCALL   ?C?LSTIDATA
+                    1798     ;               BUF_U[kan]=BX_KOD;  //200; //80
+                    1799                             ; SOURCE LINE # 328
+0618 7800     F     1800             MOV     R0,#LOW (BX_KOD)
+061A 120000   F     1801             LCALL   ?C?LLDIDATA
+061D 7800     F     1802             MOV     R0,#LOW (kan)
+061F E6             1803             MOV     A,@R0
+0620 25E0           1804             ADD     A,ACC
+0622 25E0           1805             ADD     A,ACC
+0624 2440           1806             ADD     A,#LOW (BUF_U)
+0626 F582           1807             MOV     DPL,A
+0628 E4             1808             CLR     A
+0629 3401           1809             ADDC    A,#HIGH (BUF_U)
+062B F583           1810             MOV     DPH,A
+062D 120000   F     1811             LCALL   ?C?LSTXDATA
+                    1812     ;       }
+                    1813                             ; SOURCE LINE # 329
+0630                1814     ?C0053:
+                    1815     ;       BUF_N[kan]=tm;
+                    1816                             ; SOURCE LINE # 330
+0630 AF00     F     1817             MOV     R7,tm+03H
+0632 AE00     F     1818             MOV     R6,tm+02H
+0634 AD00     F     1819             MOV     R5,tm+01H
+0636 AC00     F     1820             MOV     R4,tm
+0638 7800     F     1821             MOV     R0,#LOW (kan)
+063A E6             1822             MOV     A,@R0
+063B FB             1823             MOV     R3,A
+063C 25E0           1824             ADD     A,ACC
+063E 25E0           1825             ADD     A,ACC
+0640 2400           1826             ADD     A,#LOW (BUF_N)
+0642 F582           1827             MOV     DPL,A
+0644 E4             1828             CLR     A
+0645 3401           1829             ADDC    A,#HIGH (BUF_N)
+0647 F583           1830             MOV     DPH,A
+0649 120000   F     1831             LCALL   ?C?LSTXDATA
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    29
+
+                    1832     ;       BUF_S[kan]=per;
+                    1833                             ; SOURCE LINE # 331
+064C 7800     F     1834             MOV     R0,#LOW (per?041)
+064E 120000   F     1835             LCALL   ?C?LLDIDATA
+0651 EB             1836             MOV     A,R3
+0652 25E0           1837             ADD     A,ACC
+0654 2400           1838             ADD     A,#LOW (BUF_S)
+0656 F582           1839             MOV     DPL,A
+0658 E4             1840             CLR     A
+0659 3402           1841             ADDC    A,#HIGH (BUF_S)
+065B F583           1842             MOV     DPH,A
+065D EE             1843             MOV     A,R6
+065E F0             1844             MOVX    @DPTR,A
+065F A3             1845             INC     DPTR
+0660 EF             1846             MOV     A,R7
+0661 F0             1847             MOVX    @DPTR,A
+                    1848     ; /*    
+                    1849     ;       if (kan==3)
+                    1850     ;       {       lbuf[16] =PNT_BUF_TD>>24;
+                    1851     ;               lbuf[17] =PNT_BUF_TD>>16;
+                    1852     ;               lbuf[18] =PNT_BUF_TD>>8;
+                    1853     ;               lbuf[19] =PNT_BUF_TD; 
+                    1854     ;       }                       
+                    1855     ; 
+                    1856     ;    */
+                    1857     ;       //      status=BUF_S[kan];
+                    1858     ; 
+                    1859     ; 
+                    1860     ;   
+                    1861     ;               
+                    1862     ;               
+                    1863     ;               //начало преобразований всех каналов через общие переменные----------------
+                             -----------------------
+                    1864     ; IZM:  
+                    1865                             ; SOURCE LINE # 348
+0662                1866     ?task_3?IZM:
+                    1867     ; 
+                    1868     ;                          //калибровка
+                    1869     ;  
+                    1870     ;    
+                    1871     ;     wadc= Str_BX1_A[kan].ZGL_BX1_A[3]>>2;
+                    1872                             ; SOURCE LINE # 353
+0662 75F030         1873             MOV     B,#030H
+0665 EB             1874             MOV     A,R3
+0666 900403         1875             MOV     DPTR,#Str_BX1_A+03H
+0669 120000   F     1876             LCALL   ?C?OFFXADD
+066C E0             1877             MOVX    A,@DPTR
+066D 13             1878             RRC     A
+066E 13             1879             RRC     A
+066F 543F           1880             ANL     A,#03FH
+0671 F500     F     1881             MOV     wadc,A
+                    1882     ;       if ((wadc>1)&(Str_CH_A[kan].KF_WIND==2)&(BX_KOD<=0xFFFF))
+                    1883                             ; SOURCE LINE # 354
+0673 E4             1884             CLR     A
+0674 7FFF           1885             MOV     R7,#0FFH
+0676 7EFF           1886             MOV     R6,#0FFH
+0678 FD             1887             MOV     R5,A
+0679 FC             1888             MOV     R4,A
+067A 7800     F     1889             MOV     R0,#LOW (BX_KOD)
+067C 120000   F     1890             LCALL   ?C?LLDIDATA0
+067F D3             1891             SETB    C
+0680 120000   F     1892             LCALL   ?C?ULCMP
+0683 5004           1893             JNC     ?C0056
+0685 7F01           1894             MOV     R7,#01H
+0687 8002           1895             SJMP    ?C0057
+0689                1896     ?C0056:
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    30
+
+0689 7F00           1897             MOV     R7,#00H
+068B                1898     ?C0057:
+068B 7800     F     1899             MOV     R0,#LOW (kan)
+068D E6             1900             MOV     A,@R0
+068E FE             1901             MOV     R6,A
+068F C4             1902             SWAP    A
+0690 54F0           1903             ANL     A,#0F0H
+0692 248B           1904             ADD     A,#LOW (Str_CH_A+0BH)
+0694 F582           1905             MOV     DPL,A
+0696 E4             1906             CLR     A
+0697 3406           1907             ADDC    A,#HIGH (Str_CH_A+0BH)
+0699 F583           1908             MOV     DPH,A
+069B E0             1909             MOVX    A,@DPTR
+069C B40204         1910             CJNE    A,#02H,?C0058
+069F 7D01           1911             MOV     R5,#01H
+06A1 8002           1912             SJMP    ?C0059
+06A3                1913     ?C0058:
+06A3 7D00           1914             MOV     R5,#00H
+06A5                1915     ?C0059:
+06A5 E500     F     1916             MOV     A,wadc
+06A7 D3             1917             SETB    C
+06A8 9401           1918             SUBB    A,#01H
+06AA 4004           1919             JC      ?C0060
+06AC 7C01           1920             MOV     R4,#01H
+06AE 8002           1921             SJMP    ?C0061
+06B0                1922     ?C0060:
+06B0 7C00           1923             MOV     R4,#00H
+06B2                1924     ?C0061:
+06B2 EC             1925             MOV     A,R4
+06B3 5D             1926             ANL     A,R5
+06B4 5F             1927             ANL     A,R7
+06B5 7003           1928             JNZ     $ + 5H
+06B7 020000   F     1929             LJMP    ?C0055
+                    1930     ;       {
+                    1931                             ; SOURCE LINE # 355
+                    1932     ;                i11=0;    
+                    1933                             ; SOURCE LINE # 356
+06BA E4             1934             CLR     A
+06BB 7800     F     1935             MOV     R0,#LOW (i11?040)
+06BD F6             1936             MOV     @R0,A
+                    1937     ;                if(BX_KOD>=Str_BX1_A[kan].TAB_BX1[i11])       
+                    1938                             ; SOURCE LINE # 357
+06BE 75F030         1939             MOV     B,#030H
+06C1 EE             1940             MOV     A,R6
+06C2 900404         1941             MOV     DPTR,#Str_BX1_A+04H
+06C5 120000   F     1942             LCALL   ?C?OFFXADD
+06C8 E6             1943             MOV     A,@R0
+06C9 75F002         1944             MOV     B,#02H
+06CC 120000   F     1945             LCALL   ?C?OFFXADD
+06CF E0             1946             MOVX    A,@DPTR
+06D0 FE             1947             MOV     R6,A
+06D1 A3             1948             INC     DPTR
+06D2 E0             1949             MOVX    A,@DPTR
+06D3 FF             1950             MOV     R7,A
+06D4 E4             1951             CLR     A
+06D5 FC             1952             MOV     R4,A
+06D6 FD             1953             MOV     R5,A
+06D7 7800     F     1954             MOV     R0,#LOW (BX_KOD)
+06D9 120000   F     1955             LCALL   ?C?LLDIDATA0
+06DC C3             1956             CLR     C
+06DD 120000   F     1957             LCALL   ?C?ULCMP
+06E0 5003           1958             JNC     $ + 5H
+06E2 020000   F     1959             LJMP    ?C0062
+                    1960     ;                {                          
+                    1961                             ; SOURCE LINE # 358
+06E5                1962     ?C0063:
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    31
+
+                    1963     ;                               while (BX_KOD>Str_BX1_A[kan].TAB_BX1[i11+2])   
+                    1964                             ; SOURCE LINE # 359
+06E5 7800     F     1965             MOV     R0,#LOW (kan)
+06E7 E6             1966             MOV     A,@R0
+06E8 75F030         1967             MOV     B,#030H
+06EB 900408         1968             MOV     DPTR,#Str_BX1_A+08H
+06EE 120000   F     1969             LCALL   ?C?OFFXADD
+06F1 7800     F     1970             MOV     R0,#LOW (i11?040)
+06F3 E6             1971             MOV     A,@R0
+06F4 75F002         1972             MOV     B,#02H
+06F7 120000   F     1973             LCALL   ?C?OFFXADD
+06FA E0             1974             MOVX    A,@DPTR
+06FB FE             1975             MOV     R6,A
+06FC A3             1976             INC     DPTR
+06FD E0             1977             MOVX    A,@DPTR
+06FE FF             1978             MOV     R7,A
+06FF E4             1979             CLR     A
+0700 FC             1980             MOV     R4,A
+0701 FD             1981             MOV     R5,A
+0702 7800     F     1982             MOV     R0,#LOW (BX_KOD)
+0704 120000   F     1983             LCALL   ?C?LLDIDATA0
+0707 D3             1984             SETB    C
+0708 120000   F     1985             LCALL   ?C?ULCMP
+070B 4006           1986             JC      ?C0064
+                    1987     ;                       {                         
+                    1988                             ; SOURCE LINE # 360
+                    1989     ;                               i11= i11+2;          
+                    1990                             ; SOURCE LINE # 361
+070D 7800     F     1991             MOV     R0,#LOW (i11?040)
+070F 06             1992             INC     @R0
+0710 06             1993             INC     @R0
+                    1994     ;                       }                  
+                    1995                             ; SOURCE LINE # 362
+0711 80D2           1996             SJMP    ?C0063
+0713                1997     ?C0064:
+                    1998     ;                  TEMP_1=Str_BX1_A[kan].TAB_BX1[i11+3]-Str_BX1_A[kan].TAB_BX1[i11+1]; 
+                    1999                             ; SOURCE LINE # 363
+0713 7800     F     2000             MOV     R0,#LOW (kan)
+0715 E6             2001             MOV     A,@R0
+0716 FF             2002             MOV     R7,A
+0717 75F030         2003             MOV     B,#030H
+071A 900406         2004             MOV     DPTR,#Str_BX1_A+06H
+071D 120000   F     2005             LCALL   ?C?OFFXADD
+0720 7800     F     2006             MOV     R0,#LOW (i11?040)
+0722 E6             2007             MOV     A,@R0
+0723 FE             2008             MOV     R6,A
+0724 75F002         2009             MOV     B,#02H
+0727 120000   F     2010             LCALL   ?C?OFFXADD
+072A E0             2011             MOVX    A,@DPTR
+072B FC             2012             MOV     R4,A
+072C A3             2013             INC     DPTR
+072D E0             2014             MOVX    A,@DPTR
+072E FD             2015             MOV     R5,A
+072F 75F030         2016             MOV     B,#030H
+0732 EF             2017             MOV     A,R7
+0733 90040A         2018             MOV     DPTR,#Str_BX1_A+0AH
+0736 120000   F     2019             LCALL   ?C?OFFXADD
+0739 75F002         2020             MOV     B,#02H
+073C EE             2021             MOV     A,R6
+073D 120000   F     2022             LCALL   ?C?OFFXADD
+0740 E0             2023             MOVX    A,@DPTR
+0741 FE             2024             MOV     R6,A
+0742 A3             2025             INC     DPTR
+0743 E0             2026             MOVX    A,@DPTR
+0744 C3             2027             CLR     C
+0745 9D             2028             SUBB    A,R5
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    32
+
+0746 FF             2029             MOV     R7,A
+0747 EE             2030             MOV     A,R6
+0748 9C             2031             SUBB    A,R4
+0749 FE             2032             MOV     R6,A
+074A E4             2033             CLR     A
+074B FC             2034             MOV     R4,A
+074C FD             2035             MOV     R5,A
+074D 7800     F     2036             MOV     R0,#LOW (TEMP_1)
+074F 120000   F     2037             LCALL   ?C?LSTIDATA
+                    2038     ;                  BX_KOD=BX_KOD-Str_BX1_A[kan].TAB_BX1[i11];     
+                    2039                             ; SOURCE LINE # 364
+0752 7800     F     2040             MOV     R0,#LOW (BX_KOD)
+0754 120000   F     2041             LCALL   ?C?LLDIDATA
+0757 C006           2042             PUSH    AR6
+0759 C007           2043             PUSH    AR7
+075B 7800     F     2044             MOV     R0,#LOW (kan)
+075D E6             2045             MOV     A,@R0
+075E 75F030         2046             MOV     B,#030H
+0761 900404         2047             MOV     DPTR,#Str_BX1_A+04H
+0764 120000   F     2048             LCALL   ?C?OFFXADD
+0767 7800     F     2049             MOV     R0,#LOW (i11?040)
+0769 E6             2050             MOV     A,@R0
+076A 75F002         2051             MOV     B,#02H
+076D 120000   F     2052             LCALL   ?C?OFFXADD
+0770 E0             2053             MOVX    A,@DPTR
+0771 FE             2054             MOV     R6,A
+0772 A3             2055             INC     DPTR
+0773 E0             2056             MOVX    A,@DPTR
+0774 FB             2057             MOV     R3,A
+0775 AA06           2058             MOV     R2,AR6
+0777 E4             2059             CLR     A
+0778 F9             2060             MOV     R1,A
+0779 F8             2061             MOV     R0,A
+077A D007           2062             POP     AR7
+077C D006           2063             POP     AR6
+077E 120000   F     2064             LCALL   ?C?LSUB
+0781 7800     F     2065             MOV     R0,#LOW (BX_KOD)
+0783 120000   F     2066             LCALL   ?C?LSTIDATA
+                    2067     ;                  TEMP_1=TEMP_1*BX_KOD;      
+                    2068                             ; SOURCE LINE # 365
+0786 7800     F     2069             MOV     R0,#LOW (TEMP_1)
+0788 120000   F     2070             LCALL   ?C?LLDIDATA
+078B 7800     F     2071             MOV     R0,#LOW (BX_KOD)
+078D 120000   F     2072             LCALL   ?C?LLDIDATA0
+0790 120000   F     2073             LCALL   ?C?LMUL
+0793 7800     F     2074             MOV     R0,#LOW (TEMP_1)
+0795 120000   F     2075             LCALL   ?C?LSTIDATA
+                    2076     ;                  tmpadc_t=Str_BX1_A[kan].TAB_BX1[i11+2]-Str_BX1_A[kan].TAB_BX1[i11];  
+                    2077                             ; SOURCE LINE # 366
+0798 7800     F     2078             MOV     R0,#LOW (kan)
+079A E6             2079             MOV     A,@R0
+079B FF             2080             MOV     R7,A
+079C 75F030         2081             MOV     B,#030H
+079F 900404         2082             MOV     DPTR,#Str_BX1_A+04H
+07A2 120000   F     2083             LCALL   ?C?OFFXADD
+07A5 7800     F     2084             MOV     R0,#LOW (i11?040)
+07A7 E6             2085             MOV     A,@R0
+07A8 FE             2086             MOV     R6,A
+07A9 75F002         2087             MOV     B,#02H
+07AC 120000   F     2088             LCALL   ?C?OFFXADD
+07AF E0             2089             MOVX    A,@DPTR
+07B0 FC             2090             MOV     R4,A
+07B1 A3             2091             INC     DPTR
+07B2 E0             2092             MOVX    A,@DPTR
+07B3 FD             2093             MOV     R5,A
+07B4 75F030         2094             MOV     B,#030H
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    33
+
+07B7 EF             2095             MOV     A,R7
+07B8 900408         2096             MOV     DPTR,#Str_BX1_A+08H
+07BB 120000   F     2097             LCALL   ?C?OFFXADD
+07BE 75F002         2098             MOV     B,#02H
+07C1 EE             2099             MOV     A,R6
+07C2 120000   F     2100             LCALL   ?C?OFFXADD
+07C5 E0             2101             MOVX    A,@DPTR
+07C6 FE             2102             MOV     R6,A
+07C7 A3             2103             INC     DPTR
+07C8 E0             2104             MOVX    A,@DPTR
+07C9 C3             2105             CLR     C
+07CA 9D             2106             SUBB    A,R5
+07CB FF             2107             MOV     R7,A
+07CC EE             2108             MOV     A,R6
+07CD 9C             2109             SUBB    A,R4
+07CE FE             2110             MOV     R6,A
+07CF E4             2111             CLR     A
+07D0 FC             2112             MOV     R4,A
+07D1 FD             2113             MOV     R5,A
+07D2 7800     F     2114             MOV     R0,#LOW (tmpadc_t)
+07D4 120000   F     2115             LCALL   ?C?LSTIDATA
+                    2116     ;                  TEMP_1=TEMP_1/tmpadc_t;       
+                    2117                             ; SOURCE LINE # 367
+07D7 7800     F     2118             MOV     R0,#LOW (TEMP_1)
+07D9 120000   F     2119             LCALL   ?C?LLDIDATA
+07DC 7800     F     2120             MOV     R0,#LOW (tmpadc_t)
+07DE 120000   F     2121             LCALL   ?C?LLDIDATA0
+07E1 120000   F     2122             LCALL   ?C?ULDIV
+07E4 7800     F     2123             MOV     R0,#LOW (TEMP_1)
+07E6 120000   F     2124             LCALL   ?C?LSTIDATA
+                    2125     ;                  BX_KPH=TEMP_1+Str_BX1_A[kan].TAB_BX1[i11+1];                            
+                                     
+                    2126                             ; SOURCE LINE # 368
+07E9 7800     F     2127             MOV     R0,#LOW (kan)
+07EB E6             2128             MOV     A,@R0
+07EC 75F030         2129             MOV     B,#030H
+07EF 900406         2130             MOV     DPTR,#Str_BX1_A+06H
+07F2 120000   F     2131             LCALL   ?C?OFFXADD
+07F5 7800     F     2132             MOV     R0,#LOW (i11?040)
+07F7 E6             2133             MOV     A,@R0
+07F8 75F002         2134             MOV     B,#02H
+07FB 120000   F     2135             LCALL   ?C?OFFXADD
+07FE E0             2136             MOVX    A,@DPTR
+07FF FE             2137             MOV     R6,A
+0800 A3             2138             INC     DPTR
+0801 E0             2139             MOVX    A,@DPTR
+0802 FF             2140             MOV     R7,A
+0803 E4             2141             CLR     A
+0804 FC             2142             MOV     R4,A
+0805 FD             2143             MOV     R5,A
+0806 7800     F     2144             MOV     R0,#LOW (TEMP_1)
+0808 120000   F     2145             LCALL   ?C?LLDIDATA0
+080B 120000   F     2146             LCALL   ?C?LADD
+                    2147     ;                }                        
+                    2148                             ; SOURCE LINE # 369
+080E 8010           2149             SJMP    ?C0074
+0810                2150     ?C0062:
+                    2151     ;                else { BX_KPH=0; }     
+                    2152                             ; SOURCE LINE # 370
+0810 7800     F     2153             MOV     R0,#LOW (BX_KPH)
+0812 120000   F     2154             LCALL   ?C?LSTKIDATA
+0815 00             2155             DB      00H
+0816 00             2156             DB      00H
+0817 00             2157             DB      00H
+0818 00             2158             DB      00H
+                    2159     ;       }
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    34
+
+                    2160                             ; SOURCE LINE # 371
+0819 800A           2161             SJMP    ?C0066
+081B                2162     ?C0055:
+                    2163     ;       else 
+                    2164     ;        {BX_KPH=BX_KOD;} 
+                    2165                             ; SOURCE LINE # 373
+081B 7800     F     2166             MOV     R0,#LOW (BX_KOD)
+081D 120000   F     2167             LCALL   ?C?LLDIDATA
+0820                2168     ?C0074:
+0820 7800     F     2169             MOV     R0,#LOW (BX_KPH)
+0822 120000   F     2170             LCALL   ?C?LSTIDATA
+0825                2171     ?C0066:
+                    2172     ; 
+                    2173     ; 
+                    2174     ; 
+                    2175     ; 
+                    2176     ; // ZIFR:
+                    2177     ;  
+                    2178     ; 
+                    2179     ; 
+                    2180     ;   
+                    2181     ;       if (Str_CH_A[N_CH].KF_CRD<0xE0)
+                    2182                             ; SOURCE LINE # 383
+0825 E500     F     2183             MOV     A,N_CH
+0827 C4             2184             SWAP    A
+0828 54F0           2185             ANL     A,#0F0H
+082A 248A           2186             ADD     A,#LOW (Str_CH_A+0AH)
+082C F582           2187             MOV     DPL,A
+082E E4             2188             CLR     A
+082F 3406           2189             ADDC    A,#HIGH (Str_CH_A+0AH)
+0831 F583           2190             MOV     DPH,A
+0833 E0             2191             MOVX    A,@DPTR
+0834 FF             2192             MOV     R7,A
+0835 C3             2193             CLR     C
+0836 94E0           2194             SUBB    A,#0E0H
+0838 4003           2195             JC      $ + 5H
+083A 020000   F     2196             LJMP    ?C0067
+                    2197     ;       {  
+                    2198                             ; SOURCE LINE # 384
+                    2199     ;               i11=Str_CH_A[N_CH].KF_CRD>>3;
+                    2200                             ; SOURCE LINE # 385
+083D EF             2201             MOV     A,R7
+083E 13             2202             RRC     A
+083F 13             2203             RRC     A
+0840 13             2204             RRC     A
+0841 541F           2205             ANL     A,#01FH
+0843 FF             2206             MOV     R7,A
+0844 7800     F     2207             MOV     R0,#LOW (i11?040)
+0846 F6             2208             MOV     @R0,A
+0847 FB             2209             MOV     R3,A
+                    2210     ;               z1=BX_KPH>>24;
+                    2211                             ; SOURCE LINE # 386
+0848 7800     F     2212             MOV     R0,#LOW (BX_KPH)
+084A 120000   F     2213             LCALL   ?C?LLDIDATA
+084D 7818           2214             MOV     R0,#018H
+084F 120000   F     2215             LCALL   ?C?ULSHR
+0852 900000   F     2216             MOV     DPTR,#z1
+0855 EF             2217             MOV     A,R7
+0856 F0             2218             MOVX    @DPTR,A
+                    2219     ;               z2=BX_KPH>>16;
+                    2220                             ; SOURCE LINE # 387
+0857 7800     F     2221             MOV     R0,#LOW (BX_KPH)
+0859 120000   F     2222             LCALL   ?C?LLDIDATA
+085C 7810           2223             MOV     R0,#010H
+085E 120000   F     2224             LCALL   ?C?ULSHR
+0861 900000   F     2225             MOV     DPTR,#z2
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    35
+
+0864 EF             2226             MOV     A,R7
+0865 F0             2227             MOVX    @DPTR,A
+                    2228     ;               z3=BX_KPH>>8;
+                    2229                             ; SOURCE LINE # 388
+0866 7800     F     2230             MOV     R0,#LOW (BX_KPH)
+0868 120000   F     2231             LCALL   ?C?LLDIDATA
+086B 7808           2232             MOV     R0,#08H
+086D 120000   F     2233             LCALL   ?C?ULSHR
+0870 A907           2234             MOV     R1,AR7
+0872 900000   F     2235             MOV     DPTR,#z3
+0875 E9             2236             MOV     A,R1
+0876 F0             2237             MOVX    @DPTR,A
+                    2238     ;               z4=BX_KPH;
+                    2239                             ; SOURCE LINE # 389
+0877 7800     F     2240             MOV     R0,#LOW (BX_KPH)
+0879 120000   F     2241             LCALL   ?C?LLDIDATA
+087C AA07           2242             MOV     R2,AR7
+087E 900000   F     2243             MOV     DPTR,#z4
+0881 EA             2244             MOV     A,R2
+0882 F0             2245             MOVX    @DPTR,A
+                    2246     ;               status=0x77;
+                    2247                             ; SOURCE LINE # 390
+0883 750077   F     2248             MOV     status,#077H
+                    2249     ;               z0=Str_CH_A[N_CH].KF_WIND;
+                    2250                             ; SOURCE LINE # 391
+0886 E500     F     2251             MOV     A,N_CH
+0888 C4             2252             SWAP    A
+0889 54F0           2253             ANL     A,#0F0H
+088B 248B           2254             ADD     A,#LOW (Str_CH_A+0BH)
+088D F582           2255             MOV     DPL,A
+088F E4             2256             CLR     A
+0890 3406           2257             ADDC    A,#HIGH (Str_CH_A+0BH)
+0892 F583           2258             MOV     DPH,A
+0894 E0             2259             MOVX    A,@DPTR
+0895 FF             2260             MOV     R7,A
+0896 900000   F     2261             MOV     DPTR,#z0
+0899 F0             2262             MOVX    @DPTR,A
+                    2263     ;               flz=i11;
+                    2264                             ; SOURCE LINE # 392
+089A 900000   F     2265             MOV     DPTR,#flz
+089D EB             2266             MOV     A,R3
+089E F0             2267             MOVX    @DPTR,A
+                    2268     ;               if (Str_CH_A[N_CH].KF_WIND==4) 
+                    2269                             ; SOURCE LINE # 393
+089F EF             2270             MOV     A,R7
+08A0 6404           2271             XRL     A,#04H
+08A2 704A           2272             JNZ     ?C0068
+                    2273     ;               {
+                    2274                             ; SOURCE LINE # 394
+                    2275     ;                       lbuf[i11] =BX_KPH>>24;
+                    2276                             ; SOURCE LINE # 395
+08A4 7800     F     2277             MOV     R0,#LOW (BX_KPH)
+08A6 120000   F     2278             LCALL   ?C?LLDIDATA
+08A9 7818           2279             MOV     R0,#018H
+08AB 120000   F     2280             LCALL   ?C?ULSHR
+08AE 7800     F     2281             MOV     R0,#LOW (i11?040)
+08B0 E6             2282             MOV     A,@R0
+08B1 FB             2283             MOV     R3,A
+08B2 2400     F     2284             ADD     A,#LOW (lbuf)
+08B4 F582           2285             MOV     DPL,A
+08B6 E4             2286             CLR     A
+08B7 3400     F     2287             ADDC    A,#HIGH (lbuf)
+08B9 F583           2288             MOV     DPH,A
+08BB EF             2289             MOV     A,R7
+08BC F0             2290             MOVX    @DPTR,A
+                    2291     ;                       lbuf[i11+1] =BX_KPH>>16;
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    36
+
+                    2292                             ; SOURCE LINE # 396
+08BD 7800     F     2293             MOV     R0,#LOW (BX_KPH)
+08BF 120000   F     2294             LCALL   ?C?LLDIDATA
+08C2 7810           2295             MOV     R0,#010H
+08C4 120000   F     2296             LCALL   ?C?ULSHR
+08C7 7400     F     2297             MOV     A,#LOW (lbuf+01H)
+08C9 2B             2298             ADD     A,R3
+08CA F582           2299             MOV     DPL,A
+08CC E4             2300             CLR     A
+08CD 3400     F     2301             ADDC    A,#HIGH (lbuf+01H)
+08CF F583           2302             MOV     DPH,A
+08D1 EF             2303             MOV     A,R7
+08D2 F0             2304             MOVX    @DPTR,A
+                    2305     ;                       lbuf[i11+2] =BX_KPH>>8;
+                    2306                             ; SOURCE LINE # 397
+08D3 7800     F     2307             MOV     R0,#LOW (i11?040)
+08D5 E6             2308             MOV     A,@R0
+08D6 FF             2309             MOV     R7,A
+08D7 2400     F     2310             ADD     A,#LOW (lbuf+02H)
+08D9 F582           2311             MOV     DPL,A
+08DB E4             2312             CLR     A
+08DC 3400     F     2313             ADDC    A,#HIGH (lbuf+02H)
+08DE F583           2314             MOV     DPH,A
+08E0 E9             2315             MOV     A,R1
+08E1 F0             2316             MOVX    @DPTR,A
+                    2317     ;                       lbuf[i11+3] =BX_KPH;
+                    2318                             ; SOURCE LINE # 398
+08E2 7400     F     2319             MOV     A,#LOW (lbuf+03H)
+08E4 2F             2320             ADD     A,R7
+08E5 F582           2321             MOV     DPL,A
+08E7 E4             2322             CLR     A
+08E8 3400     F     2323             ADDC    A,#HIGH (lbuf+03H)
+08EA F583           2324             MOV     DPH,A
+08EC EA             2325             MOV     A,R2
+08ED F0             2326             MOVX    @DPTR,A
+                    2327     ;               }
+                    2328                             ; SOURCE LINE # 399
+08EE                2329     ?C0068:
+                    2330     ;               if (Str_CH_A[N_CH].KF_WIND==2) 
+                    2331                             ; SOURCE LINE # 400
+08EE E500     F     2332             MOV     A,N_CH
+08F0 C4             2333             SWAP    A
+08F1 54F0           2334             ANL     A,#0F0H
+08F3 248B           2335             ADD     A,#LOW (Str_CH_A+0BH)
+08F5 F582           2336             MOV     DPL,A
+08F7 E4             2337             CLR     A
+08F8 3406           2338             ADDC    A,#HIGH (Str_CH_A+0BH)
+08FA F583           2339             MOV     DPH,A
+08FC E0             2340             MOVX    A,@DPTR
+08FD B4022A         2341             CJNE    A,#02H,?C0069
+                    2342     ;               {
+                    2343                             ; SOURCE LINE # 401
+                    2344     ;                       lbuf[i11] =BX_KPH>>8;
+                    2345                             ; SOURCE LINE # 402
+0900 7800     F     2346             MOV     R0,#LOW (BX_KPH)
+0902 120000   F     2347             LCALL   ?C?LLDIDATA
+0905 7808           2348             MOV     R0,#08H
+0907 120000   F     2349             LCALL   ?C?ULSHR
+090A 7800     F     2350             MOV     R0,#LOW (i11?040)
+090C E6             2351             MOV     A,@R0
+090D FB             2352             MOV     R3,A
+090E 2400     F     2353             ADD     A,#LOW (lbuf)
+0910 F582           2354             MOV     DPL,A
+0912 E4             2355             CLR     A
+0913 3400     F     2356             ADDC    A,#HIGH (lbuf)
+0915 F583           2357             MOV     DPH,A
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    37
+
+0917 EF             2358             MOV     A,R7
+0918 F0             2359             MOVX    @DPTR,A
+                    2360     ;                       lbuf[i11+1] =BX_KPH;
+                    2361                             ; SOURCE LINE # 403
+0919 7800     F     2362             MOV     R0,#LOW (BX_KPH)
+091B 120000   F     2363             LCALL   ?C?LLDIDATA
+091E 7400     F     2364             MOV     A,#LOW (lbuf+01H)
+0920 2B             2365             ADD     A,R3
+0921 F582           2366             MOV     DPL,A
+0923 E4             2367             CLR     A
+0924 3400     F     2368             ADDC    A,#HIGH (lbuf+01H)
+0926 F583           2369             MOV     DPH,A
+0928 EF             2370             MOV     A,R7
+0929 F0             2371             MOVX    @DPTR,A
+                    2372     ;               }
+                    2373                             ; SOURCE LINE # 404
+092A                2374     ?C0069:
+                    2375     ;               flz=0xFF;
+                    2376                             ; SOURCE LINE # 405
+092A 900000   F     2377             MOV     DPTR,#flz
+092D 74FF           2378             MOV     A,#0FFH
+092F F0             2379             MOVX    @DPTR,A
+                    2380     ;       //      status=0x55;
+                    2381     ;       }
+                    2382                             ; SOURCE LINE # 407
+0930                2383     ?C0067:
+                    2384     ; 
+                    2385     ;    kan++;
+                    2386                             ; SOURCE LINE # 409
+0930                2387     ?C0071:
+0930 7800     F     2388             MOV     R0,#LOW (kan)
+0932 06             2389             INC     @R0
+                    2390     ; 
+                    2391     ;  PPK:   
+                    2392                             ; SOURCE LINE # 411
+0933                2393     ?task_3?PPK:
+                    2394     ; 
+                    2395     ; 
+                    2396     ;   #pragma asm
+                    2397     ;       POP PSW
+0933 D0D0           2398               POP PSW
+                    2399     ;       POP DPL
+0935 D082           2400               POP DPL
+                    2401     ;       POP DPH
+0937 D083           2402               POP DPH
+                    2403     ;       POP B
+0939 D0F0           2404               POP B
+                    2405     ;       POP ACC
+093B D0E0           2406               POP ACC
+                    2407     ; #pragma endasm
+                    2408     ; 
+                    2409     ;  return;
+                    2410     ;  }                    ; SOURCE LINE # 423
+093D                2411     ?C0070:
+093D 22             2412             RET     
+                    2413     ; END OF task_3
+                    2414     
+                    2415             END
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    38
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                T Y P E  V A L U E   ATTRIBUTES
+
+?BI?TASK3_BKCD. . . .  B SEG    0002H       REL=UNIT
+?C0001. . . . . . . .  C ADDR   000AH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0002. . . . . . . .  C ADDR   0024H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0004. . . . . . . .  C ADDR   00AEH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0005. . . . . . . .  C ADDR   014AH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0006. . . . . . . .  C ADDR   00C9H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0007. . . . . . . .  C ADDR   00CBH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0008. . . . . . . .  C ADDR   00D3H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0009. . . . . . . .  C ADDR   00D5H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0010. . . . . . . .  C ADDR   015EH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0011. . . . . . . .  C ADDR   01B2H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0012. . . . . . . .  C ADDR   01A9H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0013. . . . . . . .  C ADDR   01C2H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0014. . . . . . . .  C ADDR   0211H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0015. . . . . . . .  C ADDR   0208H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0016. . . . . . . .  C ADDR   0245H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0017. . . . . . . .  C ADDR   025AH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0018. . . . . . . .  C ADDR   026FH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0019. . . . . . . .  C ADDR   02C4H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0020. . . . . . . .  C ADDR   02DCH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0021. . . . . . . .  C ADDR   0312H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0022. . . . . . . .  C ADDR   036EH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0023. . . . . . . .  C ADDR   048EH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0024. . . . . . . .  C ADDR   0385H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0025. . . . . . . .  C ADDR   0389H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0026. . . . . . . .  C ADDR   039FH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0027. . . . . . . .  C ADDR   03A1H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0028. . . . . . . .  C ADDR   0445H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0029. . . . . . . .  C ADDR   03C0H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0030. . . . . . . .  C ADDR   03C4H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0031. . . . . . . .  C ADDR   03D8H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0032. . . . . . . .  C ADDR   03DAH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0033. . . . . . . .  C ADDR   0409H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0034. . . . . . . .  C ADDR   0420H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0035. . . . . . . .  C ADDR   042FH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0038. . . . . . . .  C ADDR   045EH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0039. . . . . . . .  C ADDR   045EH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0040. . . . . . . .  C ADDR   0476H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0042. . . . . . . .  C ADDR   0562H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0043. . . . . . . .  C ADDR   0507H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0044. . . . . . . .  C ADDR   050BH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0045. . . . . . . .  C ADDR   0525H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0046. . . . . . . .  C ADDR   0527H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0047. . . . . . . .  C ADDR   05E7H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0048. . . . . . . .  C ADDR   05DAH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0049. . . . . . . .  C ADDR   05C6H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0052. . . . . . . .  C ADDR   0603H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0053. . . . . . . .  C ADDR   0630H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0055. . . . . . . .  C ADDR   081BH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0056. . . . . . . .  C ADDR   0689H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0057. . . . . . . .  C ADDR   068BH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0058. . . . . . . .  C ADDR   06A3H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0059. . . . . . . .  C ADDR   06A5H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0060. . . . . . . .  C ADDR   06B0H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0061. . . . . . . .  C ADDR   06B2H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0062. . . . . . . .  C ADDR   0810H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0063. . . . . . . .  C ADDR   06E5H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0064. . . . . . . .  C ADDR   0713H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0066. . . . . . . .  C ADDR   0825H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0067. . . . . . . .  C ADDR   0930H   R   SEG=?PR?TASK_3?TASK3_BKCD
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    39
+
+?C0068. . . . . . . .  C ADDR   08EEH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0069. . . . . . . .  C ADDR   092AH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0070. . . . . . . .  C ADDR   093DH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0071. . . . . . . .  C ADDR   0930H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0072. . . . . . . .  C ADDR   0489H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0073. . . . . . . .  C ADDR   05DAH   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C0074. . . . . . . .  C ADDR   0820H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?C?LADD . . . . . . .  C ADDR   -----       EXT
+?C?LLDIDATA . . . . .  C ADDR   -----       EXT
+?C?LLDIDATA0. . . . .  C ADDR   -----       EXT
+?C?LLDXDATA . . . . .  C ADDR   -----       EXT
+?C?LLDXDATA0. . . . .  C ADDR   -----       EXT
+?C?LMUL . . . . . . .  C ADDR   -----       EXT
+?C?LSTIDATA . . . . .  C ADDR   -----       EXT
+?C?LSTKIDATA. . . . .  C ADDR   -----       EXT
+?C?LSTKXDATA. . . . .  C ADDR   -----       EXT
+?C?LSTXDATA . . . . .  C ADDR   -----       EXT
+?C?LSUB . . . . . . .  C ADDR   -----       EXT
+?C?OFFXADD. . . . . .  C ADDR   -----       EXT
+?C?ULCMP. . . . . . .  C ADDR   -----       EXT
+?C?ULDIV. . . . . . .  C ADDR   -----       EXT
+?C?ULSHR. . . . . . .  C ADDR   -----       EXT
+?CO?TASK3_BKCD. . . .  C SEG    0048H       REL=UNIT
+?C_INITSEG. . . . . .  C SEG    0008H       REL=UNIT
+?DT?TASK3_BKCD. . . .  D SEG    000DH       REL=UNIT
+?ID?TASK3_BKCD. . . .  I SEG    0036H       REL=UNIT
+?ID?TASK_3?TASK3_BKCD  I SEG    0005H       REL=UNIT
+?PR?TASK_3?TASK3_BKCD  C SEG    093EH       REL=UNIT
+?TASK_3?IZM . . . . .  C ADDR   0662H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?TASK_3?PPK . . . . .  C ADDR   0933H   R   SEG=?PR?TASK_3?TASK3_BKCD
+?XD?TASK3_BKCD. . . .  X SEG    0052H       REL=UNIT
+A?. . . . . . . . . .  I ADDR   0018H   R   SEG=?ID?TASK3_BKCD
+AA2 . . . . . . . . .  D ADDR   0004H   R   SEG=?DT?TASK3_BKCD
+AA3 . . . . . . . . .  D ADDR   0006H   R   SEG=?DT?TASK3_BKCD
+AC. . . . . . . . . .  B ADDR   00D0H.6 A   
+ACC . . . . . . . . .  D ADDR   00E0H   A   
+ADC0CON1. . . . . . .  D ADDR   00D2H   A   
+ADC0CON2. . . . . . .  D ADDR   00E6H   A   
+ADC0H . . . . . . . .  D ADDR   00DBH   A   
+ADC0L . . . . . . . .  D ADDR   00D9H   A   
+ADC0M . . . . . . . .  D ADDR   00DAH   A   
+ADCBUF. . . . . . . .  I ADDR   001DH   R   SEG=?ID?TASK3_BKCD
+ADCMODE . . . . . . .  D ADDR   00D1H   A   
+ADCSTAT . . . . . . .  D ADDR   00D8H   A   
+AD_B. . . . . . . . .  D ADDR   0003H   R   SEG=?DT?TASK3_BKCD
+AR3 . . . . . . . . .  D ADDR   0003H   A   
+AR6 . . . . . . . . .  D ADDR   0006H   A   
+AR7 . . . . . . . . .  D ADDR   0007H   A   
+A_N . . . . . . . . .  I ADDR   002BH   R   SEG=?ID?TASK3_BKCD
+A_N3. . . . . . . . .  I ADDR   0000H   R   SEG=?ID?TASK3_BKCD
+B . . . . . . . . . .  D ADDR   00F0H   A   
+BF_ZP_A . . . . . . .  X ADDR   0780H   A   
+BUF_FP. . . . . . . .  X ADDR   0180H   A   
+BUF_M . . . . . . . .  X ADDR   00C0H   A   
+BUF_N . . . . . . . .  X ADDR   0100H   A   
+BUF_S . . . . . . . .  X ADDR   0200H   A   
+BUF_T . . . . . . . .  X ADDR   01C0H   A   
+BUF_U . . . . . . . .  X ADDR   0140H   A   
+BX1_A . . . . . . . .  X ADDR   0022H   R   SEG=?XD?TASK3_BKCD
+BX_A. . . . . . . . .  X ADDR   0002H   R   SEG=?XD?TASK3_BKCD
+BX_KOD. . . . . . . .  I ADDR   0010H   R   SEG=?ID?TASK3_BKCD
+BX_KPH. . . . . . . .  I ADDR   0014H   R   SEG=?ID?TASK3_BKCD
+CAL . . . . . . . . .  B ADDR   00D8H.5 A   
+CAP2. . . . . . . . .  B ADDR   00C8H.0 A   
+CFG848. . . . . . . .  D ADDR   00AFH   A   
+CHIPID. . . . . . . .  D ADDR   00C2H   A   
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    40
+
+CM_T. . . . . . . . .  I ADDR   0019H   R   SEG=?ID?TASK3_BKCD
+CNT2. . . . . . . . .  B ADDR   00C8H.1 A   
+CNT_1 . . . . . . . .  I ADDR   002CH   R   SEG=?ID?TASK3_BKCD
+CNT_2 . . . . . . . .  I ADDR   0030H   R   SEG=?ID?TASK3_BKCD
+CPHA. . . . . . . . .  B ADDR   00F8H.2 A   
+CPOL. . . . . . . . .  B ADDR   00F8H.3 A   
+CY. . . . . . . . . .  B ADDR   00D0H.7 A   
+DACCON. . . . . . . .  D ADDR   00FDH   A   
+DACH. . . . . . . . .  D ADDR   00FCH   A   
+DACL. . . . . . . . .  D ADDR   00FBH   A   
+DPCON . . . . . . . .  D ADDR   00A7H   A   
+DPH . . . . . . . . .  D ADDR   0083H   A   
+DPL . . . . . . . . .  D ADDR   0082H   A   
+DPP . . . . . . . . .  D ADDR   0084H   A   
+EA. . . . . . . . . .  B ADDR   00A8H.7 A   
+EADC. . . . . . . . .  B ADDR   00A8H.6 A   
+EADRH . . . . . . . .  D ADDR   00C7H   A   
+EADRL . . . . . . . .  D ADDR   00C6H   A   
+ECON. . . . . . . . .  D ADDR   00B9H   A   
+EDATA1. . . . . . . .  D ADDR   00BCH   A   
+EDATA2. . . . . . . .  D ADDR   00BDH   A   
+EDATA3. . . . . . . .  D ADDR   00BEH   A   
+EDATA4. . . . . . . .  D ADDR   00BFH   A   
+ERR0. . . . . . . . .  B ADDR   00D8H.3 A   
+ERR1. . . . . . . . .  B ADDR   00D8H.2 A   
+ES. . . . . . . . . .  B ADDR   00A8H.4 A   
+ET0 . . . . . . . . .  B ADDR   00A8H.1 A   
+ET1 . . . . . . . . .  B ADDR   00A8H.3 A   
+ET2 . . . . . . . . .  B ADDR   00A8H.5 A   
+EX0 . . . . . . . . .  B ADDR   00A8H.0 A   
+EX1 . . . . . . . . .  B ADDR   00A8H.2 A   
+EXEN2 . . . . . . . .  B ADDR   00C8H.3 A   
+EXF2. . . . . . . . .  B ADDR   00C8H.6 A   
+F0. . . . . . . . . .  B ADDR   00D0H.5 A   
+F1. . . . . . . . . .  B ADDR   00D0H.1 A   
+FLZ . . . . . . . . .  X ADDR   -----       EXT
+FL_ERR. . . . . . . .  B ADDR   0000H.0 R   SEG=?BI?TASK3_BKCD
+FL_KOLIB. . . . . . .  B ADDR   0000H.1 R   SEG=?BI?TASK3_BKCD
+GN0H. . . . . . . . .  D ADDR   00EBH   A   
+GN0L. . . . . . . . .  D ADDR   00E9H   A   
+GN0M. . . . . . . . .  D ADDR   00EAH   A   
+HH1 . . . . . . . . .  X ADDR   0763H   A   
+HH2 . . . . . . . . .  X ADDR   076BH   A   
+HOUR. . . . . . . . .  D ADDR   00A5H   A   
+HTHSEC. . . . . . . .  D ADDR   00A2H   A   
+I11?040 . . . . . . .  I ADDR   0000H   R   SEG=?ID?TASK_3?TASK3_BKCD
+I2CADD. . . . . . . .  D ADDR   009BH   A   
+I2CADD1 . . . . . . .  D ADDR   00F2H   A   
+I2CCON. . . . . . . .  D ADDR   00E8H   A   
+I2CDAT. . . . . . . .  D ADDR   009AH   A   
+I2CI. . . . . . . . .  B ADDR   00E8H.0 A   
+I2CM. . . . . . . . .  B ADDR   00E8H.3 A   
+I2CRS . . . . . . . .  B ADDR   00E8H.2 A   
+I2CTX . . . . . . . .  B ADDR   00E8H.1 A   
+ICON. . . . . . . . .  D ADDR   00D5H   A   
+IE. . . . . . . . . .  D ADDR   00A8H   A   
+IE0 . . . . . . . . .  B ADDR   0088H.1 A   
+IE1 . . . . . . . . .  B ADDR   0088H.3 A   
+IEIP2 . . . . . . . .  D ADDR   00A9H   A   
+INT0. . . . . . . . .  B ADDR   00B0H.2 A   
+INT1. . . . . . . . .  B ADDR   00B0H.3 A   
+INTVAL. . . . . . . .  D ADDR   00A6H   A   
+IP. . . . . . . . . .  D ADDR   00B8H   A   
+ISPI. . . . . . . . .  B ADDR   00F8H.7 A   
+IT0 . . . . . . . . .  B ADDR   0088H.0 A   
+IT1 . . . . . . . . .  B ADDR   0088H.2 A   
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    41
+
+K1. . . . . . . . . .  X ADDR   0760H   A   
+K2. . . . . . . . . .  X ADDR   0766H   A   
+KAN . . . . . . . . .  I ADDR   0006H   R   SEG=?ID?TASK3_BKCD
+KAN_SL. . . . . . . .  I ADDR   0035H   R   SEG=?ID?TASK3_BKCD
+KOL_E . . . . . . . .  X ADDR   -----       EXT
+KOL_EZ. . . . . . . .  X ADDR   -----       EXT
+LBUF. . . . . . . . .  X ADDR   -----       EXT
+MCO . . . . . . . . .  B ADDR   00E8H.5 A   
+MDE . . . . . . . . .  B ADDR   00E8H.6 A   
+MDI . . . . . . . . .  B ADDR   00E8H.4 A   
+MDO . . . . . . . . .  B ADDR   00E8H.7 A   
+MIN . . . . . . . . .  D ADDR   00A4H   A   
+NOXREF. . . . . . . .  B ADDR   00D8H.4 A   
+N_CH. . . . . . . . .  D ADDR   0008H   R   SEG=?DT?TASK3_BKCD
+N_CH1 . . . . . . . .  I ADDR   0029H   R   SEG=?ID?TASK3_BKCD
+N_CH2 . . . . . . . .  I ADDR   002AH   R   SEG=?ID?TASK3_BKCD
+OB_PAR. . . . . . . .  X ADDR   -----       EXT
+OF0H. . . . . . . . .  D ADDR   00E3H   A   
+OF0L. . . . . . . . .  D ADDR   00E1H   A   
+OF0M. . . . . . . . .  D ADDR   00E2H   A   
+OV. . . . . . . . . .  B ADDR   00D0H.2 A   
+P . . . . . . . . . .  B ADDR   00D0H.0 A   
+P0. . . . . . . . . .  D ADDR   0080H   A   
+P1. . . . . . . . . .  D ADDR   0090H   A   
+P2. . . . . . . . . .  D ADDR   00A0H   A   
+P3. . . . . . . . . .  D ADDR   00B0H   A   
+PADC. . . . . . . . .  B ADDR   00B8H.6 A   
+PCON. . . . . . . . .  D ADDR   0087H   A   
+PER?041 . . . . . . .  I ADDR   0001H   R   SEG=?ID?TASK_3?TASK3_BKCD
+PLLCON. . . . . . . .  D ADDR   00D7H   A   
+PNT_BUF_TD. . . . . .  I ADDR   0002H   R   SEG=?ID?TASK3_BKCD
+PODS. . . . . . . . .  X ADDR   0000H   R   SEG=?XD?TASK3_BKCD
+PRE0. . . . . . . . .  B ADDR   00C0H.4 A   
+PRE1. . . . . . . . .  B ADDR   00C0H.5 A   
+PRE2. . . . . . . . .  B ADDR   00C0H.6 A   
+PRE3. . . . . . . . .  B ADDR   00C0H.7 A   
+PS. . . . . . . . . .  B ADDR   00B8H.4 A   
+PSMCON. . . . . . . .  D ADDR   00DFH   A   
+PSW . . . . . . . . .  D ADDR   00D0H   A   
+PT0 . . . . . . . . .  B ADDR   00B8H.1 A   
+PT1 . . . . . . . . .  B ADDR   00B8H.3 A   
+PT2 . . . . . . . . .  B ADDR   00B8H.5 A   
+PWM0H . . . . . . . .  D ADDR   00B2H   A   
+PWM0L . . . . . . . .  D ADDR   00B1H   A   
+PWM1H . . . . . . . .  D ADDR   00B4H   A   
+PWM1L . . . . . . . .  D ADDR   00B3H   A   
+PWMCON. . . . . . . .  D ADDR   00AEH   A   
+PX0 . . . . . . . . .  B ADDR   00B8H.0 A   
+PX1 . . . . . . . . .  B ADDR   00B8H.2 A   
+RB8 . . . . . . . . .  B ADDR   0098H.2 A   
+RCAP2H. . . . . . . .  D ADDR   00CBH   A   
+RCAP2L. . . . . . . .  D ADDR   00CAH   A   
+RCLK. . . . . . . . .  B ADDR   00C8H.5 A   
+RD. . . . . . . . . .  B ADDR   00B0H.7 A   
+RDY0. . . . . . . . .  B ADDR   00D8H.7 A   
+RDY1. . . . . . . . .  B ADDR   00D8H.6 A   
+REN . . . . . . . . .  B ADDR   0098H.4 A   
+REZ . . . . . . . . .  B ADDR   -----       EXT
+RI. . . . . . . . . .  B ADDR   0098H.0 A   
+RS0 . . . . . . . . .  B ADDR   00D0H.3 A   
+RS1 . . . . . . . . .  B ADDR   00D0H.4 A   
+RXD . . . . . . . . .  B ADDR   00B0H.0 A   
+SBUF. . . . . . . . .  D ADDR   0099H   A   
+SCON. . . . . . . . .  D ADDR   0098H   A   
+SEC . . . . . . . . .  D ADDR   00A3H   A   
+SF. . . . . . . . . .  D ADDR   00D4H   A   
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    42
+
+SM0 . . . . . . . . .  B ADDR   0098H.7 A   
+SM1 . . . . . . . . .  B ADDR   0098H.6 A   
+SM2 . . . . . . . . .  B ADDR   0098H.5 A   
+SP. . . . . . . . . .  D ADDR   0081H   A   
+SPE . . . . . . . . .  B ADDR   00F8H.5 A   
+SPH . . . . . . . . .  D ADDR   00B7H   A   
+SPICON. . . . . . . .  D ADDR   00F8H   A   
+SPIDAT. . . . . . . .  D ADDR   00F7H   A   
+SPIM. . . . . . . . .  B ADDR   00F8H.4 A   
+SPR0. . . . . . . . .  B ADDR   00F8H.0 A   
+SPR1. . . . . . . . .  B ADDR   00F8H.1 A   
+STATUS. . . . . . . .  D ADDR   -----       EXT
+STR_BX1_A . . . . . .  X ADDR   0400H   A   
+STR_BX_A. . . . . . .  X ADDR   05E0H   A   
+STR_CH_A. . . . . . .  X ADDR   0680H   A   
+T0. . . . . . . . . .  B ADDR   00B0H.4 A   
+T1. . . . . . . . . .  B ADDR   00B0H.5 A   
+T2. . . . . . . . . .  B ADDR   0090H.0 A   
+T2CON . . . . . . . .  D ADDR   00C8H   A   
+T2EX. . . . . . . . .  B ADDR   0090H.1 A   
+T3CON . . . . . . . .  D ADDR   009EH   A   
+T3FD. . . . . . . . .  D ADDR   009DH   A   
+TABX_CH_A . . . . . .  X ADDR   0012H   R   SEG=?XD?TASK3_BKCD
+TAB_ADC . . . . . . .  C ADDR   0000H   R   SEG=?CO?TASK3_BKCD
+TASK3_BKCD. . . . . .  N NUMB   -----       
+TASK_3. . . . . . . .  C ADDR   0000H   R   SEG=?PR?TASK_3?TASK3_BKCD
+TB8 . . . . . . . . .  B ADDR   0098H.3 A   
+TCLK. . . . . . . . .  B ADDR   00C8H.4 A   
+TCON. . . . . . . . .  D ADDR   0088H   A   
+TEMP_1. . . . . . . .  I ADDR   0007H   R   SEG=?ID?TASK3_BKCD
+TF0 . . . . . . . . .  B ADDR   0088H.5 A   
+TF1 . . . . . . . . .  B ADDR   0088H.7 A   
+TF2 . . . . . . . . .  B ADDR   00C8H.7 A   
+TH0 . . . . . . . . .  D ADDR   008CH   A   
+TH1 . . . . . . . . .  D ADDR   008DH   A   
+TH2 . . . . . . . . .  D ADDR   00CDH   A   
+TI. . . . . . . . . .  B ADDR   0098H.1 A   
+TIMECON . . . . . . .  D ADDR   00A1H   A   
+TL0 . . . . . . . . .  D ADDR   008AH   A   
+TL1 . . . . . . . . .  D ADDR   008BH   A   
+TL2 . . . . . . . . .  D ADDR   00CCH   A   
+TM. . . . . . . . . .  D ADDR   0009H   R   SEG=?DT?TASK3_BKCD
+TMADC . . . . . . . .  D ADDR   0000H   R   SEG=?DT?TASK3_BKCD
+TMOD. . . . . . . . .  D ADDR   0089H   A   
+TMPADC_T. . . . . . .  I ADDR   000BH   R   SEG=?ID?TASK3_BKCD
+TMT . . . . . . . . .  I ADDR   000FH   R   SEG=?ID?TASK3_BKCD
+TR0 . . . . . . . . .  B ADDR   0088H.4 A   
+TR1 . . . . . . . . .  B ADDR   0088H.6 A   
+TR2 . . . . . . . . .  B ADDR   00C8H.2 A   
+TXD . . . . . . . . .  B ADDR   00B0H.1 A   
+WADC. . . . . . . . .  D ADDR   0002H   R   SEG=?DT?TASK3_BKCD
+WCOL. . . . . . . . .  B ADDR   00F8H.6 A   
+WDCON . . . . . . . .  D ADDR   00C0H   A   
+WDE . . . . . . . . .  B ADDR   00C0H.1 A   
+WDIR. . . . . . . . .  B ADDR   00C0H.3 A   
+WDS . . . . . . . . .  B ADDR   00C0H.2 A   
+WDWR. . . . . . . . .  B ADDR   00C0H.0 A   
+WR. . . . . . . . . .  B ADDR   00B0H.6 A   
+Z . . . . . . . . . .  I ADDR   0034H   R   SEG=?ID?TASK3_BKCD
+Z0. . . . . . . . . .  X ADDR   -----       EXT
+Z1. . . . . . . . . .  X ADDR   -----       EXT
+Z2. . . . . . . . . .  X ADDR   -----       EXT
+Z3. . . . . . . . . .  X ADDR   -----       EXT
+Z4. . . . . . . . . .  X ADDR   -----       EXT
+ZADC. . . . . . . . .  I ADDR   0001H   R   SEG=?ID?TASK3_BKCD
+ZG_TABX_DAT . . . . .  X ADDR   07B0H   A   
+A51 MACRO ASSEMBLER  TASK3_BKCD                                                           12/16/2009 12:20:25 PAGE    43
+
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

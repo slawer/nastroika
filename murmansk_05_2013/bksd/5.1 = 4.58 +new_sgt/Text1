@@ -1,0 +1,259 @@
+ 
+#include "aduc848.h"
+#include "r_main.h"
+#include "ADC_bkcd.h"
+#include "define_stuct.h"
+#include "Опис_Таб_Кан.h"
+ 
+ 
+ if(FL_20==1)
+     {                                   
+       j = zbuf[4]&0x0F;
+       len = zbuf[5]&0x1F;
+
+   if ((j+len)<70) //<3)
+      {
+      // if ((cmd == 1)| (cmd == 3))                  // write 
+        //  {
+            adcins[0] = zbuf[6];
+            adcins[1] = zbuf[7];
+//MMMMMMMMMM
+            for(j=0;j<10;j++)
+               {
+                adcbuf[j]=zbuf[8+j];
+               }
+
+        //    if((adcins[0]&0x80)==0x80)
+		//	 { ADC0=20; flagadc = 1;}
+            len = 0x08;
+         // }      
+          if (cmd == 2)                   // rd 
+             {
+               bufout[6] = adcins[0];
+               bufout[7] = adcins[1];
+               //len = 0x08;
+             }
+          //if (cmd == 3)   
+             {FL_21=1;}
+          if((cmd==2)&(zbuf[6]==0xB7)) {FL_21=1;cmd=1;}//читать FLASH циклически(DEC ADR) 
+          if((cmd==2)&(zbuf[6]==0xB8)) {FL_21=1;cmd=1;}//читать FLASH циклически (INC ADR) 
+          if((cmd==2)&(zbuf[6]==0xB3)) {FL_21=1;}//читать FLASH
+          if((cmd==1)&(zbuf[6]==0xB3)) {FL_21=1;}//писать FLASH 
+          if((cmd==2)&(zbuf[6]==0xB4)) {FL_21=1;}//читать adress FLASH
+          if((cmd==1)&(zbuf[6]==0xB4)) {FL_21=1;}//писать adress FLASH 
+          if((cmd==2)&(zbuf[6]==0xB5)) {FL_21=1;}//читать сlock
+          if((cmd==1)&(zbuf[6]==0xB5)) {FL_21=1;}//писать clock 
+          if((cmd==2)&(zbuf[6]==0xB6)) {FL_21=1;}//читать P0,P2
+          if((cmd==1)&(zbuf[6]==0xB6)) {FL_21=1;}//писать P0,P2
+          //if((cmd==2)&(zbuf[6]==0xB9)) {FL_21=1;}
+          if((cmd==2)&(zbuf[6]==0xBA)) {FL_21=1;}//читать EEPROM
+          if((cmd==1)&(zbuf[6]==0xBA)) {FL_21=1;}//писать EEPROM 
+          
+       }
+
+      else {len=len1; //status=status|0x10;
+	   }  
+     
+      FL_20=0;
+    }
+
+
+	     //if((adcins[0]&0x3F)!=0x27)
+           if((adcins[0]&0x3F)==0x20)
+            {
+               FL_21=0;
+//*****остановить измерение записать в eeprom
+//----------запись адресFLASH в EEPROM
+               FL_BLOK_EEPR=0;
+               ADR_E=(0x160 -0x100)>>2 ;
+               adcbuf[0]=0xD0;
+               adcbuf[1]=0x10; ; 
+               adcbuf[2]=PA_H>>1;adcbuf[3]=PA_L>>1;
+               if((PA_H&0x01)==0x01){adcbuf[3]=adcbuf[3]|0x80;} 
+               adcbuf[4]=ADR_BF;adcbuf[5]=K_PAH;wadc=6;
+               FUM_Epr_Wr4(ADR_E,adcbuf[2],adcbuf[3],adcbuf[4],adcbuf[5])
+               FUM_WR_DAT_CLOCK(adcbuf,wadc)
+			   
+//-------------------------------------START_ADC
+             // ADR_E=(START_ADC -0x100)>>2 ;  
+             // adcbuf[0]=0x0FF;adcbuf[1]=0x0FF;
+      // FUM_Epr_Wr4(ADR_E,adcbuf[0],adcbuf[1],EDATA3,EDATA4)
+       //ADC_EPR[2] = 0x0FF;ADC_EPR[3] = 0x0FF;
+       //FU_wepr ( &ADC_EPR[2],  0,&ADC_EPR[0]);
+//******************************** 
+              ADC0=0;              //переход в состояние 0)
+              FL_PRX=0;
+            }
+           if((adcins[0]&0x3F)==0x21)
+            {
+             
+              ADC0=30;              //переход в состояние "30'(внутренная калибровка 0\1)
+              FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x22)
+             {
+            
+              ADC0=70;//40;              //переход в состояние "70'(калибровка Pi)
+              FL_PRX=1;
+             
+              FL_KOLIB=1;
+             // Z_KAL=8;
+             }
+           if((adcins[0]&0x3F)==0x23)
+             {
+               ADC0=50;              //переход в состояние "50'(измерение каналi код)
+               FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x24)
+             {
+               ADC0=60;              //переход в состояние "60'(измерение каналi физич\код )
+               FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x25)//однократ.измерение последов.каналов
+             {
+               FL_21=0; 
+               ADC0=70;              //переход в состояние "70'(измерение K1-Ki )
+               FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x28) //однократ.измерение последов.каналов
+             {                          // и выдача lbuf[] в линию.
+               FL_21=0; 
+               ADC0=70;            //переход в состояние "70'(измерение K1-Ki )
+               FL_PRX=1;
+             } 
+           if((adcins[0]&0x3F)==0x26)
+             {
+               FL_21=0; 
+               ADC0=19;           //блокировать запись в EEPROM
+               FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x27) //непрерывное измерение последовательности кан.
+             {
+               FL_21=0;FL_20=0; 
+//**************************************
+         /*      ADR_E=(START_ADC -0x100)>>2 ;  
+               adcbuf[0]=0x0A7;adcbuf[1]=0x01;
+       FUM_Epr_Wr4(ADR_E,adcbuf[0],adcbuf[1],EDATA3,EDATA4)	*/
+       //adcbuf[0]=0x40;adcbuf[1]=2;
+       //adcbuf[4] = 0x0A7;adcbuf[5] = 0x01;
+       //FU_wepr ( &adcbuf[4],  0,&adcbuf[0]);
+       
+//******************************** 
+               F_ZIZM=1; F_IZST=1;
+               NM_STR_IDF=0;FL_KOLIB=0;
+               FL_BLOK_EEPR=1;
+               ADC0=70;            //вычисление L = (P2-P1)/(P2Code- P1Code) )
+               FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x29) //непрерывное измерение последовательности кан.
+             {                           // и выдача lbuf[] в линию.
+               FL_21=0; 
+               F_ZIZM=1;
+               ADC0=70;              
+               FL_PRX=1;
+             }
+           if((adcins[0]&0x3F)==0x30) //сброс суммарного расхода
+             {                           
+            // FL_21=0; 
+               ADC0=5;             
+               FL_PRX=1;
+
+             }
+           if((adcins[0]&0x3F)==0x31) //сброс моточасы
+             {                           
+             //FL_21=0; 
+               ADC0=6;           
+               FL_PRX=1;
+
+             }
+
+////////////.............
+           if((adcins[0]&0x3F)==0x32) //переход на сброс счетчика ДОЛ
+                                       
+            {                           
+             //FL_21=0; 
+               ADC0=10;           
+               FL_PRX=1;
+            }
+/////////////////////////............
+           if((adcins[0]&0x3F)==0x33) //  FLASH
+              {                           
+             
+                ADC0=7;           
+                FL_PRX=1;
+              }
+           if((adcins[0]&0x3F)==0x34) // adress FLASH
+              {                           
+             	 
+                 ADC0=8;           
+                 FL_PRX=1;
+              }
+           if((adcins[0]&0x3F)==0x35) // R/W CLOCK
+              {                           
+             
+                 ADC0=9;           
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x36) // R/W DAC 
+               {                           
+             
+                 ADC0=4;           
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x37) // read Flash zikl в обратном направлении
+               {                           
+             
+                 ADC0=3;           
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x38) // read Flash zikl в прямом направлении
+               {                           
+             
+                 ADC0=2;           
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x39) // читать RAM
+               {                           
+             
+                 ADC0=14;
+               
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x3A) // читать\писать EEPROM
+               {                           
+             
+                 ADC0=adcins[1]; //12 0C;//13;
+               
+               
+           //BX[]
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x3B) // выкл.\вкл. активность модуля
+               {                           
+             
+                 ADC0=13;//13;{0Ch]номер case
+               
+               
+           //BX[]
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x3C) // рестарт модуля
+               {                                                    
+                 ADC0=15;//13;{0Ch]номер case
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x3D) // записать\прочитать статусный байт
+               {                                                    
+                 ADC0=16;//13;{0Ch]номер case
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x3E) // записать\прочитать RAM Clock
+               {                                                    
+                 ADC0=17;//13;{0Ch]номер case
+                 FL_PRX=1;
+               }
+           if((adcins[0]&0x3F)==0x3F) // прочитать Максимальное значение диапазона
+               {                                                    
+                 ADC0=18;//13;{0Ch]номер case
+                 FL_PRX=1;
+               }

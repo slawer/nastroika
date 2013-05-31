@@ -1,0 +1,311 @@
+A51 MACRO ASSEMBLER  FUNC                                                                 03/24/2010 12:43:48 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.01
+OBJECT MODULE PLACED IN FUNC.OBJ
+ASSEMBLER INVOKED BY: C:\Keil4\C51\BIN\A51.EXE FUNC.a51 GEN SET(LARGE) DEBUG XREF EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     ;************КЦС40 Новосибирск май 2005года *********************
+                       2     ;Программный модуль описания функций
+                       3     ;1.чтение из EEPROM repr(*buf_data[],n_page,*adr; ldata) 
+                       4     ;2.запись в  EEPROM wepr(*buf_data[],n_page,*adr; ldata)
+                       5     ;значение указателя '*bufdata[]' содержится в регистре 'R7'
+                       6     ;значение номера страницы ' n_page' содержится в регистре 'R5' 
+                       7     ;значение указателя адреса и количес.байт обмена'*adr;ldata'содержится в регистре'R3' ----
+                       8     ;страница содержит 256 байт 
+                       9     ;3. умножение двухбайтных чисел
+                      10     ;f_mul (unsigned int  A_X, unsigned int  A_Y ,unsigned  char data  *A_Z)
+                      11     ;R4-R5 (аргумент A_X) R6-R7  (аргумент A_Y) A_Z = A_X*A_Y указатель *A_Z -R3 
+                      12     ;***********************************************************************************
+                      13     
+                      14     
+                      15     ;#include "r_main.h" 
+                +1    16     
+                +1    17     
+                +1    18     
+                +1    19     
+                +1    20     
+                +1    21     
+                +1    22     
+                +1    23     
+                +1    24     
+                +1    25     
+                +1    26     
+                +1    27     
+                +1    28     
+                +1    29     
+                +1    30     
+                +1    31     
+                +1    32     
+                +1    33     
+                +1    34     
+                +1    35     
+                +1    36     
+                +1    37     
+                +1    38     
+                +1    39     
+                +1    40     
+                +1    41     
+                +1    42     
+                +1    43     
+                +1    44     
+                +1           
+                +1           
+                +1           
+                +1           
+                +1           
+                +1           
+                +1           
+                +1           
+                +1           
+                +1    54     
+                +1    55     
+                +1    56     
+                +1    57     
+                +1    58     
+A51 MACRO ASSEMBLER  FUNC                                                                 03/24/2010 12:43:48 PAGE     2
+
+                +1    59     
+                +1    60     
+                +1    61     
+                +1    62     
+                +1    63     
+                +1    64     
+                +1    65     
+                +1    66     
+                +1    67     
+                +1    68     
+                +1    69     
+                +1    70     
+                +1    71     
+                +1    72     
+                +1    73     
+                +1    74     
+                +1    75     
+                +1    76     
+                +1    77     
+                +1    78     
+                +1    79     
+                +1    80     
+                +1    81     
+                +1    82     
+                +1    83     
+                +1    84     
+                +1    85     
+                +1    86     
+                +1    87     
+                +1    88     
+                +1    89     
+                +1    90     
+                +1    91     
+                +1    92     
+                +1    93     
+                +1    94     
+                +1    95     
+                +1    96     
+                +1    97     
+                +1    98     
+                +1    99     
+                +1   100     
+                +1   101     
+                +1   102     
+                +1   103       
+                +1   104     
+                +1   105     
+                +1   106     
+                +1   107     
+                +1   108     
+                +1   109     
+                +1   110     
+                +1   111     
+                +1   112     
+                +1   113     
+                +1   114     
+                +1   115     
+                +1   116     
+                +1   117     
+                +1   118     
+                +1   119     
+                +1   120     
+                +1   121     
+                +1   122     
+                +1   123     
+                +1   124     
+A51 MACRO ASSEMBLER  FUNC                                                                 03/24/2010 12:43:48 PAGE     3
+
+                +1   125     
+                +1   126     
+                +1   127     
+                +1   128     
+                +1   129     
+                +1   130     
+                +1   131     
+                +1   132     
+                +1   133     
+                +1   134     
+                +1   135     
+                +1   136     
+                +1   137     
+                +1   138     
+                +1   139     
+                +1   140     
+                +1   141     
+                +1   142     
+                +1   143     
+                +1   144     
+                +1   145     
+                +1   146     
+                +1   147     
+                +1   148     
+                +1   149     
+                +1   150     
+                +1   151     
+                +1   152     
+                +1   153     
+                +1   154     
+                +1   155     
+                +1   156     
+                +1   157     
+                +1   158     
+                +1   159     
+                +1   160     
+                +1   161      
+                +1   162     
+                +1   163     
+                +1   164     
+                +1   165     
+                +1   166     
+                +1   167     
+                +1   168      
+                +1   169     
+                +1   170     
+                +1   171                                       
+                +1   172     
+                +1   173     
+                +1   174     
+                +1   175     
+                +1   176      
+                +1   177     
+                +1   178     
+                +1   179     
+                +1   180     
+                +1   181     
+                +1   182     
+                +1   183     
+                +1   184      
+                +1   185     
+                +1   186     
+                +1   187     
+                +1   188     
+                +1   189     
+                +1   190     
+A51 MACRO ASSEMBLER  FUNC                                                                 03/24/2010 12:43:48 PAGE     4
+
+                +1   191     
+                +1   192     
+                +1   193     
+                +1   194     
+                +1   195     
+                +1   196     
+                +1   197     
+                +1   198     
+                +1   199     
+                +1   200     
+                +1   201     
+                +1   202     
+                +1   203     
+                +1   204     
+                +1   205     
+                +1   206     
+                +1   207     
+                +1   208     
+                +1   209     
+                +1   210     
+                     211     
+                     212     
+                     213     ?_f_mul SEGMENT CODE
+                     214     EXTRN   CODE (MAIN)
+                     215     ;TL1    DATA 8BH   
+  00B9               216     ECON   DATA 0B9H
+  00BC               217     EDATA1 DATA 0BCH
+  00BD               218     EDATA2 DATA 0BDH
+  00BE               219     EDATA3 DATA 0BEH
+  00BF               220     EDATA4 DATA 0BFH
+  00C6               221     EADRL  DATA 0C6H
+  00C7               222     EADRH  DATA 0C7H
+                     223     
+                     224     ;extrn  DATA (ST_EEPR,zb) 
+                     225      
+                     226     PUBLIC _f_mul            
+                     227     
+                     228                                                                                      
+                     229     ;---- Variable 'reg_p' assigned to Register 'R7' ----
+                     230     ;---- Variable 'n_peg' assigned to Register 'R5' ----
+                     231     ;---- Variable 'ad_rg' assigned to Register 'R3' ----
+                     232      ;?_f_mul SEGMENT CODE
+                     233     ;EXTRN CODE (MAIN)
+                     234     ;extrn data   (x)
+                     235     ;PUBLIC _f_mul           
+----                 236     RSEG ?_f_mul 
+0000                 237     _f_mul:
+                     238       ;MOV     R5,A_X+01H
+                     239       ;MOV     R4,A_X
+                     240       ;MOV     R7,A_Y+01H
+                     241       ;MOV     R6,A_Y
+                     242     
+                     243     ;R4-R5 (аргумент A_X) R6-R7  (аргумент A_Y) A_Z = A_X*A_Y  *A_Z -R3
+0000 EF              244     MOV     A,R7 ;L1-x1
+0001 8DF0            245     MOV     B,R5 ;L2-x2
+0003 A4              246     MUL     AB   ;L1*L2
+0004 F9              247     MOV     R1,A ;R1,R0 - сохраняем результат умножения
+0005 A8F0            248     MOV     R0,B
+0007 CF              249     XCH     A,R7
+0008 8CF0            250     MOV     B,R4
+000A A4              251     MUL     AB
+000B 28              252     ADD     A,R0
+                     253     ;MOV    R0,A
+000C CE              254     XCH     A,R6
+000D 8DF0            255     MOV     B,R5
+000F A4              256     MUL     AB
+A51 MACRO ASSEMBLER  FUNC                                                                 03/24/2010 12:43:48 PAGE     5
+
+0010 2E              257     ADD     A,R6
+0011 FE              258     MOV     R6,A
+0012 EB              259     MOV     A,R3
+0013 F8              260     MOV     R0,A 
+0014 EE              261     MOV     A,R6 
+0015 F6              262     MOV     @R0,A ;ст.байт
+0016 08              263     INC     R0
+0017 EF              264     MOV     A,R7 
+0018 F6              265     MOV     @R0,A ;мл.байт
+0019 22              266     RET
+                     267     end
+                                     
+                             
+A51 MACRO ASSEMBLER  FUNC                                                                 03/24/2010 12:43:48 PAGE     6
+
+XREF SYMBOL TABLE LISTING
+---- ------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES / REFERENCES
+
+?_F_MUL. . . . . .  C SEG    001AH       REL=UNIT   213# 236
+B. . . . . . . . .  D ADDR   00F0H   A      245 248 250 255
+EADRH. . . . . . .  D ADDR   00C7H   A      222#
+EADRL. . . . . . .  D ADDR   00C6H   A      221#
+ECON . . . . . . .  D ADDR   00B9H   A      216#
+EDATA1 . . . . . .  D ADDR   00BCH   A      217#
+EDATA2 . . . . . .  D ADDR   00BDH   A      218#
+EDATA3 . . . . . .  D ADDR   00BEH   A      219#
+EDATA4 . . . . . .  D ADDR   00BFH   A      220#
+MAIN . . . . . . .  C ADDR   -----       EXT   214#
+_F_MUL . . . . . .  C ADDR   0000H   R   SEG=?_F_MUL   226 237#
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

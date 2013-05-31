@@ -1,0 +1,9 @@
+"Main_bkcd.obj",
+"Setup_ADC.obj",
+"setup_bkcd.obj",
+"task3_bkcd.obj",
+"START_AD.obj",
+"assemb.obj" 
+TO "4_58_preriv_pult" 
+RAMSIZE(256) 
+XDATA( 0X0000-0X07FF )

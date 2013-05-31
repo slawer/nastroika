@@ -1,0 +1,532 @@
+
+[NPort Configuration File]
+Check Code=cfg1
+
+[Overview]
+Model Name=NPW2150P
+Serial No.=1496
+Firmware Version=1.3 Build 08062518
+IP Address=10.0.0.241
+MAC Address=00:90:E8:25:E5:88
+WLAN IP Address=10.0.0.242
+WLAN MAC Address=00:90:E8:25:E5:89
+
+[Basic Settings]
+Server Name=Auto_sgt
+Server Location=
+Time Zone=22
+Time=
+Time Server=
+
+[Network Settings]
+DNS Server 1=255.255.255.255
+DNS Server 2=255.255.255.255
+WINS Mode=1
+WINS Server=255.255.255.255
+Gratuitous ARP=0
+Gratuitous ARP Period=300
+
+[Network Interface #1]
+IP Configuration=0
+IP Address=10.0.0.241
+Netmask=255.255.255.0
+Gateway=255.255.255.255
+LAN Speed=0
+
+[Network Interface #2]
+IP Configuration=0
+IP Address=10.0.0.242
+Netmask=255.255.255.0
+Gateway=255.255.255.255
+
+[Wireless Settings]
+Network Type=0
+Profile Priority=0,1,2,-1
+Connect Rule=0
+Threshold=0
+
+[Wireless General Settings @Profile #1]
+Profile Name=Yota
+Profile Enable=1
+Operation Mode=0
+SSID=YotaCPE0AC0C
+Channel=0
+
+[Wireless General Settings @Profile #2]
+Profile Name=Profile2
+Profile Enable=0
+Operation Mode=0
+SSID=Default
+Channel=0
+
+[Wireless General Settings @Profile #3]
+Profile Name=Profile3
+Profile Enable=0
+Operation Mode=0
+SSID=Default
+Channel=0
+
+[Wireless General Settings @Profile #4]
+Profile Name=Ad-hoc
+Profile Enable=1
+Operation Mode=0
+SSID=avto_sgt
+Channel=6
+
+[Wireless Security Settings @Profile #1]
+Authentication/Encryption=5/3
+WEP Key Length=0
+WEP Key Index=0
+WEP Key Format=0
+WEP Key #1=3741343041
+WEP Key #2=005745504b
+WEP Key #3=005745504b
+WEP Key #4=005375626d
+EAP Method=1
+Tunneled Authentication=1
+Username=7A40AC0C
+Password=7A40AC0C
+Anonymous Username=
+VerifyServerCert=0
+PSK Passphrase=7A40AC0C
+
+[Wireless Security Settings @Profile #2]
+Authentication/Encryption=0/0
+WEP Key Length=0
+WEP Key Index=0
+WEP Key Format=0
+WEP Key #1=
+WEP Key #2=
+WEP Key #3=
+WEP Key #4=
+EAP Method=1
+Tunneled Authentication=1
+Username=
+Password=
+Anonymous Username=
+VerifyServerCert=0
+PSK Passphrase=
+
+[Wireless Security Settings @Profile #3]
+Authentication/Encryption=0/0
+WEP Key Length=0
+WEP Key Index=0
+WEP Key Format=0
+WEP Key #1=
+WEP Key #2=
+WEP Key #3=
+WEP Key #4=
+EAP Method=1
+Tunneled Authentication=1
+Username=
+Password=
+Anonymous Username=
+VerifyServerCert=0
+PSK Passphrase=
+
+[Wireless Security Settings @Profile #4]
+Authentication/Encryption=0/0
+WEP Key Length=0
+WEP Key Index=0
+WEP Key Format=0
+WEP Key #1=
+WEP Key #2=
+WEP Key #3=
+WEP Key #4=
+EAP Method=1
+Tunneled Authentication=1
+Username=
+Password=
+Anonymous Username=
+VerifyServerCert=0
+PSK Passphrase=
+
+[Operation Modes @Port #1]
+Application=4
+Mode=2
+TCP Alive Check Time=7
+Max. Connection=3
+Ignore Jammed IP=0
+Allow Driver Control=0
+Packing Flag=0
+Delimiter Character 1=0
+Delimiter Character 2=0
+Force Transmit Time=3
+Packing Mode=1
+Packet Length=0
+Inactivity Time Minute=0
+Inactivity Time=0
+TCP Server Data Port=5000
+TCP Server Command Port=966
+TCP Client Dest. Address #1=
+TCP Client Dest. Address #2=
+TCP Client Dest. Address #3=
+TCP Client Dest. Address #4=
+TCP Client Dest. Address #5=
+TCP Client Dest. Address #6=
+TCP Client Dest. Address #7=
+TCP Client Dest. Address #8=
+TCP Client Dest. Port #1=4001
+TCP Client Dest. Port #2=4001
+TCP Client Dest. Port #3=4001
+TCP Client Dest. Port #4=4001
+TCP Client Dest. Port #5=4001
+TCP Client Dest. Port #6=4001
+TCP Client Dest. Port #7=4001
+TCP Client Dest. Port #8=4001
+TCP Client Local Port #1=5010
+TCP Client Local Port #2=5011
+TCP Client Local Port #3=5012
+TCP Client Local Port #4=5013
+TCP Client Local Port #5=5014
+TCP Client Local Port #6=5015
+TCP Client Local Port #7=5016
+TCP Client Local Port #8=5017
+TCP Client Mode=257
+UDP Dest. IP Range Begin #1=0.0.0.0
+UDP Dest. IP Range Begin #2=0.0.0.0
+UDP Dest. IP Range Begin #3=0.0.0.0
+UDP Dest. IP Range Begin #4=0.0.0.0
+UDP Dest. IP Range Begin #5=0.0.0.0
+UDP Dest. IP Range Begin #6=0.0.0.0
+UDP Dest. IP Range Begin #7=0.0.0.0
+UDP Dest. IP Range Begin #8=0.0.0.0
+UDP Dest. IP Range End #1=0.0.0.0
+UDP Dest. IP Range End #2=0.0.0.0
+UDP Dest. IP Range End #3=0.0.0.0
+UDP Dest. IP Range End #4=0.0.0.0
+UDP Dest. IP Range End #5=0.0.0.0
+UDP Dest. IP Range End #6=0.0.0.0
+UDP Dest. IP Range End #7=0.0.0.0
+UDP Dest. IP Range End #8=0.0.0.0
+UDP Dest. Port #1=4001
+UDP Dest. Port #2=4001
+UDP Dest. Port #3=4001
+UDP Dest. Port #4=4001
+UDP Dest. Port #5=4001
+UDP Dest. Port #6=4001
+UDP Dest. Port #7=4001
+UDP Dest. Port #8=4001
+UDP Local Port=5000
+Max. Terminal Session=4
+Change Key=20
+Quit Key=5
+Break Key=0
+Interrupt Key=0
+Auto Link Type=0
+Auto Link Login Port=23
+Auto Link Primary Host=
+Auto Link Secondary Host=
+Login Prompt=ogin:
+Password Prompt=assword:
+Login User Name=
+Login Password=
+Terminal Type=ansi
+Authentication Type=0
+Reverse Terminal Port=4001
+Key Mapping=0
+Connection Down RTS Goes Low=0
+Connection Down DTR Goes Low=0
+
+[Communication Parameters @Port #1]
+Baud Rate=14
+Mode=3
+Flow Control=0
+FIFO=0
+Interface=2
+
+[Port Buffering/Logging @Port #1]
+Port Buffering=0
+Serial Data Logging=0
+
+[Modem Settings @Port #1]
+Enable=0
+Initial String=
+Dial Up=
+Phone Number=
+
+[Welcome Message]
+Enable=0
+Message=
+
+[Accessible IP List]
+IP Filter Mode=0
+Active #1=0
+Active #2=0
+Active #3=0
+Active #4=0
+Active #5=0
+Active #6=0
+Active #7=0
+Active #8=0
+Active #9=0
+Active #10=0
+Active #11=0
+Active #12=0
+Active #13=0
+Active #14=0
+Active #15=0
+Active #16=0
+IP Address #1=0.0.0.0
+IP Address #2=0.0.0.0
+IP Address #3=0.0.0.0
+IP Address #4=0.0.0.0
+IP Address #5=0.0.0.0
+IP Address #6=0.0.0.0
+IP Address #7=0.0.0.0
+IP Address #8=0.0.0.0
+IP Address #9=0.0.0.0
+IP Address #10=0.0.0.0
+IP Address #11=0.0.0.0
+IP Address #12=0.0.0.0
+IP Address #13=0.0.0.0
+IP Address #14=0.0.0.0
+IP Address #15=0.0.0.0
+IP Address #16=0.0.0.0
+Netmask #1=0.0.0.0
+Netmask #2=0.0.0.0
+Netmask #3=0.0.0.0
+Netmask #4=0.0.0.0
+Netmask #5=0.0.0.0
+Netmask #6=0.0.0.0
+Netmask #7=0.0.0.0
+Netmask #8=0.0.0.0
+Netmask #9=0.0.0.0
+Netmask #10=0.0.0.0
+Netmask #11=0.0.0.0
+Netmask #12=0.0.0.0
+Netmask #13=0.0.0.0
+Netmask #14=0.0.0.0
+Netmask #15=0.0.0.0
+Netmask #16=0.0.0.0
+
+[SNMP Agent]
+SNMP Mode=1
+Read Community String=public
+Write Community String=private
+Contact Name=
+Operation Mode=0
+Read User Name=
+Read Authentication Mode=0
+Read Privacy Mode=0
+Read Password=
+Read Privacy=
+Write User Name=
+Write Authentication Mode=0
+Write Privacy Mode=0
+Write Password=
+Write Privacy=
+
+[Host Table]
+Host Name #1=
+Host Name #2=
+Host Name #3=
+Host Name #4=
+Host Name #5=
+Host Name #6=
+Host Name #7=
+Host Name #8=
+Host Name #9=
+Host Name #10=
+Host Name #11=
+Host Name #12=
+Host Name #13=
+Host Name #14=
+Host Name #15=
+Host Name #16=
+Host IP #1=255.255.255.255
+Host IP #2=255.255.255.255
+Host IP #3=255.255.255.255
+Host IP #4=255.255.255.255
+Host IP #5=255.255.255.255
+Host IP #6=255.255.255.255
+Host IP #7=255.255.255.255
+Host IP #8=255.255.255.255
+Host IP #9=255.255.255.255
+Host IP #10=255.255.255.255
+Host IP #11=255.255.255.255
+Host IP #12=255.255.255.255
+Host IP #13=255.255.255.255
+Host IP #14=255.255.255.255
+Host IP #15=255.255.255.255
+Host IP #16=255.255.255.255
+
+[User Table]
+User Name #1=
+User Name #2=
+User Name #3=
+User Name #4=
+User Name #5=
+User Name #6=
+User Name #7=
+User Name #8=
+User Name #9=
+User Name #10=
+User Name #11=
+User Name #12=
+User Name #13=
+User Name #14=
+User Name #15=
+User Name #16=
+User Name #17=
+User Name #18=
+User Name #19=
+User Name #20=
+User Name #21=
+User Name #22=
+User Name #23=
+User Name #24=
+User Name #25=
+User Name #26=
+User Name #27=
+User Name #28=
+User Name #29=
+User Name #30=
+User Name #31=
+User Name #32=
+User Name #33=
+User Name #34=
+User Name #35=
+User Name #36=
+User Name #37=
+User Name #38=
+User Name #39=
+User Name #40=
+User Name #41=
+User Name #42=
+User Name #43=
+User Name #44=
+User Name #45=
+User Name #46=
+User Name #47=
+User Name #48=
+User Name #49=
+User Name #50=
+User Name #51=
+User Name #52=
+User Name #53=
+User Name #54=
+User Name #55=
+User Name #56=
+User Name #57=
+User Name #58=
+User Name #59=
+User Name #60=
+User Name #61=
+User Name #62=
+User Name #63=
+User Name #64=
+Password #1=
+Password #2=
+Password #3=
+Password #4=
+Password #5=
+Password #6=
+Password #7=
+Password #8=
+Password #9=
+Password #10=
+Password #11=
+Password #12=
+Password #13=
+Password #14=
+Password #15=
+Password #16=
+Password #17=
+Password #18=
+Password #19=
+Password #20=
+Password #21=
+Password #22=
+Password #23=
+Password #24=
+Password #25=
+Password #26=
+Password #27=
+Password #28=
+Password #29=
+Password #30=
+Password #31=
+Password #32=
+Password #33=
+Password #34=
+Password #35=
+Password #36=
+Password #37=
+Password #38=
+Password #39=
+Password #40=
+Password #41=
+Password #42=
+Password #43=
+Password #44=
+Password #45=
+Password #46=
+Password #47=
+Password #48=
+Password #49=
+Password #50=
+Password #51=
+Password #52=
+Password #53=
+Password #54=
+Password #55=
+Password #56=
+Password #57=
+Password #58=
+Password #59=
+Password #60=
+Password #61=
+Password #62=
+Password #63=
+Password #64=
+
+[Authentication Server]
+RADIUS Server=
+RADIUS Key=
+UDP Port=1645
+RADIUS Accounting=0
+
+[Event Settings]
+Mail Cold Start=0
+Trap Cold Start=0
+Mail Warm Start=0
+Trap Warm Start=0
+Mail Authentication Fail=0
+Trap Authentication Fail=0
+Mail IP Change=0
+Mail Password Change=0
+
+[E-Mail Alert]
+Mail Server=
+SMTP Authentication=0
+User Name=
+Password=
+From E-Mail Address=
+E-Mail Address 1=
+E-Mail Address 2=
+E-Mail Address 3=
+E-Mail Address 4=
+
+[SNMP Trap]
+SNMP Trap Receiver=
+Trap Send Mode=0
+Trap Community=public
+
+[Console Settings]
+Console Settings=0
+
+[Console Password]
+Console Password=
+
+[Serial Event Settings @Port #1]
+Mail DCD Change=0
+Trap DCD Change=0
+Mail DSR Change=0
+Trap DSR Change=0
+
+[System Log Settings]
+Log System=0
+Log Network=0
+Log Config=0
+Log OpMode=0

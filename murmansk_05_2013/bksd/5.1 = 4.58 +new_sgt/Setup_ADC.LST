@@ -1,0 +1,3965 @@
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE SETUP_ADC
+OBJECT MODULE PLACED IN Setup_ADC.OBJ
+COMPILER INVOKED BY: d:\Keil4\C51\BIN\C51.EXE Setup_ADC.c LARGE OPTIMIZE(0,SPEED) BROWSE NOAREGS DEBUG OBJECTEXTEND CODE
+                    - LISTINCLUDE SYMBOLS TABS(2)
+
+line level    source
+
+   1          
+   2          #include "aduc848.h"
+   1      =1  /*REV.  0.1 (pmg.)   1st August 2003
+   2      =1    ADuC845.h MCV Software Group, Analog Devices Inc.*/
+   3      =1  
+   4      =1  /*  BYTE Registers  */
+   5      =1  sfr P0      = 0x80;
+   6      =1  sfr SP      = 0x81;
+   7      =1  sfr DPL     = 0x82;
+   8      =1  sfr DPH     = 0x83;
+   9      =1  sfr DPP     = 0x84;
+  10      =1  sfr PCON    = 0x87;
+  11      =1  sfr TCON    = 0x88;
+  12      =1  sfr TMOD    = 0x89;
+  13      =1  sfr TL0     = 0x8A;
+  14      =1  sfr TL1     = 0x8B;
+  15      =1  sfr TH0     = 0x8C;
+  16      =1  sfr TH1     = 0x8D;
+  17      =1  sfr P1      = 0x90;
+  18      =1  sfr SCON    = 0x98;
+  19      =1  sfr SBUF    = 0x99;
+  20      =1  sfr I2CDAT = 0x9A;
+  21      =1  sfr I2CADD = 0x9B;
+  22      =1  sfr T3FD    = 0x9D;
+  23      =1  sfr T3CON   = 0x9E;
+  24      =1  sfr P2      = 0xA0;
+  25      =1  sfr TIMECON = 0xA1;
+  26      =1  sfr HTHSEC  = 0xA2;
+  27      =1  sfr SEC     = 0xA3;
+  28      =1  sfr MIN     = 0xA4;
+  29      =1  sfr HOUR    = 0xA5;
+  30      =1  sfr INTVAL  = 0xA6;
+  31      =1  sfr DPCON   = 0xA7;
+  32      =1  sfr IE      = 0xA8;
+  33      =1  sfr IEIP2   = 0xA9;
+  34      =1  sfr PWMCON  = 0xAE;
+  35      =1  sfr CFG848  = 0xAF;
+  36      =1  sfr P3      = 0xB0;
+  37      =1  sfr PWM0L   = 0xB1;
+  38      =1  sfr PWM0H   = 0xB2;
+  39      =1  sfr PWM1L   = 0xB3;
+  40      =1  sfr PWM1H   = 0xB4;
+  41      =1  sfr SPH     = 0xB7;
+  42      =1  sfr IP      = 0xB8;
+  43      =1  sfr ECON    = 0xB9;
+  44      =1  sfr EDATA1  = 0xBC;
+  45      =1  sfr EDATA2  = 0xBD;
+  46      =1  sfr EDATA3  = 0xBE;
+  47      =1  sfr EDATA4  = 0xBF;
+  48      =1  sfr WDCON   = 0xC0;
+  49      =1  sfr CHIPID  = 0xC2;
+  50      =1  sfr EADRL   = 0xC6;
+  51      =1  sfr EADRH   = 0xC7;
+  52      =1  sfr T2CON   = 0xC8;
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 2   
+
+  53      =1  sfr RCAP2L  = 0xCA;
+  54      =1  sfr RCAP2H  = 0xCB;
+  55      =1  sfr TL2     = 0xCC;
+  56      =1  sfr TH2     = 0xCD;
+  57      =1  sfr PSW     = 0xD0;
+  58      =1  sfr ADCMODE = 0xD1;
+  59      =1  sfr ADC0CON1 = 0xD2;
+  60      =1  sfr SF      = 0xD4;
+  61      =1  sfr ICON    = 0xD5;
+  62      =1  sfr PLLCON  = 0xD7;
+  63      =1  sfr ADCSTAT = 0xD8;
+  64      =1  sfr ADC0L   = 0xD9;
+  65      =1  sfr ADC0M   = 0xDA;
+  66      =1  sfr ADC0H   = 0xDB;
+  67      =1  sfr PSMCON  = 0xDF;
+  68      =1  sfr ACC     = 0xE0;
+  69      =1  sfr OF0L    = 0xE1;
+  70      =1  sfr OF0M    = 0xE2;
+  71      =1  sfr OF0H    = 0xE3;
+  72      =1  sfr ADC0CON2 = 0xE6;
+  73      =1  sfr I2CCON  = 0xE8;
+  74      =1  sfr GN0L    = 0xE9;
+  75      =1  sfr GN0M    = 0xEA;
+  76      =1  sfr GN0H    = 0xEB;
+  77      =1  sfr B       = 0xF0;
+  78      =1  sfr I2CADD1 = 0xF2;
+  79      =1  sfr SPIDAT  = 0xF7;
+  80      =1  sfr SPICON  = 0xF8;
+  81      =1  sfr DACL  = 0xFB;
+  82      =1  sfr DACH  = 0xFC;
+  83      =1  sfr DACCON  = 0xFD;
+  84      =1  /*  BIT Registers  */
+  85      =1  /*  PSW  */
+  86      =1  sbit CY    = PSW^7;
+  87      =1  sbit AC    = PSW^6;
+  88      =1  sbit F0    = PSW^5;
+  89      =1  sbit RS1   = PSW^4;
+  90      =1  sbit RS0   = PSW^3;
+  91      =1  sbit OV    = PSW^2;
+  92      =1  sbit F1    = PSW^1;
+  93      =1  sbit P     = PSW^0;
+  94      =1  /*  TCON  */
+  95      =1  sbit TF1   = TCON^7;
+  96      =1  sbit TR1   = TCON^6;
+  97      =1  sbit TF0   = TCON^5;
+  98      =1  sbit TR0   = TCON^4;
+  99      =1  sbit IE1   = TCON^3;
+ 100      =1  sbit IT1   = TCON^2;
+ 101      =1  sbit IE0   = TCON^1;
+ 102      =1  sbit IT0   = TCON^0;
+ 103      =1  /*  IE  */
+ 104      =1  sbit EA    = IE^7;
+ 105      =1  sbit EADC  = IE^6;
+ 106      =1  sbit ET2   = IE^5;
+ 107      =1  sbit ES    = IE^4;
+ 108      =1  sbit ET1   = IE^3;
+ 109      =1  sbit EX1   = IE^2;
+ 110      =1  sbit ET0   = IE^1;
+ 111      =1  sbit EX0   = IE^0;
+ 112      =1  /*  IP  */
+ 113      =1  //sbit PS1   = IP^7;
+ 114      =1  sbit PADC  = IP^6;
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 3   
+
+ 115      =1  sbit PT2   = IP^5;
+ 116      =1  sbit PS    = IP^4;
+ 117      =1  sbit PT1   = IP^3;
+ 118      =1  sbit PX1   = IP^2;
+ 119      =1  sbit PT0   = IP^1;
+ 120      =1  sbit PX0   = IP^0;
+ 121      =1  /*  P3  */
+ 122      =1  sbit RELE1 = P0^3;
+ 123      =1  sbit int0 = P3^2;
+ 124      =1  sbit RD    = P3^7;
+ 125      =1  sbit WR    = P3^6;
+ 126      =1  sbit T1    = P3^5;
+ 127      =1  sbit T0    = P3^4;
+ 128      =1  sbit INT1  = P3^3;
+ 129      =1  sbit INT0  = P3^2;
+ 130      =1  sbit TXD   = P3^1;
+ 131      =1  sbit RXD   = P3^0;
+ 132      =1  /*  SCON  */
+ 133      =1  sbit SM0   = SCON^7;
+ 134      =1  sbit SM1   = SCON^6;
+ 135      =1  sbit SM2   = SCON^5;
+ 136      =1  sbit REN   = SCON^4;
+ 137      =1  sbit TB8   = SCON^3;
+ 138      =1  sbit RB8   = SCON^2;
+ 139      =1  sbit TI    = SCON^1;
+ 140      =1  sbit RI    = SCON^0;
+ 141      =1  /*  P1  */
+ 142      =1  sbit T2EX  = P1^1;
+ 143      =1  sbit T2    = P1^0;
+ 144      =1  
+ 145      =1  /*  T2CON  */
+ 146      =1  sbit TF2    = T2CON^7;
+ 147      =1  sbit EXF2   = T2CON^6;
+ 148      =1  sbit RCLK   = T2CON^5;
+ 149      =1  sbit TCLK   = T2CON^4;
+ 150      =1  sbit EXEN2  = T2CON^3;
+ 151      =1  sbit TR2    = T2CON^2;
+ 152      =1  sbit CNT2   = T2CON^1;
+ 153      =1  sbit CAP2   = T2CON^0;
+ 154      =1  /*  WDCON  */
+ 155      =1  sbit PRE3   = WDCON^7;
+ 156      =1  sbit PRE2   = WDCON^6;
+ 157      =1  sbit PRE1   = WDCON^5;
+ 158      =1  sbit PRE0   = WDCON^4;
+ 159      =1  sbit WDIR   = WDCON^3;
+ 160      =1  sbit WDS    = WDCON^2;
+ 161      =1  sbit WDE    = WDCON^1;
+ 162      =1  sbit WDWR   = WDCON^0;
+ 163      =1  /*  ADCSTAT  */        
+ 164      =1  sbit RDY0   = ADCSTAT^7;
+ 165      =1  sbit RDY1   = ADCSTAT^6;
+ 166      =1  sbit CAL    = ADCSTAT^5;
+ 167      =1  sbit NOXREF = ADCSTAT^4;
+ 168      =1  sbit ERR0   = ADCSTAT^3;
+ 169      =1  sbit ERR1   = ADCSTAT^2;
+ 170      =1  /*  I2CCON  */
+ 171      =1  sbit MDO   = I2CCON^7;
+ 172      =1  sbit MDE   = I2CCON^6;
+ 173      =1  sbit MCO   = I2CCON^5;
+ 174      =1  sbit MDI   = I2CCON^4;
+ 175      =1  sbit I2CM  = I2CCON^3;
+ 176      =1  sbit I2CRS = I2CCON^2;
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 4   
+
+ 177      =1  sbit I2CTX = I2CCON^1;
+ 178      =1  sbit I2CI  = I2CCON^0;
+ 179      =1  /*  DCON  */
+ 180      =1  //sbit D1     = DCON^7;
+ 181      =1  //sbit D1EN   = DCON^6;
+ 182      =1  //sbit D0     = DCON^5;
+ 183      =1  //sbit D0EN   = DCON^3;
+ 184      =1  /*  SPICON  */
+ 185      =1  sbit ISPI   = SPICON^7;
+ 186      =1  sbit WCOL   = SPICON^6;
+ 187      =1  sbit SPE    = SPICON^5;
+ 188      =1  sbit SPIM   = SPICON^4;
+ 189      =1  sbit CPOL   = SPICON^3;
+ 190      =1  sbit CPHA   = SPICON^2;
+ 191      =1  sbit SPR1   = SPICON^1;
+ 192      =1  sbit SPR0   = SPICON^0;
+   3          //#include "r_main.h"
+   4          //#include "ADC_bkcd.h"
+   5          //#include "define_stuct.h"
+   6          //#include "Опис_Таб_Кан.h"
+   7          //extern xdata unsigned char FLP;
+   8          //extern data unsigned int tmpadc;
+   9          extern idata unsigned char N_RZ;
+  10          extern idata unsigned char MM[7];
+  11          //extern idata unsigned char  p2cf;
+  12          
+  13          
+  14          extern data unsigned char tmp_ch;
+  15          //extern idata unsigned char N_CH3,N_CH4;
+  16          //extern  xdata unsigned char  lbuf [LBUF_SIZE]; 
+  17          //extern xdata unsigned char buf_ind[32];
+  18          //extern bit FL_ERR,FL_PRX,FL_PADC,FL_WFL;
+  19          //extern bit F_KRAX,FL_KAL1,TMP_FL;
+  20          //extern idata unsigned char  j2,j;
+  21          //extern idata unsigned int PNT_adcbuf32,PNT_BUF1_D32,CNT_MCLK1,CNT_MCLK2;
+  22          
+  23          extern idata unsigned long CMRX1_K1, CMRX1_K2,cmr;
+  24          extern idata unsigned int CMRX2_K1,CMRX2_K2;
+  25          extern idata unsigned int cnt_dol;
+  26          //extern xdata unsigned int BUF_CH_LDT[8];
+  27          //extern xdata unsigned int adcbuf32[32],BUF1_D32[32];
+  28          //extern xdata unsigned char NM_STR_IDF;
+  29          //extern idata unsigned int NM_STR_IZM;
+  30          //extern xdata unsigned char CNT_IND_H,CNT_IND_L;
+  31          //extern idata unsigned N_CH_H,N_CH_H1;
+  32          //extern xdata unsigned int buf_adccon2[8];
+  33          
+  34          //extern data  unsigned char adr1;
+  35          extern data  unsigned char  wadc; //,wadc1,ADC0,ADC1,ADC2;   
+  36          extern xdata unsigned int Mom_tr, Ves_kol;
+  37          extern code unsigned int  TAB_ADC[4][9];
+  38          
+  39          //extern xdata unsigned int CH_T;
+  40          //extern xdata unsigned int adcbuf40[42];//_at_ 0x0030; 
+  41          //extern xdata unsigned int BUF1_D40[42]; //_at_ 0x0080;
+  42          //extern code unsigned int  TAB_ADC[4][9]; 
+  43          extern xdata struct TABX_CH_A 
+  44          { 
+  45           unsigned char NAME_PAR; //имя параметра измеряемого
+  46          unsigned char R_IZM;    //режим измерения анал.каналов(task3/task2)
+  47          unsigned char Frm_Dat; //значение запятой 00 40 80 C0; 00 10 20 30; ......
+  48          unsigned char LA_TAB; //длина таблицы
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 5   
+
+  49          unsigned char NA_P1; //имя производного параметра1(порог)
+  50          unsigned char NA_P2; //имя производного параметра2(I/U)
+  51          unsigned char NA_P3; //формат основного параметра {XX,X запятая)
+  52          unsigned char NA_P5; //имя производного параметра5 
+  53          unsigned char NA_P4; //формат производного параметра {XX,X запятая)
+  54          unsigned char N_RAZ; //номер разъема TIP_PAR;
+  55          unsigned char KF_CRD; //коэффициент усреднения
+  56          unsigned char KF_WIND;
+  57          unsigned int  KF_KORZ; //коэффициент коррекции(множитель)  резул.измерения(физ.значен)
+  58          unsigned int KF_KORZ1;// KF_KORZ1; //коэффициент коррекции1(делитель) резул.измерения(физ.значен)
+  59          //unsigned int  KF_KORZ1; //адрес размещения
+  60          }TABX_CH_A;
+  61          // непонятно почему только до 5ти.. extern xdata struct  TABX_CH_A Str_CH_A[5];
+  62          extern xdata struct  TABX_CH_A Str_CH_A[13];
+  63          //extern xdata unsigned char  BF_ZP_A[16];
+  64          extern xdata struct BUF_FL_D 
+  65          {
+  66          unsigned long DAT_CRD;//область рабочих буферов результатов усреднения
+  67          
+  68          }BUF_FL_D;
+  69          //extern xdata struct BUF_FL_D lst_PAR[10];
+  70          
+  71          void setup_ADC (void) 
+  72          { 
+  73   1      //register unsigned char tmp_ch;
+  74   1      register unsigned char DL;
+  75   1      register unsigned char tmp_rw, is, js;
+  76   1      xdata unsigned char buf_ch[8];
+  77   1      xdata unsigned char  adcbuf[20];
+  78   1      data  unsigned char  wadc;
+  79   1      idata unsigned char zadc;
+  80   1      data unsigned char N_CH;
+  81   1      extern xdata unsigned char b_err_cl;
+  82   1      
+  83   1      extern xdata unsigned int lopatka;
+  84   1      extern xdata unsigned char ekran;
+  85   1      //register unsigned char size;
+  86   1      
+  87   1      //data unsigned char g;
+  88   1      //buf_ind[16]=0;buf_ind[17]=0;buf_ind[18]=0;buf_ind[19]=0;buf_ind[20]=0;
+  89   1      // buf_ind[21]=0;buf_ind[22]=0;buf_ind[23]=0;buf_ind[24]=0;buf_ind[25]=0;
+  90   1      // buf_ind[26]=0;buf_ind[27]=0;buf_ind[28]=0;buf_ind[29]=0;buf_ind[30]=0;  
+  91   1      //for(g=0;g<10;g++)
+  92   1       //{lst_PAR[g].DAT_CRD=0;}
+  93   1      //for(i1=0;i1<40;i1++) {lbuf[i1]=0;}
+  94   1      //for(g=0;g<32;g++) {adcbuf32[g]=0;}
+  95   1      //BUF_CH_LDT[0]=0;BUF_CH_LDT[1]=0;BUF_CH_LDT[2]=0;BUF_CH_LDT[3]=0;
+  96   1      //BUF_CH_LDT[4]=0;BUF_CH_LDT[5]=0;BUF_CH_LDT[6]=0;BUF_CH_LDT[7]=0;
+  97   1      //buf_adccon2[0]=0; buf_adccon2[1]=0; buf_adccon2[2]=0; buf_adccon2[3]=0;
+  98   1      //buf_adccon2[4]=0; buf_adccon2[5]=0; buf_adccon2[6]=0; buf_adccon2[7]=0; 
+  99   1      //F_RST=1;//флаг рестарта контроллера     
+ 100   1      //FL_ERR=0;
+ 101   1      
+ 102   1      
+ 103   1      
+ 104   1      //******** SETUP входов ЦАП из табличных описаний аналоговых каналов ********
+ 105   1      //zadc = BF_ZP_A[3];
+ 106   1      zadc=13;
+ 107   1      //if((zadc==0)|(zadc >12))
+ 108   1      //  zadc=12;//?????????????????????????????????????????????????????????????
+ 109   1      //R_IZM = 88h,84h - измерение временного интервала между импульсами канала 1,2
+ 110   1      //R_IZM = 8Dh  - счетчик ДОЛ no obratnoe napravlenie.
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 6   
+
+ 111   1      //R_IZM = 8Ch  - счетчик ДОЛ.
+ 112   1      MM[0]=0;MM[3]=0; 
+ 113   1      MM[1]=0;MM[2]=0;
+ 114   1          for(js=0;js<zadc;js++)
+ 115   1          {
+ 116   2        
+ 117   2            N_CH=js;
+ 118   2            wadc= Str_CH_A[N_CH].N_RAZ;
+ 119   2            if (Str_CH_A[N_CH].R_IZM==0x88)//канал1 (частота моточасы,расход сумм.расход)
+ 120   2            {
+ 121   3              if(wadc==0x15) {MM[1]=0x80;}
+ 122   3              if(wadc==0x16) {MM[1]=0x40;}
+ 123   3              if(wadc==0x19) {MM[1]=0x20;}
+ 124   3              if(wadc==0x1A) {MM[1]=0x10;}
+ 125   3      
+ 126   3            }
+ 127   2       
+ 128   2       
+ 129   2            if (Str_CH_A[N_CH].R_IZM==0x84) //канал2 (частота моточасы,расход сумм.расход)
+ 130   2            {
+ 131   3              if(wadc==0x15) {MM[2]=0x80;}
+ 132   3              if(wadc==0x16) {MM[2]=0x40;}
+ 133   3              if(wadc==0x19) {MM[2]=0x20;}
+ 134   3              if(wadc==0x1A) {MM[2]=0x10;}
+ 135   3            }
+ 136   2       
+ 137   2            if (Str_CH_A[N_CH].R_IZM==0x8D)
+ 138   2            {  extern bit napr;
+ 139   3             Str_CH_A[N_CH].R_IZM=0x8C;
+ 140   3             napr=1;
+ 141   3            }
+ 142   2            
+ 143   2            if (Str_CH_A[N_CH].R_IZM==0x8C)
+ 144   2            {
+ 145   3             if(wadc==0x17) {MM[0]=0x80;MM[6]=0x40;}
+ 146   3             if(wadc==0x1B) {MM[0]=0x20;MM[6]=0x10;}
+ 147   3            }
+ 148   2           }
+ 149   1       //----------------цифровой канал 1 (насос)------
+ 150   1      
+ 151   1      
+ 152   1         // чтение сохраненных параметров из часов
+ 153   1      //FUM_RD_DAT_CLOCK(0x1A,adcbuf,18,js) 
+ 154   1      //ADP1:
+ 155   1                tmp_rw=0xD0;MDO=0;DL=2;while (1){DL--;if(DL==0)break;} MCO=0;  
+ 156   1                for(js=0;js<2;js++)  
+ 157   1                {for(is=0;is<8;is++)            
+ 158   2                {if((tmp_rw&0x80)==0)   
+ 159   3                {MDO=0;} else {MDO=1;}   
+ 160   3                DL=2;while (1){DL--;if(DL==0)break;}MCO=1;   
+ 161   3                while (1) {if (MCO==1) break;}         
+ 162   3                DL=2;while (1){DL--;if(DL==0)break;}MCO=0;MDO=0;  
+ 163   3                tmp_rw = tmp_rw<<1; }                                         
+ 164   2                                 DL=2;while (1){DL--;if(DL==0)break;}      
+ 165   2                                   MDE=0; MCO=1;  MDO=1;  while (1) {if (MCO==1) break;}                   
+ 166   2                       DL=200; while (1){DL--; if ((MDI==0)|(DL==0)) break;}  
+ 167   2                           if (DL==0) b_err_cl++;
+ 168   2              
+ 169   2                 
+ 170   2                           MDE=1;  MCO=0;                     
+ 171   2                tmp_rw = 0x1A;}                                                                             
+ 172   1                DL=2;while (1){DL--;if(DL==0)break;} MCO=1;                 
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 7   
+
+ 173   1                while (1) {if (MCO==1) break;}                       
+ 174   1                DL=2;while (1){DL--;if(DL==0)break;}                    
+ 175   1                MDO=1;DL=2;while (1){DL--;if(DL==0)break;}                       
+ 176   1                tmp_rw=0xD1; DL=2;while (1){DL--;if(DL==0)break;}                 
+ 177   1                MDO=0; DL=2;while (1){DL--;if(DL==0)break;}            
+ 178   1                MCO=0; DL=2;while (1){DL--;if(DL==0)break;}                          
+ 179   1                for(is=0;is<8;is++)                           
+ 180   1                { if((tmp_rw&0x80)==0){MDO=0;}else { MDO=1;}            
+ 181   2                DL=2;while (1){DL--;if(DL==0)break;}                 
+ 182   2                MCO=1;DL=2;while (1) {if (MCO==1) break;}while (1){DL--;if(DL==0)break;}MCO=0;MDO=0;                 
+             -                                     
+ 183   2                tmp_rw= tmp_rw<<1; }                                    
+ 184   1                                 DL=2;while (1){DL--;if(DL==0)break;}                     
+ 185   1                                   MDE=0; MDO=1; MCO=1;       DL=2;while (1) {if (MCO==1) break;}  while (1){DL--;if(
+             -DL==0)break;}                 
+ 186   1                       DL=200; while (1){DL--; if ((MDI==0)|(DL==0)) break;}          
+ 187   1                  if (DL==0) b_err_cl++;
+ 188   1                                          
+ 189   1                           MDE=1;  MCO=0;   DL=2;while (1){DL--;if(DL==0)break;}                         
+ 190   1                for(js=0;js<18;js++)                                                   
+ 191   1                {for(is=0;is<8;is++){ MDO=1;MDE=0;MCO=1; while (1){if (MCO==1) break;} DL=2;while (1){DL--;if(DL==0)b
+             -reak;}        
+ 192   3                if (MDI ==0)                                                      
+ 193   3                {adcbuf[js] = adcbuf[js]<<1;adcbuf[js] = adcbuf[js]&0xFE;}                                  
+ 194   3                else                                                          
+ 195   3                {adcbuf[js] = adcbuf[js]<<1;                                               
+ 196   4                adcbuf[js] = adcbuf[js]|0x01; }                                    
+ 197   3                MCO=0; DL=2;while (1){DL--;if(DL==0)break;}}                  
+ 198   2                MDO=0;                                     
+ 199   2                if (js==(18-1)) {MDO=1;}                            
+ 200   2                MDE=1;                                                   
+ 201   2                MCO=1;  while (1) {if (MCO==1) break;}                      
+ 202   2                DL=2;while (1){DL--;if(DL==0)break;}                       
+ 203   2                MCO=0;MDE=0;DL=2;while (1){DL--;if(DL==0)break;}}                   
+ 204   1                MDE=1;DL=2;while (1){DL--;if(DL==0)break;}                     
+ 205   1                MDO=0;DL=2;while (1){DL--;if(DL==0)break;}                        
+ 206   1                MCO=1;while (1) {if (MCO==1) break;}DL=2;while (1){DL--;if(DL==0)break;} MDO=1; 
+ 207   1      
+ 208   1      cnt_dol=(adcbuf[0]<<8)| adcbuf[1];
+ 209   1      
+ 210   1      CMRX1_K1=adcbuf[2];
+ 211   1      CMRX1_K1=CMRX1_K1<<8;
+ 212   1      CMRX1_K1+=adcbuf[3];
+ 213   1      CMRX1_K1=CMRX1_K1<<8;
+ 214   1      CMRX1_K1+=adcbuf[4];
+ 215   1      CMRX1_K1=CMRX1_K1<<8;
+ 216   1      CMRX1_K1+=adcbuf[5];
+ 217   1      //CMRX2_K1 = (adcbuf[4]<<8)| adcbuf[5];
+ 218   1      //CMRX1_K2 = (adcbuf[6]<<8)| adcbuf[7]; 
+ 219   1      //CMRX2_K2=(adcbuf[8]<<8)| adcbuf[9]; 
+ 220   1      CMRX1_K2=adcbuf[6];
+ 221   1      CMRX1_K2=CMRX1_K2<<8;
+ 222   1      CMRX1_K2+=adcbuf[7];
+ 223   1      CMRX1_K2=CMRX1_K2<<8;
+ 224   1      CMRX1_K2+=adcbuf[8];
+ 225   1      CMRX1_K2=CMRX1_K2<<8;
+ 226   1      CMRX1_K2+=adcbuf[9];
+ 227   1      Mom_tr=(adcbuf[10]<<8)| adcbuf[11]; 
+ 228   1      Ves_kol=(adcbuf[12]<<8)| adcbuf[13];
+ 229   1      //cmr=(adcbuf[14]<<8)| adcbuf[15]; 
+ 230   1      cmr=adcbuf[14];
+ 231   1      cmr=cmr<<8;
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 8   
+
+ 232   1      cmr+=adcbuf[15];
+ 233   1      cmr=cmr<<8;
+ 234   1      cmr+=adcbuf[16];
+ 235   1      cmr=cmr<<8;
+ 236   1      cmr+=adcbuf[17];
+ 237   1      
+ 238   1      
+ 239   1         // чтение экранов и лопатки из часов    адрес 0ч33
+ 240   1      
+ 241   1                tmp_rw=0xD0;MDO=0;DL=2;while (1){DL--;if(DL==0)break;} MCO=0;  
+ 242   1                for(js=0;js<2;js++)  
+ 243   1                {for(is=0;is<8;is++)            
+ 244   2                {if((tmp_rw&0x80)==0)   
+ 245   3                {MDO=0;} else {MDO=1;}   
+ 246   3                DL=2;while (1){DL--;if(DL==0)break;}MCO=1;   
+ 247   3                while (1) {if (MCO==1) break;}         
+ 248   3                DL=2;while (1){DL--;if(DL==0)break;}MCO=0;MDO=0;  
+ 249   3                tmp_rw = tmp_rw<<1; }                                         
+ 250   2                                 DL=2;while (1){DL--;if(DL==0)break;}      
+ 251   2                                   MDE=0; MCO=1;  MDO=1;  while (1) {if (MCO==1) break;}                   
+ 252   2                       DL=200; while (1){DL--; if ((MDI==0)|(DL==0)) break;}  
+ 253   2                           if (DL==0) b_err_cl++;
+ 254   2              
+ 255   2                 
+ 256   2                           MDE=1;  MCO=0;                     
+ 257   2                tmp_rw = 0x33;}                                                                             
+ 258   1                DL=2;while (1){DL--;if(DL==0)break;} MCO=1;                 
+ 259   1                while (1) {if (MCO==1) break;}                       
+ 260   1                DL=2;while (1){DL--;if(DL==0)break;}                    
+ 261   1                MDO=1;DL=2;while (1){DL--;if(DL==0)break;}                       
+ 262   1                tmp_rw=0xD1; DL=2;while (1){DL--;if(DL==0)break;}                 
+ 263   1                MDO=0; DL=2;while (1){DL--;if(DL==0)break;}            
+ 264   1                MCO=0; DL=2;while (1){DL--;if(DL==0)break;}                          
+ 265   1                for(is=0;is<8;is++)                           
+ 266   1                { if((tmp_rw&0x80)==0){MDO=0;}else { MDO=1;}            
+ 267   2                DL=2;while (1){DL--;if(DL==0)break;}                 
+ 268   2                MCO=1;DL=2;while (1) {if (MCO==1) break;}while (1){DL--;if(DL==0)break;}MCO=0;MDO=0;                 
+             -                                     
+ 269   2                tmp_rw= tmp_rw<<1; }                                    
+ 270   1                                 DL=2;while (1){DL--;if(DL==0)break;}                     
+ 271   1                                   MDE=0; MDO=1; MCO=1;       DL=2;while (1) {if (MCO==1) break;}  while (1){DL--;if(
+             -DL==0)break;}                 
+ 272   1                       DL=200; while (1){DL--; if ((MDI==0)|(DL==0)) break;}          
+ 273   1                  if (DL==0) b_err_cl++;
+ 274   1                                          
+ 275   1                           MDE=1;  MCO=0;   DL=2;while (1){DL--;if(DL==0)break;}                         
+ 276   1                for(js=0;js<3;js++)                                                  
+ 277   1                {for(is=0;is<8;is++){ MDO=1;MDE=0;MCO=1; while (1){if (MCO==1) break;} DL=2;while (1){DL--;if(DL==0)b
+             -reak;}        
+ 278   3                if (MDI ==0)                                                      
+ 279   3                {adcbuf[js] = adcbuf[js]<<1;adcbuf[js] = adcbuf[js]&0xFE;}                                  
+ 280   3                else                                                          
+ 281   3                {adcbuf[js] = adcbuf[js]<<1;                                               
+ 282   4                adcbuf[js] = adcbuf[js]|0x01; }                                    
+ 283   3                MCO=0; DL=2;while (1){DL--;if(DL==0)break;}}                  
+ 284   2                MDO=0;                                     
+ 285   2                if (js==(3-1)) {MDO=1;}                           
+ 286   2                MDE=1;                                                   
+ 287   2                MCO=1;  while (1) {if (MCO==1) break;}                      
+ 288   2                DL=2;while (1){DL--;if(DL==0)break;}                       
+ 289   2                MCO=0;MDE=0;DL=2;while (1){DL--;if(DL==0)break;}}                   
+ 290   1                MDE=1;DL=2;while (1){DL--;if(DL==0)break;}                     
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 9   
+
+ 291   1                MDO=0;DL=2;while (1){DL--;if(DL==0)break;}                        
+ 292   1                MCO=1;while (1) {if (MCO==1) break;}DL=2;while (1){DL--;if(DL==0)break;} MDO=1; 
+ 293   1      
+ 294   1      
+ 295   1      
+ 296   1      lopatka=(adcbuf[1]<<8)| adcbuf[2];
+ 297   1      ekran=adcbuf[0];
+ 298   1        if (((ekran&0x0C)!=0)|(ekran==0)|(ekran==0xff))
+ 299   1        {
+ 300   2          ekran=0x71;
+ 301   2        }
+ 302   1      
+ 303   1      
+ 304   1         // чтение времени из часов
+ 305   1                tmp_rw=0xD0;MDO=0;DL=2;while (1){DL--;if(DL==0)break;} MCO=0;  
+ 306   1                for(js=0;js<2;js++)  
+ 307   1                {for(is=0;is<8;is++)  
+ 308   2                {if((tmp_rw&0x80)==0)   
+ 309   3                {MDO=0;} else {MDO=1;}   
+ 310   3                DL=2;while (1){DL--;if(DL==0)break;}MCO=1;   
+ 311   3                while (1) {if (MCO==1) break;}         
+ 312   3                DL=2;while (1){DL--;if(DL==0)break;}MCO=0;MDO=0;  
+ 313   3                tmp_rw = tmp_rw<<1; }                                         
+ 314   2                                 DL=2;while (1){DL--;if(DL==0)break;}      
+ 315   2                                   MDE=0; MCO=1;  MDO=1;  while (1) {if (MCO==1) break;}                   
+ 316   2                       DL=200; while (1){DL--; if ((MDI==0)|(DL==0)) break;}          
+ 317   2                 if (DL==0) b_err_cl++;
+ 318   2                 
+ 319   2                           MDE=1;  MCO=0;                     
+ 320   2                tmp_rw = 0x00;}                                                                             
+ 321   1                DL=2;while (1){DL--;if(DL==0)break;} MCO=1;                 
+ 322   1                while (1) {if (MCO==1) break;}                       
+ 323   1                DL=2;while (1){DL--;if(DL==0)break;}                    
+ 324   1                MDO=1;DL=2;while (1){DL--;if(DL==0)break;}                       
+ 325   1                tmp_rw=0xD1; DL=2;while (1){DL--;if(DL==0)break;}                 
+ 326   1                MDO=0; DL=2;while (1){DL--;if(DL==0)break;}            
+ 327   1                MCO=0; DL=2;while (1){DL--;if(DL==0)break;}                          
+ 328   1                for(is=0;is<8;is++)                           
+ 329   1                { if((tmp_rw&0x80)==0){MDO=0;}else { MDO=1;}            
+ 330   2                DL=2;while (1){DL--;if(DL==0)break;}                 
+ 331   2                MCO=1;DL=2;while (1) {if (MCO==1) break;}while (1){DL--;if(DL==0)break;}MCO=0;MDO=0;                 
+             -                                     
+ 332   2                tmp_rw= tmp_rw<<1; }                                    
+ 333   1                                 DL=2;while (1){DL--;if(DL==0)break;}                     
+ 334   1                                   MDE=0; MDO=1; MCO=1;       DL=2;while (1) {if (MCO==1) break;}  while (1){DL--;if(
+             -DL==0)break;}                 
+ 335   1                       DL=200; while (1){DL--; if ((MDI==0)|(DL==0)) break;}          
+ 336   1                 if (DL==0) b_err_cl++;
+ 337   1                                          
+ 338   1                           MDE=1;  MCO=0;   DL=2;while (1){DL--;if(DL==0)break;}                         
+ 339   1                for(js=0;js<8;js++)                                                  
+ 340   1                {for(is=0;is<8;is++){ MDO=1;MDE=0;MCO=1; while (1){if (MCO==1) break;} DL=2;while (1){DL--;if(DL==0)b
+             -reak;}        
+ 341   3                if (MDI ==0)                                                      
+ 342   3                {buf_ch[js] = buf_ch[js]<<1;buf_ch[js] = buf_ch[js]&0xFE;}                                  
+ 343   3                else                                                          
+ 344   3                {buf_ch[js] = buf_ch[js]<<1;                                               
+ 345   4                buf_ch[js] = buf_ch[js]|0x01; }                                    
+ 346   3                MCO=0; DL=2;while (1){DL--;if(DL==0)break;}}                  
+ 347   2                MDO=0;                                     
+ 348   2                if (js==(8-1)) {MDO=1;}                           
+ 349   2                MDE=1;                                                   
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 10  
+
+ 350   2                MCO=1;  while (1) {if (MCO==1) break;}                      
+ 351   2                DL=2;while (1){DL--;if(DL==0)break;}                       
+ 352   2                MCO=0;MDE=0;DL=2;while (1){DL--;if(DL==0)break;}}                   
+ 353   1                MDE=1;DL=2;while (1){DL--;if(DL==0)break;}                     
+ 354   1                MDO=0;DL=2;while (1){DL--;if(DL==0)break;}                        
+ 355   1                MCO=1;while (1) {if (MCO==1) break;}DL=2;while (1){DL--;if(DL==0)break;} MDO=1; 
+ 356   1           tmp_rw=((buf_ch[0]>>4)*10) +(buf_ch[0]&0x0F);      
+ 357   1           SEC=tmp_rw;
+ 358   1           tmp_rw=((buf_ch[1]>>4)*10) +(buf_ch[1]&0x0F);      
+ 359   1           MIN=tmp_rw;
+ 360   1           tmp_rw=((buf_ch[2]>>4)*10) +(buf_ch[2]&0x0F);      
+ 361   1           HOUR=tmp_rw;
+ 362   1        TIMECON = 0x0001;        //start clock 
+ 363   1        
+ 364   1      return;
+ 365   1      }
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 11  
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION setup_ADC (BEGIN)
+                                           ; SOURCE LINE # 71
+                                           ; SOURCE LINE # 72
+                                           ; SOURCE LINE # 106
+0000 7800        R     MOV     R0,#LOW zadc
+0002 760D              MOV     @R0,#0DH
+                                           ; SOURCE LINE # 112
+0004 7800        E     MOV     R0,#LOW MM
+0006 7600              MOV     @R0,#00H
+0008 7800        E     MOV     R0,#LOW MM+03H
+000A 7600              MOV     @R0,#00H
+                                           ; SOURCE LINE # 113
+000C 7800        E     MOV     R0,#LOW MM+01H
+000E 7600              MOV     @R0,#00H
+0010 7800        E     MOV     R0,#LOW MM+02H
+0012 7600              MOV     @R0,#00H
+                                           ; SOURCE LINE # 114
+0014 900000      R     MOV     DPTR,#js
+0017 E4                CLR     A
+0018 F0                MOVX    @DPTR,A
+0019         ?C0001:
+0019 7800        R     MOV     R0,#LOW zadc
+001B E6                MOV     A,@R0
+001C FF                MOV     R7,A
+001D 900000      R     MOV     DPTR,#js
+0020 E0                MOVX    A,@DPTR
+0021 FE                MOV     R6,A
+0022 EE                MOV     A,R6
+0023 C3                CLR     C
+0024 9F                SUBB    A,R7
+0025 4003              JC      $ + 5H
+0027 020000      R     LJMP    ?C0002
+                                           ; SOURCE LINE # 115
+                                           ; SOURCE LINE # 117
+002A 900000      R     MOV     DPTR,#js
+002D E0                MOVX    A,@DPTR
+002E FF                MOV     R7,A
+002F 8F00        R     MOV     N_CH,R7
+                                           ; SOURCE LINE # 118
+0031 AF00        R     MOV     R7,N_CH
+0033 EF                MOV     A,R7
+0034 C4                SWAP    A
+0035 54F0              ANL     A,#0F0H
+0037 2400        E     ADD     A,#LOW Str_CH_A+09H
+0039 F582              MOV     DPL,A
+003B E4                CLR     A
+003C 3400        E     ADDC    A,#HIGH Str_CH_A+09H
+003E F583              MOV     DPH,A
+0040 E0                MOVX    A,@DPTR
+0041 FF                MOV     R7,A
+0042 8F00        R     MOV     wadc,R7
+                                           ; SOURCE LINE # 119
+0044 AF00        R     MOV     R7,N_CH
+0046 EF                MOV     A,R7
+0047 C4                SWAP    A
+0048 54F0              ANL     A,#0F0H
+004A 2400        E     ADD     A,#LOW Str_CH_A+01H
+004C F582              MOV     DPL,A
+004E E4                CLR     A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 12  
+
+004F 3400        E     ADDC    A,#HIGH Str_CH_A+01H
+0051 F583              MOV     DPH,A
+0053 E0                MOVX    A,@DPTR
+0054 FF                MOV     R7,A
+0055 EF                MOV     A,R7
+0056 B48824            CJNE    A,#088H,?C0004
+                                           ; SOURCE LINE # 120
+                                           ; SOURCE LINE # 121
+0059 E500        R     MOV     A,wadc
+005B B41504            CJNE    A,#015H,?C0005
+005E 7800        E     MOV     R0,#LOW MM+01H
+0060 7680              MOV     @R0,#080H
+0062         ?C0005:
+                                           ; SOURCE LINE # 122
+0062 E500        R     MOV     A,wadc
+0064 B41604            CJNE    A,#016H,?C0006
+0067 7800        E     MOV     R0,#LOW MM+01H
+0069 7640              MOV     @R0,#040H
+006B         ?C0006:
+                                           ; SOURCE LINE # 123
+006B E500        R     MOV     A,wadc
+006D B41904            CJNE    A,#019H,?C0007
+0070 7800        E     MOV     R0,#LOW MM+01H
+0072 7620              MOV     @R0,#020H
+0074         ?C0007:
+                                           ; SOURCE LINE # 124
+0074 E500        R     MOV     A,wadc
+0076 B41A04            CJNE    A,#01AH,?C0004
+0079 7800        E     MOV     R0,#LOW MM+01H
+007B 7610              MOV     @R0,#010H
+007D         ?C0008:
+                                           ; SOURCE LINE # 126
+007D         ?C0004:
+                                           ; SOURCE LINE # 129
+007D AF00        R     MOV     R7,N_CH
+007F EF                MOV     A,R7
+0080 C4                SWAP    A
+0081 54F0              ANL     A,#0F0H
+0083 2400        E     ADD     A,#LOW Str_CH_A+01H
+0085 F582              MOV     DPL,A
+0087 E4                CLR     A
+0088 3400        E     ADDC    A,#HIGH Str_CH_A+01H
+008A F583              MOV     DPH,A
+008C E0                MOVX    A,@DPTR
+008D FF                MOV     R7,A
+008E EF                MOV     A,R7
+008F B48424            CJNE    A,#084H,?C0009
+                                           ; SOURCE LINE # 130
+                                           ; SOURCE LINE # 131
+0092 E500        R     MOV     A,wadc
+0094 B41504            CJNE    A,#015H,?C0010
+0097 7800        E     MOV     R0,#LOW MM+02H
+0099 7680              MOV     @R0,#080H
+009B         ?C0010:
+                                           ; SOURCE LINE # 132
+009B E500        R     MOV     A,wadc
+009D B41604            CJNE    A,#016H,?C0011
+00A0 7800        E     MOV     R0,#LOW MM+02H
+00A2 7640              MOV     @R0,#040H
+00A4         ?C0011:
+                                           ; SOURCE LINE # 133
+00A4 E500        R     MOV     A,wadc
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 13  
+
+00A6 B41904            CJNE    A,#019H,?C0012
+00A9 7800        E     MOV     R0,#LOW MM+02H
+00AB 7620              MOV     @R0,#020H
+00AD         ?C0012:
+                                           ; SOURCE LINE # 134
+00AD E500        R     MOV     A,wadc
+00AF B41A04            CJNE    A,#01AH,?C0009
+00B2 7800        E     MOV     R0,#LOW MM+02H
+00B4 7610              MOV     @R0,#010H
+00B6         ?C0013:
+                                           ; SOURCE LINE # 135
+00B6         ?C0009:
+                                           ; SOURCE LINE # 137
+00B6 AF00        R     MOV     R7,N_CH
+00B8 EF                MOV     A,R7
+00B9 C4                SWAP    A
+00BA 54F0              ANL     A,#0F0H
+00BC 2400        E     ADD     A,#LOW Str_CH_A+01H
+00BE F582              MOV     DPL,A
+00C0 E4                CLR     A
+00C1 3400        E     ADDC    A,#HIGH Str_CH_A+01H
+00C3 F583              MOV     DPH,A
+00C5 E0                MOVX    A,@DPTR
+00C6 FF                MOV     R7,A
+00C7 EF                MOV     A,R7
+00C8 B48D14            CJNE    A,#08DH,?C0014
+                                           ; SOURCE LINE # 138
+                                           ; SOURCE LINE # 139
+00CB AF00        R     MOV     R7,N_CH
+00CD EF                MOV     A,R7
+00CE C4                SWAP    A
+00CF 54F0              ANL     A,#0F0H
+00D1 2400        E     ADD     A,#LOW Str_CH_A+01H
+00D3 F582              MOV     DPL,A
+00D5 E4                CLR     A
+00D6 3400        E     ADDC    A,#HIGH Str_CH_A+01H
+00D8 F583              MOV     DPH,A
+00DA 748C              MOV     A,#08CH
+00DC F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 140
+00DD D200        E     SETB    napr
+                                           ; SOURCE LINE # 141
+00DF         ?C0014:
+                                           ; SOURCE LINE # 143
+00DF AF00        R     MOV     R7,N_CH
+00E1 EF                MOV     A,R7
+00E2 C4                SWAP    A
+00E3 54F0              ANL     A,#0F0H
+00E5 2400        E     ADD     A,#LOW Str_CH_A+01H
+00E7 F582              MOV     DPL,A
+00E9 E4                CLR     A
+00EA 3400        E     ADDC    A,#HIGH Str_CH_A+01H
+00EC F583              MOV     DPH,A
+00EE E0                MOVX    A,@DPTR
+00EF FF                MOV     R7,A
+00F0 EF                MOV     A,R7
+00F1 B48C1A            CJNE    A,#08CH,?C0003
+                                           ; SOURCE LINE # 144
+                                           ; SOURCE LINE # 145
+00F4 E500        R     MOV     A,wadc
+00F6 B41708            CJNE    A,#017H,?C0016
+00F9 7800        E     MOV     R0,#LOW MM
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 14  
+
+00FB 7680              MOV     @R0,#080H
+00FD 7800        E     MOV     R0,#LOW MM+06H
+00FF 7640              MOV     @R0,#040H
+0101         ?C0016:
+                                           ; SOURCE LINE # 146
+0101 E500        R     MOV     A,wadc
+0103 B41B08            CJNE    A,#01BH,?C0003
+0106 7800        E     MOV     R0,#LOW MM
+0108 7620              MOV     @R0,#020H
+010A 7800        E     MOV     R0,#LOW MM+06H
+010C 7610              MOV     @R0,#010H
+010E         ?C0017:
+                                           ; SOURCE LINE # 147
+010E         ?C0015:
+                                           ; SOURCE LINE # 148
+010E         ?C0003:
+010E 900000      R     MOV     DPTR,#js
+0111 E0                MOVX    A,@DPTR
+0112 04                INC     A
+0113 F0                MOVX    @DPTR,A
+0114 020000      R     LJMP    ?C0001
+0117         ?C0002:
+                                           ; SOURCE LINE # 155
+0117 900000      R     MOV     DPTR,#tmp_rw
+011A 74D0              MOV     A,#0D0H
+011C F0                MOVX    @DPTR,A
+011D C2EF              CLR     MDO
+011F 900000      R     MOV     DPTR,#DL
+0122 7402              MOV     A,#02H
+0124 F0                MOVX    @DPTR,A
+0125         ?C0018:
+0125 900000      R     MOV     DPTR,#DL
+0128 E0                MOVX    A,@DPTR
+0129 14                DEC     A
+012A F0                MOVX    @DPTR,A
+012B 900000      R     MOV     DPTR,#DL
+012E E0                MOVX    A,@DPTR
+012F FF                MOV     R7,A
+0130 EF                MOV     A,R7
+0131 70F2              JNZ     ?C0018
+0133 8002              SJMP    ?C0019
+0135         ?C0020:
+0135 80EE              SJMP    ?C0018
+0137         ?C0019:
+0137 C2ED              CLR     MCO
+                                           ; SOURCE LINE # 156
+0139 900000      R     MOV     DPTR,#js
+013C E4                CLR     A
+013D F0                MOVX    @DPTR,A
+013E         ?C0021:
+013E 900000      R     MOV     DPTR,#js
+0141 E0                MOVX    A,@DPTR
+0142 FF                MOV     R7,A
+0143 EF                MOV     A,R7
+0144 C3                CLR     C
+0145 9402              SUBB    A,#02H
+0147 4003              JC      $ + 5H
+0149 020000      R     LJMP    ?C0022
+                                           ; SOURCE LINE # 157
+014C 900000      R     MOV     DPTR,#is
+014F E4                CLR     A
+0150 F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 15  
+
+0151         ?C0024:
+0151 900000      R     MOV     DPTR,#is
+0154 E0                MOVX    A,@DPTR
+0155 FF                MOV     R7,A
+0156 EF                MOV     A,R7
+0157 C3                CLR     C
+0158 9408              SUBB    A,#08H
+015A 5062              JNC     ?C0025
+                                           ; SOURCE LINE # 158
+015C 900000      R     MOV     DPTR,#tmp_rw
+015F E0                MOVX    A,@DPTR
+0160 FF                MOV     R7,A
+0161 EF                MOV     A,R7
+0162 20E704            JB      ACC.7,?C0027
+                                           ; SOURCE LINE # 159
+0165 C2EF              CLR     MDO
+0167 8002              SJMP    ?C0028
+0169         ?C0027:
+0169 D2EF              SETB    MDO
+016B         ?C0028:
+                                           ; SOURCE LINE # 160
+016B 900000      R     MOV     DPTR,#DL
+016E 7402              MOV     A,#02H
+0170 F0                MOVX    @DPTR,A
+0171         ?C0029:
+0171 900000      R     MOV     DPTR,#DL
+0174 E0                MOVX    A,@DPTR
+0175 14                DEC     A
+0176 F0                MOVX    @DPTR,A
+0177 900000      R     MOV     DPTR,#DL
+017A E0                MOVX    A,@DPTR
+017B FF                MOV     R7,A
+017C EF                MOV     A,R7
+017D 70F2              JNZ     ?C0029
+017F 8002              SJMP    ?C0030
+0181         ?C0031:
+0181 80EE              SJMP    ?C0029
+0183         ?C0030:
+0183 D2ED              SETB    MCO
+0185         ?C0032:
+                                           ; SOURCE LINE # 161
+0185 30EDFD            JNB     MCO,?C0032
+0188 8002              SJMP    ?C0033
+018A         ?C0034:
+018A 80F9              SJMP    ?C0032
+018C         ?C0033:
+                                           ; SOURCE LINE # 162
+018C 900000      R     MOV     DPTR,#DL
+018F 7402              MOV     A,#02H
+0191 F0                MOVX    @DPTR,A
+0192         ?C0035:
+0192 900000      R     MOV     DPTR,#DL
+0195 E0                MOVX    A,@DPTR
+0196 14                DEC     A
+0197 F0                MOVX    @DPTR,A
+0198 900000      R     MOV     DPTR,#DL
+019B E0                MOVX    A,@DPTR
+019C FF                MOV     R7,A
+019D EF                MOV     A,R7
+019E 70F2              JNZ     ?C0035
+01A0 8002              SJMP    ?C0036
+01A2         ?C0037:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 16  
+
+01A2 80EE              SJMP    ?C0035
+01A4         ?C0036:
+01A4 C2ED              CLR     MCO
+01A6 C2EF              CLR     MDO
+                                           ; SOURCE LINE # 163
+01A8 900000      R     MOV     DPTR,#tmp_rw
+01AB E0                MOVX    A,@DPTR
+01AC FF                MOV     R7,A
+01AD EF                MOV     A,R7
+01AE 25E0              ADD     A,ACC
+01B0 FF                MOV     R7,A
+01B1 900000      R     MOV     DPTR,#tmp_rw
+01B4 EF                MOV     A,R7
+01B5 F0                MOVX    @DPTR,A
+01B6         ?C0026:
+01B6 900000      R     MOV     DPTR,#is
+01B9 E0                MOVX    A,@DPTR
+01BA 04                INC     A
+01BB F0                MOVX    @DPTR,A
+01BC 8093              SJMP    ?C0024
+01BE         ?C0025:
+                                           ; SOURCE LINE # 164
+01BE 900000      R     MOV     DPTR,#DL
+01C1 7402              MOV     A,#02H
+01C3 F0                MOVX    @DPTR,A
+01C4         ?C0038:
+01C4 900000      R     MOV     DPTR,#DL
+01C7 E0                MOVX    A,@DPTR
+01C8 14                DEC     A
+01C9 F0                MOVX    @DPTR,A
+01CA 900000      R     MOV     DPTR,#DL
+01CD E0                MOVX    A,@DPTR
+01CE FF                MOV     R7,A
+01CF EF                MOV     A,R7
+01D0 70F2              JNZ     ?C0038
+01D2 8002              SJMP    ?C0039
+01D4         ?C0040:
+01D4 80EE              SJMP    ?C0038
+01D6         ?C0039:
+                                           ; SOURCE LINE # 165
+01D6 C2EE              CLR     MDE
+01D8 D2ED              SETB    MCO
+01DA D2EF              SETB    MDO
+01DC         ?C0041:
+01DC 30EDFD            JNB     MCO,?C0041
+01DF 8002              SJMP    ?C0042
+01E1         ?C0043:
+01E1 80F9              SJMP    ?C0041
+01E3         ?C0042:
+                                           ; SOURCE LINE # 166
+01E3 900000      R     MOV     DPTR,#DL
+01E6 74C8              MOV     A,#0C8H
+01E8 F0                MOVX    @DPTR,A
+01E9         ?C0044:
+01E9 900000      R     MOV     DPTR,#DL
+01EC E0                MOVX    A,@DPTR
+01ED 14                DEC     A
+01EE F0                MOVX    @DPTR,A
+01EF 900000      R     MOV     DPTR,#DL
+01F2 E0                MOVX    A,@DPTR
+01F3 FF                MOV     R7,A
+01F4 EF                MOV     A,R7
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 17  
+
+01F5 7004              JNZ     ?C0047
+01F7 7F01              MOV     R7,#01H
+01F9 8002              SJMP    ?C0048
+01FB         ?C0047:
+01FB 7F00              MOV     R7,#00H
+01FD         ?C0048:
+01FD 20EC04            JB      MDI,?C0049
+0200 7E01              MOV     R6,#01H
+0202 8002              SJMP    ?C0050
+0204         ?C0049:
+0204 7E00              MOV     R6,#00H
+0206         ?C0050:
+0206 EE                MOV     A,R6
+0207 4F                ORL     A,R7
+0208 FF                MOV     R7,A
+0209 EF                MOV     A,R7
+020A 60DD              JZ      ?C0044
+020C 8002              SJMP    ?C0045
+020E         ?C0046:
+020E 80D9              SJMP    ?C0044
+0210         ?C0045:
+                                           ; SOURCE LINE # 167
+0210 900000      R     MOV     DPTR,#DL
+0213 E0                MOVX    A,@DPTR
+0214 FF                MOV     R7,A
+0215 EF                MOV     A,R7
+0216 7006              JNZ     ?C0051
+0218 900000      E     MOV     DPTR,#b_err_cl
+021B E0                MOVX    A,@DPTR
+021C 04                INC     A
+021D F0                MOVX    @DPTR,A
+021E         ?C0051:
+                                           ; SOURCE LINE # 170
+021E D2EE              SETB    MDE
+0220 C2ED              CLR     MCO
+                                           ; SOURCE LINE # 171
+0222 900000      R     MOV     DPTR,#tmp_rw
+0225 741A              MOV     A,#01AH
+0227 F0                MOVX    @DPTR,A
+0228         ?C0023:
+0228 900000      R     MOV     DPTR,#js
+022B E0                MOVX    A,@DPTR
+022C 04                INC     A
+022D F0                MOVX    @DPTR,A
+022E 020000      R     LJMP    ?C0021
+0231         ?C0022:
+                                           ; SOURCE LINE # 172
+0231 900000      R     MOV     DPTR,#DL
+0234 7402              MOV     A,#02H
+0236 F0                MOVX    @DPTR,A
+0237         ?C0052:
+0237 900000      R     MOV     DPTR,#DL
+023A E0                MOVX    A,@DPTR
+023B 14                DEC     A
+023C F0                MOVX    @DPTR,A
+023D 900000      R     MOV     DPTR,#DL
+0240 E0                MOVX    A,@DPTR
+0241 FF                MOV     R7,A
+0242 EF                MOV     A,R7
+0243 70F2              JNZ     ?C0052
+0245 8002              SJMP    ?C0053
+0247         ?C0054:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 18  
+
+0247 80EE              SJMP    ?C0052
+0249         ?C0053:
+0249 D2ED              SETB    MCO
+024B         ?C0055:
+                                           ; SOURCE LINE # 173
+024B 30EDFD            JNB     MCO,?C0055
+024E 8002              SJMP    ?C0056
+0250         ?C0057:
+0250 80F9              SJMP    ?C0055
+0252         ?C0056:
+                                           ; SOURCE LINE # 174
+0252 900000      R     MOV     DPTR,#DL
+0255 7402              MOV     A,#02H
+0257 F0                MOVX    @DPTR,A
+0258         ?C0058:
+0258 900000      R     MOV     DPTR,#DL
+025B E0                MOVX    A,@DPTR
+025C 14                DEC     A
+025D F0                MOVX    @DPTR,A
+025E 900000      R     MOV     DPTR,#DL
+0261 E0                MOVX    A,@DPTR
+0262 FF                MOV     R7,A
+0263 EF                MOV     A,R7
+0264 70F2              JNZ     ?C0058
+0266 8002              SJMP    ?C0059
+0268         ?C0060:
+0268 80EE              SJMP    ?C0058
+026A         ?C0059:
+                                           ; SOURCE LINE # 175
+026A D2EF              SETB    MDO
+026C 900000      R     MOV     DPTR,#DL
+026F 7402              MOV     A,#02H
+0271 F0                MOVX    @DPTR,A
+0272         ?C0061:
+0272 900000      R     MOV     DPTR,#DL
+0275 E0                MOVX    A,@DPTR
+0276 14                DEC     A
+0277 F0                MOVX    @DPTR,A
+0278 900000      R     MOV     DPTR,#DL
+027B E0                MOVX    A,@DPTR
+027C FF                MOV     R7,A
+027D EF                MOV     A,R7
+027E 70F2              JNZ     ?C0061
+0280 8002              SJMP    ?C0062
+0282         ?C0063:
+0282 80EE              SJMP    ?C0061
+0284         ?C0062:
+                                           ; SOURCE LINE # 176
+0284 900000      R     MOV     DPTR,#tmp_rw
+0287 74D1              MOV     A,#0D1H
+0289 F0                MOVX    @DPTR,A
+028A 900000      R     MOV     DPTR,#DL
+028D 7402              MOV     A,#02H
+028F F0                MOVX    @DPTR,A
+0290         ?C0064:
+0290 900000      R     MOV     DPTR,#DL
+0293 E0                MOVX    A,@DPTR
+0294 14                DEC     A
+0295 F0                MOVX    @DPTR,A
+0296 900000      R     MOV     DPTR,#DL
+0299 E0                MOVX    A,@DPTR
+029A FF                MOV     R7,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 19  
+
+029B EF                MOV     A,R7
+029C 70F2              JNZ     ?C0064
+029E 8002              SJMP    ?C0065
+02A0         ?C0066:
+02A0 80EE              SJMP    ?C0064
+02A2         ?C0065:
+                                           ; SOURCE LINE # 177
+02A2 C2EF              CLR     MDO
+02A4 900000      R     MOV     DPTR,#DL
+02A7 7402              MOV     A,#02H
+02A9 F0                MOVX    @DPTR,A
+02AA         ?C0067:
+02AA 900000      R     MOV     DPTR,#DL
+02AD E0                MOVX    A,@DPTR
+02AE 14                DEC     A
+02AF F0                MOVX    @DPTR,A
+02B0 900000      R     MOV     DPTR,#DL
+02B3 E0                MOVX    A,@DPTR
+02B4 FF                MOV     R7,A
+02B5 EF                MOV     A,R7
+02B6 70F2              JNZ     ?C0067
+02B8 8002              SJMP    ?C0068
+02BA         ?C0069:
+02BA 80EE              SJMP    ?C0067
+02BC         ?C0068:
+                                           ; SOURCE LINE # 178
+02BC C2ED              CLR     MCO
+02BE 900000      R     MOV     DPTR,#DL
+02C1 7402              MOV     A,#02H
+02C3 F0                MOVX    @DPTR,A
+02C4         ?C0070:
+02C4 900000      R     MOV     DPTR,#DL
+02C7 E0                MOVX    A,@DPTR
+02C8 14                DEC     A
+02C9 F0                MOVX    @DPTR,A
+02CA 900000      R     MOV     DPTR,#DL
+02CD E0                MOVX    A,@DPTR
+02CE FF                MOV     R7,A
+02CF EF                MOV     A,R7
+02D0 70F2              JNZ     ?C0070
+02D2 8002              SJMP    ?C0071
+02D4         ?C0072:
+02D4 80EE              SJMP    ?C0070
+02D6         ?C0071:
+                                           ; SOURCE LINE # 179
+02D6 900000      R     MOV     DPTR,#is
+02D9 E4                CLR     A
+02DA F0                MOVX    @DPTR,A
+02DB         ?C0073:
+02DB 900000      R     MOV     DPTR,#is
+02DE E0                MOVX    A,@DPTR
+02DF FF                MOV     R7,A
+02E0 EF                MOV     A,R7
+02E1 C3                CLR     C
+02E2 9408              SUBB    A,#08H
+02E4 5062              JNC     ?C0074
+                                           ; SOURCE LINE # 180
+02E6 900000      R     MOV     DPTR,#tmp_rw
+02E9 E0                MOVX    A,@DPTR
+02EA FF                MOV     R7,A
+02EB EF                MOV     A,R7
+02EC 20E704            JB      ACC.7,?C0076
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 20  
+
+02EF C2EF              CLR     MDO
+02F1 8002              SJMP    ?C0077
+02F3         ?C0076:
+02F3 D2EF              SETB    MDO
+02F5         ?C0077:
+                                           ; SOURCE LINE # 181
+02F5 900000      R     MOV     DPTR,#DL
+02F8 7402              MOV     A,#02H
+02FA F0                MOVX    @DPTR,A
+02FB         ?C0078:
+02FB 900000      R     MOV     DPTR,#DL
+02FE E0                MOVX    A,@DPTR
+02FF 14                DEC     A
+0300 F0                MOVX    @DPTR,A
+0301 900000      R     MOV     DPTR,#DL
+0304 E0                MOVX    A,@DPTR
+0305 FF                MOV     R7,A
+0306 EF                MOV     A,R7
+0307 70F2              JNZ     ?C0078
+0309 8002              SJMP    ?C0079
+030B         ?C0080:
+030B 80EE              SJMP    ?C0078
+030D         ?C0079:
+                                           ; SOURCE LINE # 182
+030D D2ED              SETB    MCO
+030F 900000      R     MOV     DPTR,#DL
+0312 7402              MOV     A,#02H
+0314 F0                MOVX    @DPTR,A
+0315         ?C0081:
+0315 30EDFD            JNB     MCO,?C0081
+0318 8002              SJMP    ?C0084
+031A         ?C0083:
+031A 80F9              SJMP    ?C0081
+031C         ?C0082:
+031C         ?C0084:
+031C 900000      R     MOV     DPTR,#DL
+031F E0                MOVX    A,@DPTR
+0320 14                DEC     A
+0321 F0                MOVX    @DPTR,A
+0322 900000      R     MOV     DPTR,#DL
+0325 E0                MOVX    A,@DPTR
+0326 FF                MOV     R7,A
+0327 EF                MOV     A,R7
+0328 70F2              JNZ     ?C0084
+032A 8002              SJMP    ?C0085
+032C         ?C0086:
+032C 80EE              SJMP    ?C0084
+032E         ?C0085:
+032E C2ED              CLR     MCO
+0330 C2EF              CLR     MDO
+                                           ; SOURCE LINE # 183
+0332 900000      R     MOV     DPTR,#tmp_rw
+0335 E0                MOVX    A,@DPTR
+0336 FF                MOV     R7,A
+0337 EF                MOV     A,R7
+0338 25E0              ADD     A,ACC
+033A FF                MOV     R7,A
+033B 900000      R     MOV     DPTR,#tmp_rw
+033E EF                MOV     A,R7
+033F F0                MOVX    @DPTR,A
+0340         ?C0075:
+0340 900000      R     MOV     DPTR,#is
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 21  
+
+0343 E0                MOVX    A,@DPTR
+0344 04                INC     A
+0345 F0                MOVX    @DPTR,A
+0346 8093              SJMP    ?C0073
+0348         ?C0074:
+                                           ; SOURCE LINE # 184
+0348 900000      R     MOV     DPTR,#DL
+034B 7402              MOV     A,#02H
+034D F0                MOVX    @DPTR,A
+034E         ?C0087:
+034E 900000      R     MOV     DPTR,#DL
+0351 E0                MOVX    A,@DPTR
+0352 14                DEC     A
+0353 F0                MOVX    @DPTR,A
+0354 900000      R     MOV     DPTR,#DL
+0357 E0                MOVX    A,@DPTR
+0358 FF                MOV     R7,A
+0359 EF                MOV     A,R7
+035A 70F2              JNZ     ?C0087
+035C 8002              SJMP    ?C0088
+035E         ?C0089:
+035E 80EE              SJMP    ?C0087
+0360         ?C0088:
+                                           ; SOURCE LINE # 185
+0360 C2EE              CLR     MDE
+0362 D2EF              SETB    MDO
+0364 D2ED              SETB    MCO
+0366 900000      R     MOV     DPTR,#DL
+0369 7402              MOV     A,#02H
+036B F0                MOVX    @DPTR,A
+036C         ?C0090:
+036C 30EDFD            JNB     MCO,?C0090
+036F 8002              SJMP    ?C0093
+0371         ?C0092:
+0371 80F9              SJMP    ?C0090
+0373         ?C0091:
+0373         ?C0093:
+0373 900000      R     MOV     DPTR,#DL
+0376 E0                MOVX    A,@DPTR
+0377 14                DEC     A
+0378 F0                MOVX    @DPTR,A
+0379 900000      R     MOV     DPTR,#DL
+037C E0                MOVX    A,@DPTR
+037D FF                MOV     R7,A
+037E EF                MOV     A,R7
+037F 70F2              JNZ     ?C0093
+0381 8002              SJMP    ?C0094
+0383         ?C0095:
+0383 80EE              SJMP    ?C0093
+0385         ?C0094:
+                                           ; SOURCE LINE # 186
+0385 900000      R     MOV     DPTR,#DL
+0388 74C8              MOV     A,#0C8H
+038A F0                MOVX    @DPTR,A
+038B         ?C0096:
+038B 900000      R     MOV     DPTR,#DL
+038E E0                MOVX    A,@DPTR
+038F 14                DEC     A
+0390 F0                MOVX    @DPTR,A
+0391 900000      R     MOV     DPTR,#DL
+0394 E0                MOVX    A,@DPTR
+0395 FF                MOV     R7,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 22  
+
+0396 EF                MOV     A,R7
+0397 7004              JNZ     ?C0099
+0399 7F01              MOV     R7,#01H
+039B 8002              SJMP    ?C0100
+039D         ?C0099:
+039D 7F00              MOV     R7,#00H
+039F         ?C0100:
+039F 20EC04            JB      MDI,?C0101
+03A2 7E01              MOV     R6,#01H
+03A4 8002              SJMP    ?C0102
+03A6         ?C0101:
+03A6 7E00              MOV     R6,#00H
+03A8         ?C0102:
+03A8 EE                MOV     A,R6
+03A9 4F                ORL     A,R7
+03AA FF                MOV     R7,A
+03AB EF                MOV     A,R7
+03AC 60DD              JZ      ?C0096
+03AE 8002              SJMP    ?C0097
+03B0         ?C0098:
+03B0 80D9              SJMP    ?C0096
+03B2         ?C0097:
+                                           ; SOURCE LINE # 187
+03B2 900000      R     MOV     DPTR,#DL
+03B5 E0                MOVX    A,@DPTR
+03B6 FF                MOV     R7,A
+03B7 EF                MOV     A,R7
+03B8 7006              JNZ     ?C0103
+03BA 900000      E     MOV     DPTR,#b_err_cl
+03BD E0                MOVX    A,@DPTR
+03BE 04                INC     A
+03BF F0                MOVX    @DPTR,A
+03C0         ?C0103:
+                                           ; SOURCE LINE # 189
+03C0 D2EE              SETB    MDE
+03C2 C2ED              CLR     MCO
+03C4 900000      R     MOV     DPTR,#DL
+03C7 7402              MOV     A,#02H
+03C9 F0                MOVX    @DPTR,A
+03CA         ?C0104:
+03CA 900000      R     MOV     DPTR,#DL
+03CD E0                MOVX    A,@DPTR
+03CE 14                DEC     A
+03CF F0                MOVX    @DPTR,A
+03D0 900000      R     MOV     DPTR,#DL
+03D3 E0                MOVX    A,@DPTR
+03D4 FF                MOV     R7,A
+03D5 EF                MOV     A,R7
+03D6 70F2              JNZ     ?C0104
+03D8 8002              SJMP    ?C0105
+03DA         ?C0106:
+03DA 80EE              SJMP    ?C0104
+03DC         ?C0105:
+                                           ; SOURCE LINE # 190
+03DC 900000      R     MOV     DPTR,#js
+03DF E4                CLR     A
+03E0 F0                MOVX    @DPTR,A
+03E1         ?C0107:
+03E1 900000      R     MOV     DPTR,#js
+03E4 E0                MOVX    A,@DPTR
+03E5 FF                MOV     R7,A
+03E6 EF                MOV     A,R7
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 23  
+
+03E7 C3                CLR     C
+03E8 9412              SUBB    A,#012H
+03EA 4003              JC      $ + 5H
+03EC 020000      R     LJMP    ?C0108
+                                           ; SOURCE LINE # 191
+03EF 900000      R     MOV     DPTR,#is
+03F2 E4                CLR     A
+03F3 F0                MOVX    @DPTR,A
+03F4         ?C0110:
+03F4 900000      R     MOV     DPTR,#is
+03F7 E0                MOVX    A,@DPTR
+03F8 FF                MOV     R7,A
+03F9 EF                MOV     A,R7
+03FA C3                CLR     C
+03FB 9408              SUBB    A,#08H
+03FD 4003              JC      $ + 5H
+03FF 020000      R     LJMP    ?C0111
+0402 D2EF              SETB    MDO
+0404 C2EE              CLR     MDE
+0406 D2ED              SETB    MCO
+0408         ?C0113:
+0408 30EDFD            JNB     MCO,?C0113
+040B 8002              SJMP    ?C0114
+040D         ?C0115:
+040D 80F9              SJMP    ?C0113
+040F         ?C0114:
+040F 900000      R     MOV     DPTR,#DL
+0412 7402              MOV     A,#02H
+0414 F0                MOVX    @DPTR,A
+0415         ?C0116:
+0415 900000      R     MOV     DPTR,#DL
+0418 E0                MOVX    A,@DPTR
+0419 14                DEC     A
+041A F0                MOVX    @DPTR,A
+041B 900000      R     MOV     DPTR,#DL
+041E E0                MOVX    A,@DPTR
+041F FF                MOV     R7,A
+0420 EF                MOV     A,R7
+0421 70F2              JNZ     ?C0116
+0423 8002              SJMP    ?C0117
+0425         ?C0118:
+0425 80EE              SJMP    ?C0116
+0427         ?C0117:
+                                           ; SOURCE LINE # 192
+0427 20EC30            JB      MDI,?C0119
+                                           ; SOURCE LINE # 193
+042A 900000      R     MOV     DPTR,#js
+042D E0                MOVX    A,@DPTR
+042E FF                MOV     R7,A
+042F 7400        R     MOV     A,#LOW adcbuf
+0431 2F                ADD     A,R7
+0432 F582              MOV     DPL,A
+0434 E4                CLR     A
+0435 3400        R     ADDC    A,#HIGH adcbuf
+0437 F583              MOV     DPH,A
+0439 E0                MOVX    A,@DPTR
+043A FF                MOV     R7,A
+043B EF                MOV     A,R7
+043C 25E0              ADD     A,ACC
+043E FF                MOV     R7,A
+043F EF                MOV     A,R7
+0440 F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 24  
+
+0441 900000      R     MOV     DPTR,#js
+0444 E0                MOVX    A,@DPTR
+0445 FF                MOV     R7,A
+0446 7400        R     MOV     A,#LOW adcbuf
+0448 2F                ADD     A,R7
+0449 F582              MOV     DPL,A
+044B E4                CLR     A
+044C 3400        R     ADDC    A,#HIGH adcbuf
+044E F583              MOV     DPH,A
+0450 E0                MOVX    A,@DPTR
+0451 FF                MOV     R7,A
+0452 EF                MOV     A,R7
+0453 54FE              ANL     A,#0FEH
+0455 FF                MOV     R7,A
+0456 EF                MOV     A,R7
+0457 F0                MOVX    @DPTR,A
+0458 802E              SJMP    ?C0120
+045A         ?C0119:
+                                           ; SOURCE LINE # 195
+045A 900000      R     MOV     DPTR,#js
+045D E0                MOVX    A,@DPTR
+045E FF                MOV     R7,A
+045F 7400        R     MOV     A,#LOW adcbuf
+0461 2F                ADD     A,R7
+0462 F582              MOV     DPL,A
+0464 E4                CLR     A
+0465 3400        R     ADDC    A,#HIGH adcbuf
+0467 F583              MOV     DPH,A
+0469 E0                MOVX    A,@DPTR
+046A FF                MOV     R7,A
+046B EF                MOV     A,R7
+046C 25E0              ADD     A,ACC
+046E FF                MOV     R7,A
+046F EF                MOV     A,R7
+0470 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 196
+0471 900000      R     MOV     DPTR,#js
+0474 E0                MOVX    A,@DPTR
+0475 FF                MOV     R7,A
+0476 7400        R     MOV     A,#LOW adcbuf
+0478 2F                ADD     A,R7
+0479 F582              MOV     DPL,A
+047B E4                CLR     A
+047C 3400        R     ADDC    A,#HIGH adcbuf
+047E F583              MOV     DPH,A
+0480 E0                MOVX    A,@DPTR
+0481 FF                MOV     R7,A
+0482 EF                MOV     A,R7
+0483 4401              ORL     A,#01H
+0485 FF                MOV     R7,A
+0486 EF                MOV     A,R7
+0487 F0                MOVX    @DPTR,A
+0488         ?C0120:
+                                           ; SOURCE LINE # 197
+0488 C2ED              CLR     MCO
+048A 900000      R     MOV     DPTR,#DL
+048D 7402              MOV     A,#02H
+048F F0                MOVX    @DPTR,A
+0490         ?C0121:
+0490 900000      R     MOV     DPTR,#DL
+0493 E0                MOVX    A,@DPTR
+0494 14                DEC     A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 25  
+
+0495 F0                MOVX    @DPTR,A
+0496 900000      R     MOV     DPTR,#DL
+0499 E0                MOVX    A,@DPTR
+049A FF                MOV     R7,A
+049B EF                MOV     A,R7
+049C 70F2              JNZ     ?C0121
+049E 8002              SJMP    ?C0112
+04A0         ?C0123:
+04A0 80EE              SJMP    ?C0121
+04A2         ?C0122:
+04A2         ?C0112:
+04A2 900000      R     MOV     DPTR,#is
+04A5 E0                MOVX    A,@DPTR
+04A6 04                INC     A
+04A7 F0                MOVX    @DPTR,A
+04A8 020000      R     LJMP    ?C0110
+04AB         ?C0111:
+                                           ; SOURCE LINE # 198
+04AB C2EF              CLR     MDO
+                                           ; SOURCE LINE # 199
+04AD 900000      R     MOV     DPTR,#js
+04B0 E0                MOVX    A,@DPTR
+04B1 FF                MOV     R7,A
+04B2 EF                MOV     A,R7
+04B3 B41102            CJNE    A,#011H,?C0124
+04B6 D2EF              SETB    MDO
+04B8         ?C0124:
+                                           ; SOURCE LINE # 200
+04B8 D2EE              SETB    MDE
+                                           ; SOURCE LINE # 201
+04BA D2ED              SETB    MCO
+04BC         ?C0125:
+04BC 30EDFD            JNB     MCO,?C0125
+04BF 8002              SJMP    ?C0126
+04C1         ?C0127:
+04C1 80F9              SJMP    ?C0125
+04C3         ?C0126:
+                                           ; SOURCE LINE # 202
+04C3 900000      R     MOV     DPTR,#DL
+04C6 7402              MOV     A,#02H
+04C8 F0                MOVX    @DPTR,A
+04C9         ?C0128:
+04C9 900000      R     MOV     DPTR,#DL
+04CC E0                MOVX    A,@DPTR
+04CD 14                DEC     A
+04CE F0                MOVX    @DPTR,A
+04CF 900000      R     MOV     DPTR,#DL
+04D2 E0                MOVX    A,@DPTR
+04D3 FF                MOV     R7,A
+04D4 EF                MOV     A,R7
+04D5 70F2              JNZ     ?C0128
+04D7 8002              SJMP    ?C0129
+04D9         ?C0130:
+04D9 80EE              SJMP    ?C0128
+04DB         ?C0129:
+                                           ; SOURCE LINE # 203
+04DB C2ED              CLR     MCO
+04DD C2EE              CLR     MDE
+04DF 900000      R     MOV     DPTR,#DL
+04E2 7402              MOV     A,#02H
+04E4 F0                MOVX    @DPTR,A
+04E5         ?C0131:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 26  
+
+04E5 900000      R     MOV     DPTR,#DL
+04E8 E0                MOVX    A,@DPTR
+04E9 14                DEC     A
+04EA F0                MOVX    @DPTR,A
+04EB 900000      R     MOV     DPTR,#DL
+04EE E0                MOVX    A,@DPTR
+04EF FF                MOV     R7,A
+04F0 EF                MOV     A,R7
+04F1 70F2              JNZ     ?C0131
+04F3 8002              SJMP    ?C0109
+04F5         ?C0133:
+04F5 80EE              SJMP    ?C0131
+04F7         ?C0132:
+04F7         ?C0109:
+04F7 900000      R     MOV     DPTR,#js
+04FA E0                MOVX    A,@DPTR
+04FB 04                INC     A
+04FC F0                MOVX    @DPTR,A
+04FD 020000      R     LJMP    ?C0107
+0500         ?C0108:
+                                           ; SOURCE LINE # 204
+0500 D2EE              SETB    MDE
+0502 900000      R     MOV     DPTR,#DL
+0505 7402              MOV     A,#02H
+0507 F0                MOVX    @DPTR,A
+0508         ?C0134:
+0508 900000      R     MOV     DPTR,#DL
+050B E0                MOVX    A,@DPTR
+050C 14                DEC     A
+050D F0                MOVX    @DPTR,A
+050E 900000      R     MOV     DPTR,#DL
+0511 E0                MOVX    A,@DPTR
+0512 FF                MOV     R7,A
+0513 EF                MOV     A,R7
+0514 70F2              JNZ     ?C0134
+0516 8002              SJMP    ?C0135
+0518         ?C0136:
+0518 80EE              SJMP    ?C0134
+051A         ?C0135:
+                                           ; SOURCE LINE # 205
+051A C2EF              CLR     MDO
+051C 900000      R     MOV     DPTR,#DL
+051F 7402              MOV     A,#02H
+0521 F0                MOVX    @DPTR,A
+0522         ?C0137:
+0522 900000      R     MOV     DPTR,#DL
+0525 E0                MOVX    A,@DPTR
+0526 14                DEC     A
+0527 F0                MOVX    @DPTR,A
+0528 900000      R     MOV     DPTR,#DL
+052B E0                MOVX    A,@DPTR
+052C FF                MOV     R7,A
+052D EF                MOV     A,R7
+052E 70F2              JNZ     ?C0137
+0530 8002              SJMP    ?C0138
+0532         ?C0139:
+0532 80EE              SJMP    ?C0137
+0534         ?C0138:
+                                           ; SOURCE LINE # 206
+0534 D2ED              SETB    MCO
+0536         ?C0140:
+0536 30EDFD            JNB     MCO,?C0140
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 27  
+
+0539 8002              SJMP    ?C0141
+053B         ?C0142:
+053B 80F9              SJMP    ?C0140
+053D         ?C0141:
+053D 900000      R     MOV     DPTR,#DL
+0540 7402              MOV     A,#02H
+0542 F0                MOVX    @DPTR,A
+0543         ?C0143:
+0543 900000      R     MOV     DPTR,#DL
+0546 E0                MOVX    A,@DPTR
+0547 14                DEC     A
+0548 F0                MOVX    @DPTR,A
+0549 900000      R     MOV     DPTR,#DL
+054C E0                MOVX    A,@DPTR
+054D FF                MOV     R7,A
+054E EF                MOV     A,R7
+054F 70F2              JNZ     ?C0143
+0551 8002              SJMP    ?C0144
+0553         ?C0145:
+0553 80EE              SJMP    ?C0143
+0555         ?C0144:
+0555 D2EF              SETB    MDO
+                                           ; SOURCE LINE # 208
+0557 900000      R     MOV     DPTR,#adcbuf
+055A E0                MOVX    A,@DPTR
+055B FF                MOV     R7,A
+055C 7E00              MOV     R6,#00H
+055E EF                MOV     A,R7
+055F 7F00              MOV     R7,#00H
+0561 FE                MOV     R6,A
+0562 900000      R     MOV     DPTR,#adcbuf+01H
+0565 E0                MOVX    A,@DPTR
+0566 FD                MOV     R5,A
+0567 7C00              MOV     R4,#00H
+0569 EE                MOV     A,R6
+056A 4C                ORL     A,R4
+056B FE                MOV     R6,A
+056C EF                MOV     A,R7
+056D 4D                ORL     A,R5
+056E FF                MOV     R7,A
+056F 7800        E     MOV     R0,#LOW cnt_dol
+0571 EE                MOV     A,R6
+0572 F6                MOV     @R0,A
+0573 08                INC     R0
+0574 EF                MOV     A,R7
+0575 F6                MOV     @R0,A
+                                           ; SOURCE LINE # 210
+0576 900000      R     MOV     DPTR,#adcbuf+02H
+0579 E0                MOVX    A,@DPTR
+057A FF                MOV     R7,A
+057B E4                CLR     A
+057C FC                MOV     R4,A
+057D FD                MOV     R5,A
+057E FE                MOV     R6,A
+057F 7800        E     MOV     R0,#LOW CMRX1_K1
+0581 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 211
+0584 7800        E     MOV     R0,#LOW CMRX1_K1
+0586 120000      E     LCALL   ?C?LLDIDATA
+0589 7808              MOV     R0,#08H
+058B 120000      E     LCALL   ?C?LSHL
+058E 7800        E     MOV     R0,#LOW CMRX1_K1
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 28  
+
+0590 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 212
+0593 7800        E     MOV     R0,#LOW CMRX1_K1
+0595 120000      E     LCALL   ?C?LLDIDATA0
+0598 900000      R     MOV     DPTR,#adcbuf+03H
+059B E0                MOVX    A,@DPTR
+059C FF                MOV     R7,A
+059D E4                CLR     A
+059E FC                MOV     R4,A
+059F FD                MOV     R5,A
+05A0 FE                MOV     R6,A
+05A1 EB                MOV     A,R3
+05A2 2F                ADD     A,R7
+05A3 FF                MOV     R7,A
+05A4 EA                MOV     A,R2
+05A5 3E                ADDC    A,R6
+05A6 FE                MOV     R6,A
+05A7 E9                MOV     A,R1
+05A8 3D                ADDC    A,R5
+05A9 FD                MOV     R5,A
+05AA E8                MOV     A,R0
+05AB 3C                ADDC    A,R4
+05AC FC                MOV     R4,A
+05AD 7800        E     MOV     R0,#LOW CMRX1_K1
+05AF 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 213
+05B2 7800        E     MOV     R0,#LOW CMRX1_K1
+05B4 120000      E     LCALL   ?C?LLDIDATA
+05B7 7808              MOV     R0,#08H
+05B9 120000      E     LCALL   ?C?LSHL
+05BC 7800        E     MOV     R0,#LOW CMRX1_K1
+05BE 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 214
+05C1 7800        E     MOV     R0,#LOW CMRX1_K1
+05C3 120000      E     LCALL   ?C?LLDIDATA0
+05C6 900000      R     MOV     DPTR,#adcbuf+04H
+05C9 E0                MOVX    A,@DPTR
+05CA FF                MOV     R7,A
+05CB E4                CLR     A
+05CC FC                MOV     R4,A
+05CD FD                MOV     R5,A
+05CE FE                MOV     R6,A
+05CF EB                MOV     A,R3
+05D0 2F                ADD     A,R7
+05D1 FF                MOV     R7,A
+05D2 EA                MOV     A,R2
+05D3 3E                ADDC    A,R6
+05D4 FE                MOV     R6,A
+05D5 E9                MOV     A,R1
+05D6 3D                ADDC    A,R5
+05D7 FD                MOV     R5,A
+05D8 E8                MOV     A,R0
+05D9 3C                ADDC    A,R4
+05DA FC                MOV     R4,A
+05DB 7800        E     MOV     R0,#LOW CMRX1_K1
+05DD 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 215
+05E0 7800        E     MOV     R0,#LOW CMRX1_K1
+05E2 120000      E     LCALL   ?C?LLDIDATA
+05E5 7808              MOV     R0,#08H
+05E7 120000      E     LCALL   ?C?LSHL
+05EA 7800        E     MOV     R0,#LOW CMRX1_K1
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 29  
+
+05EC 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 216
+05EF 7800        E     MOV     R0,#LOW CMRX1_K1
+05F1 120000      E     LCALL   ?C?LLDIDATA0
+05F4 900000      R     MOV     DPTR,#adcbuf+05H
+05F7 E0                MOVX    A,@DPTR
+05F8 FF                MOV     R7,A
+05F9 E4                CLR     A
+05FA FC                MOV     R4,A
+05FB FD                MOV     R5,A
+05FC FE                MOV     R6,A
+05FD EB                MOV     A,R3
+05FE 2F                ADD     A,R7
+05FF FF                MOV     R7,A
+0600 EA                MOV     A,R2
+0601 3E                ADDC    A,R6
+0602 FE                MOV     R6,A
+0603 E9                MOV     A,R1
+0604 3D                ADDC    A,R5
+0605 FD                MOV     R5,A
+0606 E8                MOV     A,R0
+0607 3C                ADDC    A,R4
+0608 FC                MOV     R4,A
+0609 7800        E     MOV     R0,#LOW CMRX1_K1
+060B 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 220
+060E 900000      R     MOV     DPTR,#adcbuf+06H
+0611 E0                MOVX    A,@DPTR
+0612 FF                MOV     R7,A
+0613 E4                CLR     A
+0614 FC                MOV     R4,A
+0615 FD                MOV     R5,A
+0616 FE                MOV     R6,A
+0617 7800        E     MOV     R0,#LOW CMRX1_K2
+0619 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 221
+061C 7800        E     MOV     R0,#LOW CMRX1_K2
+061E 120000      E     LCALL   ?C?LLDIDATA
+0621 7808              MOV     R0,#08H
+0623 120000      E     LCALL   ?C?LSHL
+0626 7800        E     MOV     R0,#LOW CMRX1_K2
+0628 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 222
+062B 7800        E     MOV     R0,#LOW CMRX1_K2
+062D 120000      E     LCALL   ?C?LLDIDATA0
+0630 900000      R     MOV     DPTR,#adcbuf+07H
+0633 E0                MOVX    A,@DPTR
+0634 FF                MOV     R7,A
+0635 E4                CLR     A
+0636 FC                MOV     R4,A
+0637 FD                MOV     R5,A
+0638 FE                MOV     R6,A
+0639 EB                MOV     A,R3
+063A 2F                ADD     A,R7
+063B FF                MOV     R7,A
+063C EA                MOV     A,R2
+063D 3E                ADDC    A,R6
+063E FE                MOV     R6,A
+063F E9                MOV     A,R1
+0640 3D                ADDC    A,R5
+0641 FD                MOV     R5,A
+0642 E8                MOV     A,R0
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 30  
+
+0643 3C                ADDC    A,R4
+0644 FC                MOV     R4,A
+0645 7800        E     MOV     R0,#LOW CMRX1_K2
+0647 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 223
+064A 7800        E     MOV     R0,#LOW CMRX1_K2
+064C 120000      E     LCALL   ?C?LLDIDATA
+064F 7808              MOV     R0,#08H
+0651 120000      E     LCALL   ?C?LSHL
+0654 7800        E     MOV     R0,#LOW CMRX1_K2
+0656 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 224
+0659 7800        E     MOV     R0,#LOW CMRX1_K2
+065B 120000      E     LCALL   ?C?LLDIDATA0
+065E 900000      R     MOV     DPTR,#adcbuf+08H
+0661 E0                MOVX    A,@DPTR
+0662 FF                MOV     R7,A
+0663 E4                CLR     A
+0664 FC                MOV     R4,A
+0665 FD                MOV     R5,A
+0666 FE                MOV     R6,A
+0667 EB                MOV     A,R3
+0668 2F                ADD     A,R7
+0669 FF                MOV     R7,A
+066A EA                MOV     A,R2
+066B 3E                ADDC    A,R6
+066C FE                MOV     R6,A
+066D E9                MOV     A,R1
+066E 3D                ADDC    A,R5
+066F FD                MOV     R5,A
+0670 E8                MOV     A,R0
+0671 3C                ADDC    A,R4
+0672 FC                MOV     R4,A
+0673 7800        E     MOV     R0,#LOW CMRX1_K2
+0675 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 225
+0678 7800        E     MOV     R0,#LOW CMRX1_K2
+067A 120000      E     LCALL   ?C?LLDIDATA
+067D 7808              MOV     R0,#08H
+067F 120000      E     LCALL   ?C?LSHL
+0682 7800        E     MOV     R0,#LOW CMRX1_K2
+0684 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 226
+0687 7800        E     MOV     R0,#LOW CMRX1_K2
+0689 120000      E     LCALL   ?C?LLDIDATA0
+068C 900000      R     MOV     DPTR,#adcbuf+09H
+068F E0                MOVX    A,@DPTR
+0690 FF                MOV     R7,A
+0691 E4                CLR     A
+0692 FC                MOV     R4,A
+0693 FD                MOV     R5,A
+0694 FE                MOV     R6,A
+0695 EB                MOV     A,R3
+0696 2F                ADD     A,R7
+0697 FF                MOV     R7,A
+0698 EA                MOV     A,R2
+0699 3E                ADDC    A,R6
+069A FE                MOV     R6,A
+069B E9                MOV     A,R1
+069C 3D                ADDC    A,R5
+069D FD                MOV     R5,A
+069E E8                MOV     A,R0
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 31  
+
+069F 3C                ADDC    A,R4
+06A0 FC                MOV     R4,A
+06A1 7800        E     MOV     R0,#LOW CMRX1_K2
+06A3 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 227
+06A6 900000      R     MOV     DPTR,#adcbuf+0AH
+06A9 E0                MOVX    A,@DPTR
+06AA FF                MOV     R7,A
+06AB 7E00              MOV     R6,#00H
+06AD EF                MOV     A,R7
+06AE 7F00              MOV     R7,#00H
+06B0 FE                MOV     R6,A
+06B1 900000      R     MOV     DPTR,#adcbuf+0BH
+06B4 E0                MOVX    A,@DPTR
+06B5 FD                MOV     R5,A
+06B6 7C00              MOV     R4,#00H
+06B8 EE                MOV     A,R6
+06B9 4C                ORL     A,R4
+06BA FE                MOV     R6,A
+06BB EF                MOV     A,R7
+06BC 4D                ORL     A,R5
+06BD FF                MOV     R7,A
+06BE 900000      E     MOV     DPTR,#Mom_tr
+06C1 EE                MOV     A,R6
+06C2 F0                MOVX    @DPTR,A
+06C3 A3                INC     DPTR
+06C4 EF                MOV     A,R7
+06C5 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 228
+06C6 900000      R     MOV     DPTR,#adcbuf+0CH
+06C9 E0                MOVX    A,@DPTR
+06CA FF                MOV     R7,A
+06CB 7E00              MOV     R6,#00H
+06CD EF                MOV     A,R7
+06CE 7F00              MOV     R7,#00H
+06D0 FE                MOV     R6,A
+06D1 900000      R     MOV     DPTR,#adcbuf+0DH
+06D4 E0                MOVX    A,@DPTR
+06D5 FD                MOV     R5,A
+06D6 7C00              MOV     R4,#00H
+06D8 EE                MOV     A,R6
+06D9 4C                ORL     A,R4
+06DA FE                MOV     R6,A
+06DB EF                MOV     A,R7
+06DC 4D                ORL     A,R5
+06DD FF                MOV     R7,A
+06DE 900000      E     MOV     DPTR,#Ves_kol
+06E1 EE                MOV     A,R6
+06E2 F0                MOVX    @DPTR,A
+06E3 A3                INC     DPTR
+06E4 EF                MOV     A,R7
+06E5 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 230
+06E6 900000      R     MOV     DPTR,#adcbuf+0EH
+06E9 E0                MOVX    A,@DPTR
+06EA FF                MOV     R7,A
+06EB E4                CLR     A
+06EC FC                MOV     R4,A
+06ED FD                MOV     R5,A
+06EE FE                MOV     R6,A
+06EF 7800        E     MOV     R0,#LOW cmr
+06F1 120000      E     LCALL   ?C?LSTIDATA
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 32  
+
+                                           ; SOURCE LINE # 231
+06F4 7800        E     MOV     R0,#LOW cmr
+06F6 120000      E     LCALL   ?C?LLDIDATA
+06F9 7808              MOV     R0,#08H
+06FB 120000      E     LCALL   ?C?LSHL
+06FE 7800        E     MOV     R0,#LOW cmr
+0700 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 232
+0703 7800        E     MOV     R0,#LOW cmr
+0705 120000      E     LCALL   ?C?LLDIDATA0
+0708 900000      R     MOV     DPTR,#adcbuf+0FH
+070B E0                MOVX    A,@DPTR
+070C FF                MOV     R7,A
+070D E4                CLR     A
+070E FC                MOV     R4,A
+070F FD                MOV     R5,A
+0710 FE                MOV     R6,A
+0711 EB                MOV     A,R3
+0712 2F                ADD     A,R7
+0713 FF                MOV     R7,A
+0714 EA                MOV     A,R2
+0715 3E                ADDC    A,R6
+0716 FE                MOV     R6,A
+0717 E9                MOV     A,R1
+0718 3D                ADDC    A,R5
+0719 FD                MOV     R5,A
+071A E8                MOV     A,R0
+071B 3C                ADDC    A,R4
+071C FC                MOV     R4,A
+071D 7800        E     MOV     R0,#LOW cmr
+071F 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 233
+0722 7800        E     MOV     R0,#LOW cmr
+0724 120000      E     LCALL   ?C?LLDIDATA
+0727 7808              MOV     R0,#08H
+0729 120000      E     LCALL   ?C?LSHL
+072C 7800        E     MOV     R0,#LOW cmr
+072E 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 234
+0731 7800        E     MOV     R0,#LOW cmr
+0733 120000      E     LCALL   ?C?LLDIDATA0
+0736 900000      R     MOV     DPTR,#adcbuf+010H
+0739 E0                MOVX    A,@DPTR
+073A FF                MOV     R7,A
+073B E4                CLR     A
+073C FC                MOV     R4,A
+073D FD                MOV     R5,A
+073E FE                MOV     R6,A
+073F EB                MOV     A,R3
+0740 2F                ADD     A,R7
+0741 FF                MOV     R7,A
+0742 EA                MOV     A,R2
+0743 3E                ADDC    A,R6
+0744 FE                MOV     R6,A
+0745 E9                MOV     A,R1
+0746 3D                ADDC    A,R5
+0747 FD                MOV     R5,A
+0748 E8                MOV     A,R0
+0749 3C                ADDC    A,R4
+074A FC                MOV     R4,A
+074B 7800        E     MOV     R0,#LOW cmr
+074D 120000      E     LCALL   ?C?LSTIDATA
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 33  
+
+                                           ; SOURCE LINE # 235
+0750 7800        E     MOV     R0,#LOW cmr
+0752 120000      E     LCALL   ?C?LLDIDATA
+0755 7808              MOV     R0,#08H
+0757 120000      E     LCALL   ?C?LSHL
+075A 7800        E     MOV     R0,#LOW cmr
+075C 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 236
+075F 7800        E     MOV     R0,#LOW cmr
+0761 120000      E     LCALL   ?C?LLDIDATA0
+0764 900000      R     MOV     DPTR,#adcbuf+011H
+0767 E0                MOVX    A,@DPTR
+0768 FF                MOV     R7,A
+0769 E4                CLR     A
+076A FC                MOV     R4,A
+076B FD                MOV     R5,A
+076C FE                MOV     R6,A
+076D EB                MOV     A,R3
+076E 2F                ADD     A,R7
+076F FF                MOV     R7,A
+0770 EA                MOV     A,R2
+0771 3E                ADDC    A,R6
+0772 FE                MOV     R6,A
+0773 E9                MOV     A,R1
+0774 3D                ADDC    A,R5
+0775 FD                MOV     R5,A
+0776 E8                MOV     A,R0
+0777 3C                ADDC    A,R4
+0778 FC                MOV     R4,A
+0779 7800        E     MOV     R0,#LOW cmr
+077B 120000      E     LCALL   ?C?LSTIDATA
+                                           ; SOURCE LINE # 241
+077E 900000      R     MOV     DPTR,#tmp_rw
+0781 74D0              MOV     A,#0D0H
+0783 F0                MOVX    @DPTR,A
+0784 C2EF              CLR     MDO
+0786 900000      R     MOV     DPTR,#DL
+0789 7402              MOV     A,#02H
+078B F0                MOVX    @DPTR,A
+078C         ?C0146:
+078C 900000      R     MOV     DPTR,#DL
+078F E0                MOVX    A,@DPTR
+0790 14                DEC     A
+0791 F0                MOVX    @DPTR,A
+0792 900000      R     MOV     DPTR,#DL
+0795 E0                MOVX    A,@DPTR
+0796 FF                MOV     R7,A
+0797 EF                MOV     A,R7
+0798 70F2              JNZ     ?C0146
+079A 8002              SJMP    ?C0147
+079C         ?C0148:
+079C 80EE              SJMP    ?C0146
+079E         ?C0147:
+079E C2ED              CLR     MCO
+                                           ; SOURCE LINE # 242
+07A0 900000      R     MOV     DPTR,#js
+07A3 E4                CLR     A
+07A4 F0                MOVX    @DPTR,A
+07A5         ?C0149:
+07A5 900000      R     MOV     DPTR,#js
+07A8 E0                MOVX    A,@DPTR
+07A9 FF                MOV     R7,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 34  
+
+07AA EF                MOV     A,R7
+07AB C3                CLR     C
+07AC 9402              SUBB    A,#02H
+07AE 4003              JC      $ + 5H
+07B0 020000      R     LJMP    ?C0150
+                                           ; SOURCE LINE # 243
+07B3 900000      R     MOV     DPTR,#is
+07B6 E4                CLR     A
+07B7 F0                MOVX    @DPTR,A
+07B8         ?C0152:
+07B8 900000      R     MOV     DPTR,#is
+07BB E0                MOVX    A,@DPTR
+07BC FF                MOV     R7,A
+07BD EF                MOV     A,R7
+07BE C3                CLR     C
+07BF 9408              SUBB    A,#08H
+07C1 5062              JNC     ?C0153
+                                           ; SOURCE LINE # 244
+07C3 900000      R     MOV     DPTR,#tmp_rw
+07C6 E0                MOVX    A,@DPTR
+07C7 FF                MOV     R7,A
+07C8 EF                MOV     A,R7
+07C9 20E704            JB      ACC.7,?C0155
+                                           ; SOURCE LINE # 245
+07CC C2EF              CLR     MDO
+07CE 8002              SJMP    ?C0156
+07D0         ?C0155:
+07D0 D2EF              SETB    MDO
+07D2         ?C0156:
+                                           ; SOURCE LINE # 246
+07D2 900000      R     MOV     DPTR,#DL
+07D5 7402              MOV     A,#02H
+07D7 F0                MOVX    @DPTR,A
+07D8         ?C0157:
+07D8 900000      R     MOV     DPTR,#DL
+07DB E0                MOVX    A,@DPTR
+07DC 14                DEC     A
+07DD F0                MOVX    @DPTR,A
+07DE 900000      R     MOV     DPTR,#DL
+07E1 E0                MOVX    A,@DPTR
+07E2 FF                MOV     R7,A
+07E3 EF                MOV     A,R7
+07E4 70F2              JNZ     ?C0157
+07E6 8002              SJMP    ?C0158
+07E8         ?C0159:
+07E8 80EE              SJMP    ?C0157
+07EA         ?C0158:
+07EA D2ED              SETB    MCO
+07EC         ?C0160:
+                                           ; SOURCE LINE # 247
+07EC 30EDFD            JNB     MCO,?C0160
+07EF 8002              SJMP    ?C0161
+07F1         ?C0162:
+07F1 80F9              SJMP    ?C0160
+07F3         ?C0161:
+                                           ; SOURCE LINE # 248
+07F3 900000      R     MOV     DPTR,#DL
+07F6 7402              MOV     A,#02H
+07F8 F0                MOVX    @DPTR,A
+07F9         ?C0163:
+07F9 900000      R     MOV     DPTR,#DL
+07FC E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 35  
+
+07FD 14                DEC     A
+07FE F0                MOVX    @DPTR,A
+07FF 900000      R     MOV     DPTR,#DL
+0802 E0                MOVX    A,@DPTR
+0803 FF                MOV     R7,A
+0804 EF                MOV     A,R7
+0805 70F2              JNZ     ?C0163
+0807 8002              SJMP    ?C0164
+0809         ?C0165:
+0809 80EE              SJMP    ?C0163
+080B         ?C0164:
+080B C2ED              CLR     MCO
+080D C2EF              CLR     MDO
+                                           ; SOURCE LINE # 249
+080F 900000      R     MOV     DPTR,#tmp_rw
+0812 E0                MOVX    A,@DPTR
+0813 FF                MOV     R7,A
+0814 EF                MOV     A,R7
+0815 25E0              ADD     A,ACC
+0817 FF                MOV     R7,A
+0818 900000      R     MOV     DPTR,#tmp_rw
+081B EF                MOV     A,R7
+081C F0                MOVX    @DPTR,A
+081D         ?C0154:
+081D 900000      R     MOV     DPTR,#is
+0820 E0                MOVX    A,@DPTR
+0821 04                INC     A
+0822 F0                MOVX    @DPTR,A
+0823 8093              SJMP    ?C0152
+0825         ?C0153:
+                                           ; SOURCE LINE # 250
+0825 900000      R     MOV     DPTR,#DL
+0828 7402              MOV     A,#02H
+082A F0                MOVX    @DPTR,A
+082B         ?C0166:
+082B 900000      R     MOV     DPTR,#DL
+082E E0                MOVX    A,@DPTR
+082F 14                DEC     A
+0830 F0                MOVX    @DPTR,A
+0831 900000      R     MOV     DPTR,#DL
+0834 E0                MOVX    A,@DPTR
+0835 FF                MOV     R7,A
+0836 EF                MOV     A,R7
+0837 70F2              JNZ     ?C0166
+0839 8002              SJMP    ?C0167
+083B         ?C0168:
+083B 80EE              SJMP    ?C0166
+083D         ?C0167:
+                                           ; SOURCE LINE # 251
+083D C2EE              CLR     MDE
+083F D2ED              SETB    MCO
+0841 D2EF              SETB    MDO
+0843         ?C0169:
+0843 30EDFD            JNB     MCO,?C0169
+0846 8002              SJMP    ?C0170
+0848         ?C0171:
+0848 80F9              SJMP    ?C0169
+084A         ?C0170:
+                                           ; SOURCE LINE # 252
+084A 900000      R     MOV     DPTR,#DL
+084D 74C8              MOV     A,#0C8H
+084F F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 36  
+
+0850         ?C0172:
+0850 900000      R     MOV     DPTR,#DL
+0853 E0                MOVX    A,@DPTR
+0854 14                DEC     A
+0855 F0                MOVX    @DPTR,A
+0856 900000      R     MOV     DPTR,#DL
+0859 E0                MOVX    A,@DPTR
+085A FF                MOV     R7,A
+085B EF                MOV     A,R7
+085C 7004              JNZ     ?C0175
+085E 7F01              MOV     R7,#01H
+0860 8002              SJMP    ?C0176
+0862         ?C0175:
+0862 7F00              MOV     R7,#00H
+0864         ?C0176:
+0864 20EC04            JB      MDI,?C0177
+0867 7E01              MOV     R6,#01H
+0869 8002              SJMP    ?C0178
+086B         ?C0177:
+086B 7E00              MOV     R6,#00H
+086D         ?C0178:
+086D EE                MOV     A,R6
+086E 4F                ORL     A,R7
+086F FF                MOV     R7,A
+0870 EF                MOV     A,R7
+0871 60DD              JZ      ?C0172
+0873 8002              SJMP    ?C0173
+0875         ?C0174:
+0875 80D9              SJMP    ?C0172
+0877         ?C0173:
+                                           ; SOURCE LINE # 253
+0877 900000      R     MOV     DPTR,#DL
+087A E0                MOVX    A,@DPTR
+087B FF                MOV     R7,A
+087C EF                MOV     A,R7
+087D 7006              JNZ     ?C0179
+087F 900000      E     MOV     DPTR,#b_err_cl
+0882 E0                MOVX    A,@DPTR
+0883 04                INC     A
+0884 F0                MOVX    @DPTR,A
+0885         ?C0179:
+                                           ; SOURCE LINE # 256
+0885 D2EE              SETB    MDE
+0887 C2ED              CLR     MCO
+                                           ; SOURCE LINE # 257
+0889 900000      R     MOV     DPTR,#tmp_rw
+088C 7433              MOV     A,#033H
+088E F0                MOVX    @DPTR,A
+088F         ?C0151:
+088F 900000      R     MOV     DPTR,#js
+0892 E0                MOVX    A,@DPTR
+0893 04                INC     A
+0894 F0                MOVX    @DPTR,A
+0895 020000      R     LJMP    ?C0149
+0898         ?C0150:
+                                           ; SOURCE LINE # 258
+0898 900000      R     MOV     DPTR,#DL
+089B 7402              MOV     A,#02H
+089D F0                MOVX    @DPTR,A
+089E         ?C0180:
+089E 900000      R     MOV     DPTR,#DL
+08A1 E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 37  
+
+08A2 14                DEC     A
+08A3 F0                MOVX    @DPTR,A
+08A4 900000      R     MOV     DPTR,#DL
+08A7 E0                MOVX    A,@DPTR
+08A8 FF                MOV     R7,A
+08A9 EF                MOV     A,R7
+08AA 70F2              JNZ     ?C0180
+08AC 8002              SJMP    ?C0181
+08AE         ?C0182:
+08AE 80EE              SJMP    ?C0180
+08B0         ?C0181:
+08B0 D2ED              SETB    MCO
+08B2         ?C0183:
+                                           ; SOURCE LINE # 259
+08B2 30EDFD            JNB     MCO,?C0183
+08B5 8002              SJMP    ?C0184
+08B7         ?C0185:
+08B7 80F9              SJMP    ?C0183
+08B9         ?C0184:
+                                           ; SOURCE LINE # 260
+08B9 900000      R     MOV     DPTR,#DL
+08BC 7402              MOV     A,#02H
+08BE F0                MOVX    @DPTR,A
+08BF         ?C0186:
+08BF 900000      R     MOV     DPTR,#DL
+08C2 E0                MOVX    A,@DPTR
+08C3 14                DEC     A
+08C4 F0                MOVX    @DPTR,A
+08C5 900000      R     MOV     DPTR,#DL
+08C8 E0                MOVX    A,@DPTR
+08C9 FF                MOV     R7,A
+08CA EF                MOV     A,R7
+08CB 70F2              JNZ     ?C0186
+08CD 8002              SJMP    ?C0187
+08CF         ?C0188:
+08CF 80EE              SJMP    ?C0186
+08D1         ?C0187:
+                                           ; SOURCE LINE # 261
+08D1 D2EF              SETB    MDO
+08D3 900000      R     MOV     DPTR,#DL
+08D6 7402              MOV     A,#02H
+08D8 F0                MOVX    @DPTR,A
+08D9         ?C0189:
+08D9 900000      R     MOV     DPTR,#DL
+08DC E0                MOVX    A,@DPTR
+08DD 14                DEC     A
+08DE F0                MOVX    @DPTR,A
+08DF 900000      R     MOV     DPTR,#DL
+08E2 E0                MOVX    A,@DPTR
+08E3 FF                MOV     R7,A
+08E4 EF                MOV     A,R7
+08E5 70F2              JNZ     ?C0189
+08E7 8002              SJMP    ?C0190
+08E9         ?C0191:
+08E9 80EE              SJMP    ?C0189
+08EB         ?C0190:
+                                           ; SOURCE LINE # 262
+08EB 900000      R     MOV     DPTR,#tmp_rw
+08EE 74D1              MOV     A,#0D1H
+08F0 F0                MOVX    @DPTR,A
+08F1 900000      R     MOV     DPTR,#DL
+08F4 7402              MOV     A,#02H
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 38  
+
+08F6 F0                MOVX    @DPTR,A
+08F7         ?C0192:
+08F7 900000      R     MOV     DPTR,#DL
+08FA E0                MOVX    A,@DPTR
+08FB 14                DEC     A
+08FC F0                MOVX    @DPTR,A
+08FD 900000      R     MOV     DPTR,#DL
+0900 E0                MOVX    A,@DPTR
+0901 FF                MOV     R7,A
+0902 EF                MOV     A,R7
+0903 70F2              JNZ     ?C0192
+0905 8002              SJMP    ?C0193
+0907         ?C0194:
+0907 80EE              SJMP    ?C0192
+0909         ?C0193:
+                                           ; SOURCE LINE # 263
+0909 C2EF              CLR     MDO
+090B 900000      R     MOV     DPTR,#DL
+090E 7402              MOV     A,#02H
+0910 F0                MOVX    @DPTR,A
+0911         ?C0195:
+0911 900000      R     MOV     DPTR,#DL
+0914 E0                MOVX    A,@DPTR
+0915 14                DEC     A
+0916 F0                MOVX    @DPTR,A
+0917 900000      R     MOV     DPTR,#DL
+091A E0                MOVX    A,@DPTR
+091B FF                MOV     R7,A
+091C EF                MOV     A,R7
+091D 70F2              JNZ     ?C0195
+091F 8002              SJMP    ?C0196
+0921         ?C0197:
+0921 80EE              SJMP    ?C0195
+0923         ?C0196:
+                                           ; SOURCE LINE # 264
+0923 C2ED              CLR     MCO
+0925 900000      R     MOV     DPTR,#DL
+0928 7402              MOV     A,#02H
+092A F0                MOVX    @DPTR,A
+092B         ?C0198:
+092B 900000      R     MOV     DPTR,#DL
+092E E0                MOVX    A,@DPTR
+092F 14                DEC     A
+0930 F0                MOVX    @DPTR,A
+0931 900000      R     MOV     DPTR,#DL
+0934 E0                MOVX    A,@DPTR
+0935 FF                MOV     R7,A
+0936 EF                MOV     A,R7
+0937 70F2              JNZ     ?C0198
+0939 8002              SJMP    ?C0199
+093B         ?C0200:
+093B 80EE              SJMP    ?C0198
+093D         ?C0199:
+                                           ; SOURCE LINE # 265
+093D 900000      R     MOV     DPTR,#is
+0940 E4                CLR     A
+0941 F0                MOVX    @DPTR,A
+0942         ?C0201:
+0942 900000      R     MOV     DPTR,#is
+0945 E0                MOVX    A,@DPTR
+0946 FF                MOV     R7,A
+0947 EF                MOV     A,R7
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 39  
+
+0948 C3                CLR     C
+0949 9408              SUBB    A,#08H
+094B 5062              JNC     ?C0202
+                                           ; SOURCE LINE # 266
+094D 900000      R     MOV     DPTR,#tmp_rw
+0950 E0                MOVX    A,@DPTR
+0951 FF                MOV     R7,A
+0952 EF                MOV     A,R7
+0953 20E704            JB      ACC.7,?C0204
+0956 C2EF              CLR     MDO
+0958 8002              SJMP    ?C0205
+095A         ?C0204:
+095A D2EF              SETB    MDO
+095C         ?C0205:
+                                           ; SOURCE LINE # 267
+095C 900000      R     MOV     DPTR,#DL
+095F 7402              MOV     A,#02H
+0961 F0                MOVX    @DPTR,A
+0962         ?C0206:
+0962 900000      R     MOV     DPTR,#DL
+0965 E0                MOVX    A,@DPTR
+0966 14                DEC     A
+0967 F0                MOVX    @DPTR,A
+0968 900000      R     MOV     DPTR,#DL
+096B E0                MOVX    A,@DPTR
+096C FF                MOV     R7,A
+096D EF                MOV     A,R7
+096E 70F2              JNZ     ?C0206
+0970 8002              SJMP    ?C0207
+0972         ?C0208:
+0972 80EE              SJMP    ?C0206
+0974         ?C0207:
+                                           ; SOURCE LINE # 268
+0974 D2ED              SETB    MCO
+0976 900000      R     MOV     DPTR,#DL
+0979 7402              MOV     A,#02H
+097B F0                MOVX    @DPTR,A
+097C         ?C0209:
+097C 30EDFD            JNB     MCO,?C0209
+097F 8002              SJMP    ?C0212
+0981         ?C0211:
+0981 80F9              SJMP    ?C0209
+0983         ?C0210:
+0983         ?C0212:
+0983 900000      R     MOV     DPTR,#DL
+0986 E0                MOVX    A,@DPTR
+0987 14                DEC     A
+0988 F0                MOVX    @DPTR,A
+0989 900000      R     MOV     DPTR,#DL
+098C E0                MOVX    A,@DPTR
+098D FF                MOV     R7,A
+098E EF                MOV     A,R7
+098F 70F2              JNZ     ?C0212
+0991 8002              SJMP    ?C0213
+0993         ?C0214:
+0993 80EE              SJMP    ?C0212
+0995         ?C0213:
+0995 C2ED              CLR     MCO
+0997 C2EF              CLR     MDO
+                                           ; SOURCE LINE # 269
+0999 900000      R     MOV     DPTR,#tmp_rw
+099C E0                MOVX    A,@DPTR
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 40  
+
+099D FF                MOV     R7,A
+099E EF                MOV     A,R7
+099F 25E0              ADD     A,ACC
+09A1 FF                MOV     R7,A
+09A2 900000      R     MOV     DPTR,#tmp_rw
+09A5 EF                MOV     A,R7
+09A6 F0                MOVX    @DPTR,A
+09A7         ?C0203:
+09A7 900000      R     MOV     DPTR,#is
+09AA E0                MOVX    A,@DPTR
+09AB 04                INC     A
+09AC F0                MOVX    @DPTR,A
+09AD 8093              SJMP    ?C0201
+09AF         ?C0202:
+                                           ; SOURCE LINE # 270
+09AF 900000      R     MOV     DPTR,#DL
+09B2 7402              MOV     A,#02H
+09B4 F0                MOVX    @DPTR,A
+09B5         ?C0215:
+09B5 900000      R     MOV     DPTR,#DL
+09B8 E0                MOVX    A,@DPTR
+09B9 14                DEC     A
+09BA F0                MOVX    @DPTR,A
+09BB 900000      R     MOV     DPTR,#DL
+09BE E0                MOVX    A,@DPTR
+09BF FF                MOV     R7,A
+09C0 EF                MOV     A,R7
+09C1 70F2              JNZ     ?C0215
+09C3 8002              SJMP    ?C0216
+09C5         ?C0217:
+09C5 80EE              SJMP    ?C0215
+09C7         ?C0216:
+                                           ; SOURCE LINE # 271
+09C7 C2EE              CLR     MDE
+09C9 D2EF              SETB    MDO
+09CB D2ED              SETB    MCO
+09CD 900000      R     MOV     DPTR,#DL
+09D0 7402              MOV     A,#02H
+09D2 F0                MOVX    @DPTR,A
+09D3         ?C0218:
+09D3 30EDFD            JNB     MCO,?C0218
+09D6 8002              SJMP    ?C0221
+09D8         ?C0220:
+09D8 80F9              SJMP    ?C0218
+09DA         ?C0219:
+09DA         ?C0221:
+09DA 900000      R     MOV     DPTR,#DL
+09DD E0                MOVX    A,@DPTR
+09DE 14                DEC     A
+09DF F0                MOVX    @DPTR,A
+09E0 900000      R     MOV     DPTR,#DL
+09E3 E0                MOVX    A,@DPTR
+09E4 FF                MOV     R7,A
+09E5 EF                MOV     A,R7
+09E6 70F2              JNZ     ?C0221
+09E8 8002              SJMP    ?C0222
+09EA         ?C0223:
+09EA 80EE              SJMP    ?C0221
+09EC         ?C0222:
+                                           ; SOURCE LINE # 272
+09EC 900000      R     MOV     DPTR,#DL
+09EF 74C8              MOV     A,#0C8H
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 41  
+
+09F1 F0                MOVX    @DPTR,A
+09F2         ?C0224:
+09F2 900000      R     MOV     DPTR,#DL
+09F5 E0                MOVX    A,@DPTR
+09F6 14                DEC     A
+09F7 F0                MOVX    @DPTR,A
+09F8 900000      R     MOV     DPTR,#DL
+09FB E0                MOVX    A,@DPTR
+09FC FF                MOV     R7,A
+09FD EF                MOV     A,R7
+09FE 7004              JNZ     ?C0227
+0A00 7F01              MOV     R7,#01H
+0A02 8002              SJMP    ?C0228
+0A04         ?C0227:
+0A04 7F00              MOV     R7,#00H
+0A06         ?C0228:
+0A06 20EC04            JB      MDI,?C0229
+0A09 7E01              MOV     R6,#01H
+0A0B 8002              SJMP    ?C0230
+0A0D         ?C0229:
+0A0D 7E00              MOV     R6,#00H
+0A0F         ?C0230:
+0A0F EE                MOV     A,R6
+0A10 4F                ORL     A,R7
+0A11 FF                MOV     R7,A
+0A12 EF                MOV     A,R7
+0A13 60DD              JZ      ?C0224
+0A15 8002              SJMP    ?C0225
+0A17         ?C0226:
+0A17 80D9              SJMP    ?C0224
+0A19         ?C0225:
+                                           ; SOURCE LINE # 273
+0A19 900000      R     MOV     DPTR,#DL
+0A1C E0                MOVX    A,@DPTR
+0A1D FF                MOV     R7,A
+0A1E EF                MOV     A,R7
+0A1F 7006              JNZ     ?C0231
+0A21 900000      E     MOV     DPTR,#b_err_cl
+0A24 E0                MOVX    A,@DPTR
+0A25 04                INC     A
+0A26 F0                MOVX    @DPTR,A
+0A27         ?C0231:
+                                           ; SOURCE LINE # 275
+0A27 D2EE              SETB    MDE
+0A29 C2ED              CLR     MCO
+0A2B 900000      R     MOV     DPTR,#DL
+0A2E 7402              MOV     A,#02H
+0A30 F0                MOVX    @DPTR,A
+0A31         ?C0232:
+0A31 900000      R     MOV     DPTR,#DL
+0A34 E0                MOVX    A,@DPTR
+0A35 14                DEC     A
+0A36 F0                MOVX    @DPTR,A
+0A37 900000      R     MOV     DPTR,#DL
+0A3A E0                MOVX    A,@DPTR
+0A3B FF                MOV     R7,A
+0A3C EF                MOV     A,R7
+0A3D 70F2              JNZ     ?C0232
+0A3F 8002              SJMP    ?C0233
+0A41         ?C0234:
+0A41 80EE              SJMP    ?C0232
+0A43         ?C0233:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 42  
+
+                                           ; SOURCE LINE # 276
+0A43 900000      R     MOV     DPTR,#js
+0A46 E4                CLR     A
+0A47 F0                MOVX    @DPTR,A
+0A48         ?C0235:
+0A48 900000      R     MOV     DPTR,#js
+0A4B E0                MOVX    A,@DPTR
+0A4C FF                MOV     R7,A
+0A4D EF                MOV     A,R7
+0A4E C3                CLR     C
+0A4F 9403              SUBB    A,#03H
+0A51 4003              JC      $ + 5H
+0A53 020000      R     LJMP    ?C0236
+                                           ; SOURCE LINE # 277
+0A56 900000      R     MOV     DPTR,#is
+0A59 E4                CLR     A
+0A5A F0                MOVX    @DPTR,A
+0A5B         ?C0238:
+0A5B 900000      R     MOV     DPTR,#is
+0A5E E0                MOVX    A,@DPTR
+0A5F FF                MOV     R7,A
+0A60 EF                MOV     A,R7
+0A61 C3                CLR     C
+0A62 9408              SUBB    A,#08H
+0A64 4003              JC      $ + 5H
+0A66 020000      R     LJMP    ?C0239
+0A69 D2EF              SETB    MDO
+0A6B C2EE              CLR     MDE
+0A6D D2ED              SETB    MCO
+0A6F         ?C0241:
+0A6F 30EDFD            JNB     MCO,?C0241
+0A72 8002              SJMP    ?C0242
+0A74         ?C0243:
+0A74 80F9              SJMP    ?C0241
+0A76         ?C0242:
+0A76 900000      R     MOV     DPTR,#DL
+0A79 7402              MOV     A,#02H
+0A7B F0                MOVX    @DPTR,A
+0A7C         ?C0244:
+0A7C 900000      R     MOV     DPTR,#DL
+0A7F E0                MOVX    A,@DPTR
+0A80 14                DEC     A
+0A81 F0                MOVX    @DPTR,A
+0A82 900000      R     MOV     DPTR,#DL
+0A85 E0                MOVX    A,@DPTR
+0A86 FF                MOV     R7,A
+0A87 EF                MOV     A,R7
+0A88 70F2              JNZ     ?C0244
+0A8A 8002              SJMP    ?C0245
+0A8C         ?C0246:
+0A8C 80EE              SJMP    ?C0244
+0A8E         ?C0245:
+                                           ; SOURCE LINE # 278
+0A8E 20EC30            JB      MDI,?C0247
+                                           ; SOURCE LINE # 279
+0A91 900000      R     MOV     DPTR,#js
+0A94 E0                MOVX    A,@DPTR
+0A95 FF                MOV     R7,A
+0A96 7400        R     MOV     A,#LOW adcbuf
+0A98 2F                ADD     A,R7
+0A99 F582              MOV     DPL,A
+0A9B E4                CLR     A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 43  
+
+0A9C 3400        R     ADDC    A,#HIGH adcbuf
+0A9E F583              MOV     DPH,A
+0AA0 E0                MOVX    A,@DPTR
+0AA1 FF                MOV     R7,A
+0AA2 EF                MOV     A,R7
+0AA3 25E0              ADD     A,ACC
+0AA5 FF                MOV     R7,A
+0AA6 EF                MOV     A,R7
+0AA7 F0                MOVX    @DPTR,A
+0AA8 900000      R     MOV     DPTR,#js
+0AAB E0                MOVX    A,@DPTR
+0AAC FF                MOV     R7,A
+0AAD 7400        R     MOV     A,#LOW adcbuf
+0AAF 2F                ADD     A,R7
+0AB0 F582              MOV     DPL,A
+0AB2 E4                CLR     A
+0AB3 3400        R     ADDC    A,#HIGH adcbuf
+0AB5 F583              MOV     DPH,A
+0AB7 E0                MOVX    A,@DPTR
+0AB8 FF                MOV     R7,A
+0AB9 EF                MOV     A,R7
+0ABA 54FE              ANL     A,#0FEH
+0ABC FF                MOV     R7,A
+0ABD EF                MOV     A,R7
+0ABE F0                MOVX    @DPTR,A
+0ABF 802E              SJMP    ?C0248
+0AC1         ?C0247:
+                                           ; SOURCE LINE # 281
+0AC1 900000      R     MOV     DPTR,#js
+0AC4 E0                MOVX    A,@DPTR
+0AC5 FF                MOV     R7,A
+0AC6 7400        R     MOV     A,#LOW adcbuf
+0AC8 2F                ADD     A,R7
+0AC9 F582              MOV     DPL,A
+0ACB E4                CLR     A
+0ACC 3400        R     ADDC    A,#HIGH adcbuf
+0ACE F583              MOV     DPH,A
+0AD0 E0                MOVX    A,@DPTR
+0AD1 FF                MOV     R7,A
+0AD2 EF                MOV     A,R7
+0AD3 25E0              ADD     A,ACC
+0AD5 FF                MOV     R7,A
+0AD6 EF                MOV     A,R7
+0AD7 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 282
+0AD8 900000      R     MOV     DPTR,#js
+0ADB E0                MOVX    A,@DPTR
+0ADC FF                MOV     R7,A
+0ADD 7400        R     MOV     A,#LOW adcbuf
+0ADF 2F                ADD     A,R7
+0AE0 F582              MOV     DPL,A
+0AE2 E4                CLR     A
+0AE3 3400        R     ADDC    A,#HIGH adcbuf
+0AE5 F583              MOV     DPH,A
+0AE7 E0                MOVX    A,@DPTR
+0AE8 FF                MOV     R7,A
+0AE9 EF                MOV     A,R7
+0AEA 4401              ORL     A,#01H
+0AEC FF                MOV     R7,A
+0AED EF                MOV     A,R7
+0AEE F0                MOVX    @DPTR,A
+0AEF         ?C0248:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 44  
+
+                                           ; SOURCE LINE # 283
+0AEF C2ED              CLR     MCO
+0AF1 900000      R     MOV     DPTR,#DL
+0AF4 7402              MOV     A,#02H
+0AF6 F0                MOVX    @DPTR,A
+0AF7         ?C0249:
+0AF7 900000      R     MOV     DPTR,#DL
+0AFA E0                MOVX    A,@DPTR
+0AFB 14                DEC     A
+0AFC F0                MOVX    @DPTR,A
+0AFD 900000      R     MOV     DPTR,#DL
+0B00 E0                MOVX    A,@DPTR
+0B01 FF                MOV     R7,A
+0B02 EF                MOV     A,R7
+0B03 70F2              JNZ     ?C0249
+0B05 8002              SJMP    ?C0240
+0B07         ?C0251:
+0B07 80EE              SJMP    ?C0249
+0B09         ?C0250:
+0B09         ?C0240:
+0B09 900000      R     MOV     DPTR,#is
+0B0C E0                MOVX    A,@DPTR
+0B0D 04                INC     A
+0B0E F0                MOVX    @DPTR,A
+0B0F 020000      R     LJMP    ?C0238
+0B12         ?C0239:
+                                           ; SOURCE LINE # 284
+0B12 C2EF              CLR     MDO
+                                           ; SOURCE LINE # 285
+0B14 900000      R     MOV     DPTR,#js
+0B17 E0                MOVX    A,@DPTR
+0B18 FF                MOV     R7,A
+0B19 EF                MOV     A,R7
+0B1A B40202            CJNE    A,#02H,?C0252
+0B1D D2EF              SETB    MDO
+0B1F         ?C0252:
+                                           ; SOURCE LINE # 286
+0B1F D2EE              SETB    MDE
+                                           ; SOURCE LINE # 287
+0B21 D2ED              SETB    MCO
+0B23         ?C0253:
+0B23 30EDFD            JNB     MCO,?C0253
+0B26 8002              SJMP    ?C0254
+0B28         ?C0255:
+0B28 80F9              SJMP    ?C0253
+0B2A         ?C0254:
+                                           ; SOURCE LINE # 288
+0B2A 900000      R     MOV     DPTR,#DL
+0B2D 7402              MOV     A,#02H
+0B2F F0                MOVX    @DPTR,A
+0B30         ?C0256:
+0B30 900000      R     MOV     DPTR,#DL
+0B33 E0                MOVX    A,@DPTR
+0B34 14                DEC     A
+0B35 F0                MOVX    @DPTR,A
+0B36 900000      R     MOV     DPTR,#DL
+0B39 E0                MOVX    A,@DPTR
+0B3A FF                MOV     R7,A
+0B3B EF                MOV     A,R7
+0B3C 70F2              JNZ     ?C0256
+0B3E 8002              SJMP    ?C0257
+0B40         ?C0258:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 45  
+
+0B40 80EE              SJMP    ?C0256
+0B42         ?C0257:
+                                           ; SOURCE LINE # 289
+0B42 C2ED              CLR     MCO
+0B44 C2EE              CLR     MDE
+0B46 900000      R     MOV     DPTR,#DL
+0B49 7402              MOV     A,#02H
+0B4B F0                MOVX    @DPTR,A
+0B4C         ?C0259:
+0B4C 900000      R     MOV     DPTR,#DL
+0B4F E0                MOVX    A,@DPTR
+0B50 14                DEC     A
+0B51 F0                MOVX    @DPTR,A
+0B52 900000      R     MOV     DPTR,#DL
+0B55 E0                MOVX    A,@DPTR
+0B56 FF                MOV     R7,A
+0B57 EF                MOV     A,R7
+0B58 70F2              JNZ     ?C0259
+0B5A 8002              SJMP    ?C0237
+0B5C         ?C0261:
+0B5C 80EE              SJMP    ?C0259
+0B5E         ?C0260:
+0B5E         ?C0237:
+0B5E 900000      R     MOV     DPTR,#js
+0B61 E0                MOVX    A,@DPTR
+0B62 04                INC     A
+0B63 F0                MOVX    @DPTR,A
+0B64 020000      R     LJMP    ?C0235
+0B67         ?C0236:
+                                           ; SOURCE LINE # 290
+0B67 D2EE              SETB    MDE
+0B69 900000      R     MOV     DPTR,#DL
+0B6C 7402              MOV     A,#02H
+0B6E F0                MOVX    @DPTR,A
+0B6F         ?C0262:
+0B6F 900000      R     MOV     DPTR,#DL
+0B72 E0                MOVX    A,@DPTR
+0B73 14                DEC     A
+0B74 F0                MOVX    @DPTR,A
+0B75 900000      R     MOV     DPTR,#DL
+0B78 E0                MOVX    A,@DPTR
+0B79 FF                MOV     R7,A
+0B7A EF                MOV     A,R7
+0B7B 70F2              JNZ     ?C0262
+0B7D 8002              SJMP    ?C0263
+0B7F         ?C0264:
+0B7F 80EE              SJMP    ?C0262
+0B81         ?C0263:
+                                           ; SOURCE LINE # 291
+0B81 C2EF              CLR     MDO
+0B83 900000      R     MOV     DPTR,#DL
+0B86 7402              MOV     A,#02H
+0B88 F0                MOVX    @DPTR,A
+0B89         ?C0265:
+0B89 900000      R     MOV     DPTR,#DL
+0B8C E0                MOVX    A,@DPTR
+0B8D 14                DEC     A
+0B8E F0                MOVX    @DPTR,A
+0B8F 900000      R     MOV     DPTR,#DL
+0B92 E0                MOVX    A,@DPTR
+0B93 FF                MOV     R7,A
+0B94 EF                MOV     A,R7
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 46  
+
+0B95 70F2              JNZ     ?C0265
+0B97 8002              SJMP    ?C0266
+0B99         ?C0267:
+0B99 80EE              SJMP    ?C0265
+0B9B         ?C0266:
+                                           ; SOURCE LINE # 292
+0B9B D2ED              SETB    MCO
+0B9D         ?C0268:
+0B9D 30EDFD            JNB     MCO,?C0268
+0BA0 8002              SJMP    ?C0269
+0BA2         ?C0270:
+0BA2 80F9              SJMP    ?C0268
+0BA4         ?C0269:
+0BA4 900000      R     MOV     DPTR,#DL
+0BA7 7402              MOV     A,#02H
+0BA9 F0                MOVX    @DPTR,A
+0BAA         ?C0271:
+0BAA 900000      R     MOV     DPTR,#DL
+0BAD E0                MOVX    A,@DPTR
+0BAE 14                DEC     A
+0BAF F0                MOVX    @DPTR,A
+0BB0 900000      R     MOV     DPTR,#DL
+0BB3 E0                MOVX    A,@DPTR
+0BB4 FF                MOV     R7,A
+0BB5 EF                MOV     A,R7
+0BB6 70F2              JNZ     ?C0271
+0BB8 8002              SJMP    ?C0272
+0BBA         ?C0273:
+0BBA 80EE              SJMP    ?C0271
+0BBC         ?C0272:
+0BBC D2EF              SETB    MDO
+                                           ; SOURCE LINE # 296
+0BBE 900000      R     MOV     DPTR,#adcbuf+01H
+0BC1 E0                MOVX    A,@DPTR
+0BC2 FF                MOV     R7,A
+0BC3 7E00              MOV     R6,#00H
+0BC5 EF                MOV     A,R7
+0BC6 7F00              MOV     R7,#00H
+0BC8 FE                MOV     R6,A
+0BC9 900000      R     MOV     DPTR,#adcbuf+02H
+0BCC E0                MOVX    A,@DPTR
+0BCD FD                MOV     R5,A
+0BCE 7C00              MOV     R4,#00H
+0BD0 EE                MOV     A,R6
+0BD1 4C                ORL     A,R4
+0BD2 FE                MOV     R6,A
+0BD3 EF                MOV     A,R7
+0BD4 4D                ORL     A,R5
+0BD5 FF                MOV     R7,A
+0BD6 900000      E     MOV     DPTR,#lopatka
+0BD9 EE                MOV     A,R6
+0BDA F0                MOVX    @DPTR,A
+0BDB A3                INC     DPTR
+0BDC EF                MOV     A,R7
+0BDD F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 297
+0BDE 900000      R     MOV     DPTR,#adcbuf
+0BE1 E0                MOVX    A,@DPTR
+0BE2 FF                MOV     R7,A
+0BE3 900000      E     MOV     DPTR,#ekran
+0BE6 EF                MOV     A,R7
+0BE7 F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 47  
+
+                                           ; SOURCE LINE # 298
+0BE8 900000      E     MOV     DPTR,#ekran
+0BEB E0                MOVX    A,@DPTR
+0BEC FF                MOV     R7,A
+0BED EF                MOV     A,R7
+0BEE 540C              ANL     A,#0CH
+0BF0 FF                MOV     R7,A
+0BF1 EF                MOV     A,R7
+0BF2 6004              JZ      ?C0275
+0BF4 7F01              MOV     R7,#01H
+0BF6 8002              SJMP    ?C0276
+0BF8         ?C0275:
+0BF8 7F00              MOV     R7,#00H
+0BFA         ?C0276:
+0BFA 900000      E     MOV     DPTR,#ekran
+0BFD E0                MOVX    A,@DPTR
+0BFE FE                MOV     R6,A
+0BFF EE                MOV     A,R6
+0C00 7004              JNZ     ?C0277
+0C02 7E01              MOV     R6,#01H
+0C04 8002              SJMP    ?C0278
+0C06         ?C0277:
+0C06 7E00              MOV     R6,#00H
+0C08         ?C0278:
+0C08 EF                MOV     A,R7
+0C09 4E                ORL     A,R6
+0C0A FF                MOV     R7,A
+0C0B 900000      E     MOV     DPTR,#ekran
+0C0E E0                MOVX    A,@DPTR
+0C0F FE                MOV     R6,A
+0C10 EE                MOV     A,R6
+0C11 B4FF04            CJNE    A,#0FFH,?C0279
+0C14 7E01              MOV     R6,#01H
+0C16 8002              SJMP    ?C0280
+0C18         ?C0279:
+0C18 7E00              MOV     R6,#00H
+0C1A         ?C0280:
+0C1A EE                MOV     A,R6
+0C1B 4F                ORL     A,R7
+0C1C FF                MOV     R7,A
+0C1D EF                MOV     A,R7
+0C1E 6006              JZ      ?C0274
+                                           ; SOURCE LINE # 299
+                                           ; SOURCE LINE # 300
+0C20 900000      E     MOV     DPTR,#ekran
+0C23 7471              MOV     A,#071H
+0C25 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 301
+0C26         ?C0274:
+                                           ; SOURCE LINE # 305
+0C26 900000      R     MOV     DPTR,#tmp_rw
+0C29 74D0              MOV     A,#0D0H
+0C2B F0                MOVX    @DPTR,A
+0C2C C2EF              CLR     MDO
+0C2E 900000      R     MOV     DPTR,#DL
+0C31 7402              MOV     A,#02H
+0C33 F0                MOVX    @DPTR,A
+0C34         ?C0281:
+0C34 900000      R     MOV     DPTR,#DL
+0C37 E0                MOVX    A,@DPTR
+0C38 14                DEC     A
+0C39 F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 48  
+
+0C3A 900000      R     MOV     DPTR,#DL
+0C3D E0                MOVX    A,@DPTR
+0C3E FF                MOV     R7,A
+0C3F EF                MOV     A,R7
+0C40 70F2              JNZ     ?C0281
+0C42 8002              SJMP    ?C0282
+0C44         ?C0283:
+0C44 80EE              SJMP    ?C0281
+0C46         ?C0282:
+0C46 C2ED              CLR     MCO
+                                           ; SOURCE LINE # 306
+0C48 900000      R     MOV     DPTR,#js
+0C4B E4                CLR     A
+0C4C F0                MOVX    @DPTR,A
+0C4D         ?C0284:
+0C4D 900000      R     MOV     DPTR,#js
+0C50 E0                MOVX    A,@DPTR
+0C51 FF                MOV     R7,A
+0C52 EF                MOV     A,R7
+0C53 C3                CLR     C
+0C54 9402              SUBB    A,#02H
+0C56 4003              JC      $ + 5H
+0C58 020000      R     LJMP    ?C0285
+                                           ; SOURCE LINE # 307
+0C5B 900000      R     MOV     DPTR,#is
+0C5E E4                CLR     A
+0C5F F0                MOVX    @DPTR,A
+0C60         ?C0287:
+0C60 900000      R     MOV     DPTR,#is
+0C63 E0                MOVX    A,@DPTR
+0C64 FF                MOV     R7,A
+0C65 EF                MOV     A,R7
+0C66 C3                CLR     C
+0C67 9408              SUBB    A,#08H
+0C69 5062              JNC     ?C0288
+                                           ; SOURCE LINE # 308
+0C6B 900000      R     MOV     DPTR,#tmp_rw
+0C6E E0                MOVX    A,@DPTR
+0C6F FF                MOV     R7,A
+0C70 EF                MOV     A,R7
+0C71 20E704            JB      ACC.7,?C0290
+                                           ; SOURCE LINE # 309
+0C74 C2EF              CLR     MDO
+0C76 8002              SJMP    ?C0291
+0C78         ?C0290:
+0C78 D2EF              SETB    MDO
+0C7A         ?C0291:
+                                           ; SOURCE LINE # 310
+0C7A 900000      R     MOV     DPTR,#DL
+0C7D 7402              MOV     A,#02H
+0C7F F0                MOVX    @DPTR,A
+0C80         ?C0292:
+0C80 900000      R     MOV     DPTR,#DL
+0C83 E0                MOVX    A,@DPTR
+0C84 14                DEC     A
+0C85 F0                MOVX    @DPTR,A
+0C86 900000      R     MOV     DPTR,#DL
+0C89 E0                MOVX    A,@DPTR
+0C8A FF                MOV     R7,A
+0C8B EF                MOV     A,R7
+0C8C 70F2              JNZ     ?C0292
+0C8E 8002              SJMP    ?C0293
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 49  
+
+0C90         ?C0294:
+0C90 80EE              SJMP    ?C0292
+0C92         ?C0293:
+0C92 D2ED              SETB    MCO
+0C94         ?C0295:
+                                           ; SOURCE LINE # 311
+0C94 30EDFD            JNB     MCO,?C0295
+0C97 8002              SJMP    ?C0296
+0C99         ?C0297:
+0C99 80F9              SJMP    ?C0295
+0C9B         ?C0296:
+                                           ; SOURCE LINE # 312
+0C9B 900000      R     MOV     DPTR,#DL
+0C9E 7402              MOV     A,#02H
+0CA0 F0                MOVX    @DPTR,A
+0CA1         ?C0298:
+0CA1 900000      R     MOV     DPTR,#DL
+0CA4 E0                MOVX    A,@DPTR
+0CA5 14                DEC     A
+0CA6 F0                MOVX    @DPTR,A
+0CA7 900000      R     MOV     DPTR,#DL
+0CAA E0                MOVX    A,@DPTR
+0CAB FF                MOV     R7,A
+0CAC EF                MOV     A,R7
+0CAD 70F2              JNZ     ?C0298
+0CAF 8002              SJMP    ?C0299
+0CB1         ?C0300:
+0CB1 80EE              SJMP    ?C0298
+0CB3         ?C0299:
+0CB3 C2ED              CLR     MCO
+0CB5 C2EF              CLR     MDO
+                                           ; SOURCE LINE # 313
+0CB7 900000      R     MOV     DPTR,#tmp_rw
+0CBA E0                MOVX    A,@DPTR
+0CBB FF                MOV     R7,A
+0CBC EF                MOV     A,R7
+0CBD 25E0              ADD     A,ACC
+0CBF FF                MOV     R7,A
+0CC0 900000      R     MOV     DPTR,#tmp_rw
+0CC3 EF                MOV     A,R7
+0CC4 F0                MOVX    @DPTR,A
+0CC5         ?C0289:
+0CC5 900000      R     MOV     DPTR,#is
+0CC8 E0                MOVX    A,@DPTR
+0CC9 04                INC     A
+0CCA F0                MOVX    @DPTR,A
+0CCB 8093              SJMP    ?C0287
+0CCD         ?C0288:
+                                           ; SOURCE LINE # 314
+0CCD 900000      R     MOV     DPTR,#DL
+0CD0 7402              MOV     A,#02H
+0CD2 F0                MOVX    @DPTR,A
+0CD3         ?C0301:
+0CD3 900000      R     MOV     DPTR,#DL
+0CD6 E0                MOVX    A,@DPTR
+0CD7 14                DEC     A
+0CD8 F0                MOVX    @DPTR,A
+0CD9 900000      R     MOV     DPTR,#DL
+0CDC E0                MOVX    A,@DPTR
+0CDD FF                MOV     R7,A
+0CDE EF                MOV     A,R7
+0CDF 70F2              JNZ     ?C0301
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 50  
+
+0CE1 8002              SJMP    ?C0302
+0CE3         ?C0303:
+0CE3 80EE              SJMP    ?C0301
+0CE5         ?C0302:
+                                           ; SOURCE LINE # 315
+0CE5 C2EE              CLR     MDE
+0CE7 D2ED              SETB    MCO
+0CE9 D2EF              SETB    MDO
+0CEB         ?C0304:
+0CEB 30EDFD            JNB     MCO,?C0304
+0CEE 8002              SJMP    ?C0305
+0CF0         ?C0306:
+0CF0 80F9              SJMP    ?C0304
+0CF2         ?C0305:
+                                           ; SOURCE LINE # 316
+0CF2 900000      R     MOV     DPTR,#DL
+0CF5 74C8              MOV     A,#0C8H
+0CF7 F0                MOVX    @DPTR,A
+0CF8         ?C0307:
+0CF8 900000      R     MOV     DPTR,#DL
+0CFB E0                MOVX    A,@DPTR
+0CFC 14                DEC     A
+0CFD F0                MOVX    @DPTR,A
+0CFE 900000      R     MOV     DPTR,#DL
+0D01 E0                MOVX    A,@DPTR
+0D02 FF                MOV     R7,A
+0D03 EF                MOV     A,R7
+0D04 7004              JNZ     ?C0310
+0D06 7F01              MOV     R7,#01H
+0D08 8002              SJMP    ?C0311
+0D0A         ?C0310:
+0D0A 7F00              MOV     R7,#00H
+0D0C         ?C0311:
+0D0C 20EC04            JB      MDI,?C0312
+0D0F 7E01              MOV     R6,#01H
+0D11 8002              SJMP    ?C0313
+0D13         ?C0312:
+0D13 7E00              MOV     R6,#00H
+0D15         ?C0313:
+0D15 EE                MOV     A,R6
+0D16 4F                ORL     A,R7
+0D17 FF                MOV     R7,A
+0D18 EF                MOV     A,R7
+0D19 60DD              JZ      ?C0307
+0D1B 8002              SJMP    ?C0308
+0D1D         ?C0309:
+0D1D 80D9              SJMP    ?C0307
+0D1F         ?C0308:
+                                           ; SOURCE LINE # 317
+0D1F 900000      R     MOV     DPTR,#DL
+0D22 E0                MOVX    A,@DPTR
+0D23 FF                MOV     R7,A
+0D24 EF                MOV     A,R7
+0D25 7006              JNZ     ?C0314
+0D27 900000      E     MOV     DPTR,#b_err_cl
+0D2A E0                MOVX    A,@DPTR
+0D2B 04                INC     A
+0D2C F0                MOVX    @DPTR,A
+0D2D         ?C0314:
+                                           ; SOURCE LINE # 319
+0D2D D2EE              SETB    MDE
+0D2F C2ED              CLR     MCO
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 51  
+
+                                           ; SOURCE LINE # 320
+0D31 900000      R     MOV     DPTR,#tmp_rw
+0D34 E4                CLR     A
+0D35 F0                MOVX    @DPTR,A
+0D36         ?C0286:
+0D36 900000      R     MOV     DPTR,#js
+0D39 E0                MOVX    A,@DPTR
+0D3A 04                INC     A
+0D3B F0                MOVX    @DPTR,A
+0D3C 020000      R     LJMP    ?C0284
+0D3F         ?C0285:
+                                           ; SOURCE LINE # 321
+0D3F 900000      R     MOV     DPTR,#DL
+0D42 7402              MOV     A,#02H
+0D44 F0                MOVX    @DPTR,A
+0D45         ?C0315:
+0D45 900000      R     MOV     DPTR,#DL
+0D48 E0                MOVX    A,@DPTR
+0D49 14                DEC     A
+0D4A F0                MOVX    @DPTR,A
+0D4B 900000      R     MOV     DPTR,#DL
+0D4E E0                MOVX    A,@DPTR
+0D4F FF                MOV     R7,A
+0D50 EF                MOV     A,R7
+0D51 70F2              JNZ     ?C0315
+0D53 8002              SJMP    ?C0316
+0D55         ?C0317:
+0D55 80EE              SJMP    ?C0315
+0D57         ?C0316:
+0D57 D2ED              SETB    MCO
+0D59         ?C0318:
+                                           ; SOURCE LINE # 322
+0D59 30EDFD            JNB     MCO,?C0318
+0D5C 8002              SJMP    ?C0319
+0D5E         ?C0320:
+0D5E 80F9              SJMP    ?C0318
+0D60         ?C0319:
+                                           ; SOURCE LINE # 323
+0D60 900000      R     MOV     DPTR,#DL
+0D63 7402              MOV     A,#02H
+0D65 F0                MOVX    @DPTR,A
+0D66         ?C0321:
+0D66 900000      R     MOV     DPTR,#DL
+0D69 E0                MOVX    A,@DPTR
+0D6A 14                DEC     A
+0D6B F0                MOVX    @DPTR,A
+0D6C 900000      R     MOV     DPTR,#DL
+0D6F E0                MOVX    A,@DPTR
+0D70 FF                MOV     R7,A
+0D71 EF                MOV     A,R7
+0D72 70F2              JNZ     ?C0321
+0D74 8002              SJMP    ?C0322
+0D76         ?C0323:
+0D76 80EE              SJMP    ?C0321
+0D78         ?C0322:
+                                           ; SOURCE LINE # 324
+0D78 D2EF              SETB    MDO
+0D7A 900000      R     MOV     DPTR,#DL
+0D7D 7402              MOV     A,#02H
+0D7F F0                MOVX    @DPTR,A
+0D80         ?C0324:
+0D80 900000      R     MOV     DPTR,#DL
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 52  
+
+0D83 E0                MOVX    A,@DPTR
+0D84 14                DEC     A
+0D85 F0                MOVX    @DPTR,A
+0D86 900000      R     MOV     DPTR,#DL
+0D89 E0                MOVX    A,@DPTR
+0D8A FF                MOV     R7,A
+0D8B EF                MOV     A,R7
+0D8C 70F2              JNZ     ?C0324
+0D8E 8002              SJMP    ?C0325
+0D90         ?C0326:
+0D90 80EE              SJMP    ?C0324
+0D92         ?C0325:
+                                           ; SOURCE LINE # 325
+0D92 900000      R     MOV     DPTR,#tmp_rw
+0D95 74D1              MOV     A,#0D1H
+0D97 F0                MOVX    @DPTR,A
+0D98 900000      R     MOV     DPTR,#DL
+0D9B 7402              MOV     A,#02H
+0D9D F0                MOVX    @DPTR,A
+0D9E         ?C0327:
+0D9E 900000      R     MOV     DPTR,#DL
+0DA1 E0                MOVX    A,@DPTR
+0DA2 14                DEC     A
+0DA3 F0                MOVX    @DPTR,A
+0DA4 900000      R     MOV     DPTR,#DL
+0DA7 E0                MOVX    A,@DPTR
+0DA8 FF                MOV     R7,A
+0DA9 EF                MOV     A,R7
+0DAA 70F2              JNZ     ?C0327
+0DAC 8002              SJMP    ?C0328
+0DAE         ?C0329:
+0DAE 80EE              SJMP    ?C0327
+0DB0         ?C0328:
+                                           ; SOURCE LINE # 326
+0DB0 C2EF              CLR     MDO
+0DB2 900000      R     MOV     DPTR,#DL
+0DB5 7402              MOV     A,#02H
+0DB7 F0                MOVX    @DPTR,A
+0DB8         ?C0330:
+0DB8 900000      R     MOV     DPTR,#DL
+0DBB E0                MOVX    A,@DPTR
+0DBC 14                DEC     A
+0DBD F0                MOVX    @DPTR,A
+0DBE 900000      R     MOV     DPTR,#DL
+0DC1 E0                MOVX    A,@DPTR
+0DC2 FF                MOV     R7,A
+0DC3 EF                MOV     A,R7
+0DC4 70F2              JNZ     ?C0330
+0DC6 8002              SJMP    ?C0331
+0DC8         ?C0332:
+0DC8 80EE              SJMP    ?C0330
+0DCA         ?C0331:
+                                           ; SOURCE LINE # 327
+0DCA C2ED              CLR     MCO
+0DCC 900000      R     MOV     DPTR,#DL
+0DCF 7402              MOV     A,#02H
+0DD1 F0                MOVX    @DPTR,A
+0DD2         ?C0333:
+0DD2 900000      R     MOV     DPTR,#DL
+0DD5 E0                MOVX    A,@DPTR
+0DD6 14                DEC     A
+0DD7 F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 53  
+
+0DD8 900000      R     MOV     DPTR,#DL
+0DDB E0                MOVX    A,@DPTR
+0DDC FF                MOV     R7,A
+0DDD EF                MOV     A,R7
+0DDE 70F2              JNZ     ?C0333
+0DE0 8002              SJMP    ?C0334
+0DE2         ?C0335:
+0DE2 80EE              SJMP    ?C0333
+0DE4         ?C0334:
+                                           ; SOURCE LINE # 328
+0DE4 900000      R     MOV     DPTR,#is
+0DE7 E4                CLR     A
+0DE8 F0                MOVX    @DPTR,A
+0DE9         ?C0336:
+0DE9 900000      R     MOV     DPTR,#is
+0DEC E0                MOVX    A,@DPTR
+0DED FF                MOV     R7,A
+0DEE EF                MOV     A,R7
+0DEF C3                CLR     C
+0DF0 9408              SUBB    A,#08H
+0DF2 5062              JNC     ?C0337
+                                           ; SOURCE LINE # 329
+0DF4 900000      R     MOV     DPTR,#tmp_rw
+0DF7 E0                MOVX    A,@DPTR
+0DF8 FF                MOV     R7,A
+0DF9 EF                MOV     A,R7
+0DFA 20E704            JB      ACC.7,?C0339
+0DFD C2EF              CLR     MDO
+0DFF 8002              SJMP    ?C0340
+0E01         ?C0339:
+0E01 D2EF              SETB    MDO
+0E03         ?C0340:
+                                           ; SOURCE LINE # 330
+0E03 900000      R     MOV     DPTR,#DL
+0E06 7402              MOV     A,#02H
+0E08 F0                MOVX    @DPTR,A
+0E09         ?C0341:
+0E09 900000      R     MOV     DPTR,#DL
+0E0C E0                MOVX    A,@DPTR
+0E0D 14                DEC     A
+0E0E F0                MOVX    @DPTR,A
+0E0F 900000      R     MOV     DPTR,#DL
+0E12 E0                MOVX    A,@DPTR
+0E13 FF                MOV     R7,A
+0E14 EF                MOV     A,R7
+0E15 70F2              JNZ     ?C0341
+0E17 8002              SJMP    ?C0342
+0E19         ?C0343:
+0E19 80EE              SJMP    ?C0341
+0E1B         ?C0342:
+                                           ; SOURCE LINE # 331
+0E1B D2ED              SETB    MCO
+0E1D 900000      R     MOV     DPTR,#DL
+0E20 7402              MOV     A,#02H
+0E22 F0                MOVX    @DPTR,A
+0E23         ?C0344:
+0E23 30EDFD            JNB     MCO,?C0344
+0E26 8002              SJMP    ?C0347
+0E28         ?C0346:
+0E28 80F9              SJMP    ?C0344
+0E2A         ?C0345:
+0E2A         ?C0347:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 54  
+
+0E2A 900000      R     MOV     DPTR,#DL
+0E2D E0                MOVX    A,@DPTR
+0E2E 14                DEC     A
+0E2F F0                MOVX    @DPTR,A
+0E30 900000      R     MOV     DPTR,#DL
+0E33 E0                MOVX    A,@DPTR
+0E34 FF                MOV     R7,A
+0E35 EF                MOV     A,R7
+0E36 70F2              JNZ     ?C0347
+0E38 8002              SJMP    ?C0348
+0E3A         ?C0349:
+0E3A 80EE              SJMP    ?C0347
+0E3C         ?C0348:
+0E3C C2ED              CLR     MCO
+0E3E C2EF              CLR     MDO
+                                           ; SOURCE LINE # 332
+0E40 900000      R     MOV     DPTR,#tmp_rw
+0E43 E0                MOVX    A,@DPTR
+0E44 FF                MOV     R7,A
+0E45 EF                MOV     A,R7
+0E46 25E0              ADD     A,ACC
+0E48 FF                MOV     R7,A
+0E49 900000      R     MOV     DPTR,#tmp_rw
+0E4C EF                MOV     A,R7
+0E4D F0                MOVX    @DPTR,A
+0E4E         ?C0338:
+0E4E 900000      R     MOV     DPTR,#is
+0E51 E0                MOVX    A,@DPTR
+0E52 04                INC     A
+0E53 F0                MOVX    @DPTR,A
+0E54 8093              SJMP    ?C0336
+0E56         ?C0337:
+                                           ; SOURCE LINE # 333
+0E56 900000      R     MOV     DPTR,#DL
+0E59 7402              MOV     A,#02H
+0E5B F0                MOVX    @DPTR,A
+0E5C         ?C0350:
+0E5C 900000      R     MOV     DPTR,#DL
+0E5F E0                MOVX    A,@DPTR
+0E60 14                DEC     A
+0E61 F0                MOVX    @DPTR,A
+0E62 900000      R     MOV     DPTR,#DL
+0E65 E0                MOVX    A,@DPTR
+0E66 FF                MOV     R7,A
+0E67 EF                MOV     A,R7
+0E68 70F2              JNZ     ?C0350
+0E6A 8002              SJMP    ?C0351
+0E6C         ?C0352:
+0E6C 80EE              SJMP    ?C0350
+0E6E         ?C0351:
+                                           ; SOURCE LINE # 334
+0E6E C2EE              CLR     MDE
+0E70 D2EF              SETB    MDO
+0E72 D2ED              SETB    MCO
+0E74 900000      R     MOV     DPTR,#DL
+0E77 7402              MOV     A,#02H
+0E79 F0                MOVX    @DPTR,A
+0E7A         ?C0353:
+0E7A 30EDFD            JNB     MCO,?C0353
+0E7D 8002              SJMP    ?C0356
+0E7F         ?C0355:
+0E7F 80F9              SJMP    ?C0353
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 55  
+
+0E81         ?C0354:
+0E81         ?C0356:
+0E81 900000      R     MOV     DPTR,#DL
+0E84 E0                MOVX    A,@DPTR
+0E85 14                DEC     A
+0E86 F0                MOVX    @DPTR,A
+0E87 900000      R     MOV     DPTR,#DL
+0E8A E0                MOVX    A,@DPTR
+0E8B FF                MOV     R7,A
+0E8C EF                MOV     A,R7
+0E8D 70F2              JNZ     ?C0356
+0E8F 8002              SJMP    ?C0357
+0E91         ?C0358:
+0E91 80EE              SJMP    ?C0356
+0E93         ?C0357:
+                                           ; SOURCE LINE # 335
+0E93 900000      R     MOV     DPTR,#DL
+0E96 74C8              MOV     A,#0C8H
+0E98 F0                MOVX    @DPTR,A
+0E99         ?C0359:
+0E99 900000      R     MOV     DPTR,#DL
+0E9C E0                MOVX    A,@DPTR
+0E9D 14                DEC     A
+0E9E F0                MOVX    @DPTR,A
+0E9F 900000      R     MOV     DPTR,#DL
+0EA2 E0                MOVX    A,@DPTR
+0EA3 FF                MOV     R7,A
+0EA4 EF                MOV     A,R7
+0EA5 7004              JNZ     ?C0362
+0EA7 7F01              MOV     R7,#01H
+0EA9 8002              SJMP    ?C0363
+0EAB         ?C0362:
+0EAB 7F00              MOV     R7,#00H
+0EAD         ?C0363:
+0EAD 20EC04            JB      MDI,?C0364
+0EB0 7E01              MOV     R6,#01H
+0EB2 8002              SJMP    ?C0365
+0EB4         ?C0364:
+0EB4 7E00              MOV     R6,#00H
+0EB6         ?C0365:
+0EB6 EE                MOV     A,R6
+0EB7 4F                ORL     A,R7
+0EB8 FF                MOV     R7,A
+0EB9 EF                MOV     A,R7
+0EBA 60DD              JZ      ?C0359
+0EBC 8002              SJMP    ?C0360
+0EBE         ?C0361:
+0EBE 80D9              SJMP    ?C0359
+0EC0         ?C0360:
+                                           ; SOURCE LINE # 336
+0EC0 900000      R     MOV     DPTR,#DL
+0EC3 E0                MOVX    A,@DPTR
+0EC4 FF                MOV     R7,A
+0EC5 EF                MOV     A,R7
+0EC6 7006              JNZ     ?C0366
+0EC8 900000      E     MOV     DPTR,#b_err_cl
+0ECB E0                MOVX    A,@DPTR
+0ECC 04                INC     A
+0ECD F0                MOVX    @DPTR,A
+0ECE         ?C0366:
+                                           ; SOURCE LINE # 338
+0ECE D2EE              SETB    MDE
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 56  
+
+0ED0 C2ED              CLR     MCO
+0ED2 900000      R     MOV     DPTR,#DL
+0ED5 7402              MOV     A,#02H
+0ED7 F0                MOVX    @DPTR,A
+0ED8         ?C0367:
+0ED8 900000      R     MOV     DPTR,#DL
+0EDB E0                MOVX    A,@DPTR
+0EDC 14                DEC     A
+0EDD F0                MOVX    @DPTR,A
+0EDE 900000      R     MOV     DPTR,#DL
+0EE1 E0                MOVX    A,@DPTR
+0EE2 FF                MOV     R7,A
+0EE3 EF                MOV     A,R7
+0EE4 70F2              JNZ     ?C0367
+0EE6 8002              SJMP    ?C0368
+0EE8         ?C0369:
+0EE8 80EE              SJMP    ?C0367
+0EEA         ?C0368:
+                                           ; SOURCE LINE # 339
+0EEA 900000      R     MOV     DPTR,#js
+0EED E4                CLR     A
+0EEE F0                MOVX    @DPTR,A
+0EEF         ?C0370:
+0EEF 900000      R     MOV     DPTR,#js
+0EF2 E0                MOVX    A,@DPTR
+0EF3 FF                MOV     R7,A
+0EF4 EF                MOV     A,R7
+0EF5 C3                CLR     C
+0EF6 9408              SUBB    A,#08H
+0EF8 4003              JC      $ + 5H
+0EFA 020000      R     LJMP    ?C0371
+                                           ; SOURCE LINE # 340
+0EFD 900000      R     MOV     DPTR,#is
+0F00 E4                CLR     A
+0F01 F0                MOVX    @DPTR,A
+0F02         ?C0373:
+0F02 900000      R     MOV     DPTR,#is
+0F05 E0                MOVX    A,@DPTR
+0F06 FF                MOV     R7,A
+0F07 EF                MOV     A,R7
+0F08 C3                CLR     C
+0F09 9408              SUBB    A,#08H
+0F0B 4003              JC      $ + 5H
+0F0D 020000      R     LJMP    ?C0374
+0F10 D2EF              SETB    MDO
+0F12 C2EE              CLR     MDE
+0F14 D2ED              SETB    MCO
+0F16         ?C0376:
+0F16 30EDFD            JNB     MCO,?C0376
+0F19 8002              SJMP    ?C0377
+0F1B         ?C0378:
+0F1B 80F9              SJMP    ?C0376
+0F1D         ?C0377:
+0F1D 900000      R     MOV     DPTR,#DL
+0F20 7402              MOV     A,#02H
+0F22 F0                MOVX    @DPTR,A
+0F23         ?C0379:
+0F23 900000      R     MOV     DPTR,#DL
+0F26 E0                MOVX    A,@DPTR
+0F27 14                DEC     A
+0F28 F0                MOVX    @DPTR,A
+0F29 900000      R     MOV     DPTR,#DL
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 57  
+
+0F2C E0                MOVX    A,@DPTR
+0F2D FF                MOV     R7,A
+0F2E EF                MOV     A,R7
+0F2F 70F2              JNZ     ?C0379
+0F31 8002              SJMP    ?C0380
+0F33         ?C0381:
+0F33 80EE              SJMP    ?C0379
+0F35         ?C0380:
+                                           ; SOURCE LINE # 341
+0F35 20EC30            JB      MDI,?C0382
+                                           ; SOURCE LINE # 342
+0F38 900000      R     MOV     DPTR,#js
+0F3B E0                MOVX    A,@DPTR
+0F3C FF                MOV     R7,A
+0F3D 7400        R     MOV     A,#LOW buf_ch
+0F3F 2F                ADD     A,R7
+0F40 F582              MOV     DPL,A
+0F42 E4                CLR     A
+0F43 3400        R     ADDC    A,#HIGH buf_ch
+0F45 F583              MOV     DPH,A
+0F47 E0                MOVX    A,@DPTR
+0F48 FF                MOV     R7,A
+0F49 EF                MOV     A,R7
+0F4A 25E0              ADD     A,ACC
+0F4C FF                MOV     R7,A
+0F4D EF                MOV     A,R7
+0F4E F0                MOVX    @DPTR,A
+0F4F 900000      R     MOV     DPTR,#js
+0F52 E0                MOVX    A,@DPTR
+0F53 FF                MOV     R7,A
+0F54 7400        R     MOV     A,#LOW buf_ch
+0F56 2F                ADD     A,R7
+0F57 F582              MOV     DPL,A
+0F59 E4                CLR     A
+0F5A 3400        R     ADDC    A,#HIGH buf_ch
+0F5C F583              MOV     DPH,A
+0F5E E0                MOVX    A,@DPTR
+0F5F FF                MOV     R7,A
+0F60 EF                MOV     A,R7
+0F61 54FE              ANL     A,#0FEH
+0F63 FF                MOV     R7,A
+0F64 EF                MOV     A,R7
+0F65 F0                MOVX    @DPTR,A
+0F66 802E              SJMP    ?C0383
+0F68         ?C0382:
+                                           ; SOURCE LINE # 344
+0F68 900000      R     MOV     DPTR,#js
+0F6B E0                MOVX    A,@DPTR
+0F6C FF                MOV     R7,A
+0F6D 7400        R     MOV     A,#LOW buf_ch
+0F6F 2F                ADD     A,R7
+0F70 F582              MOV     DPL,A
+0F72 E4                CLR     A
+0F73 3400        R     ADDC    A,#HIGH buf_ch
+0F75 F583              MOV     DPH,A
+0F77 E0                MOVX    A,@DPTR
+0F78 FF                MOV     R7,A
+0F79 EF                MOV     A,R7
+0F7A 25E0              ADD     A,ACC
+0F7C FF                MOV     R7,A
+0F7D EF                MOV     A,R7
+0F7E F0                MOVX    @DPTR,A
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 58  
+
+                                           ; SOURCE LINE # 345
+0F7F 900000      R     MOV     DPTR,#js
+0F82 E0                MOVX    A,@DPTR
+0F83 FF                MOV     R7,A
+0F84 7400        R     MOV     A,#LOW buf_ch
+0F86 2F                ADD     A,R7
+0F87 F582              MOV     DPL,A
+0F89 E4                CLR     A
+0F8A 3400        R     ADDC    A,#HIGH buf_ch
+0F8C F583              MOV     DPH,A
+0F8E E0                MOVX    A,@DPTR
+0F8F FF                MOV     R7,A
+0F90 EF                MOV     A,R7
+0F91 4401              ORL     A,#01H
+0F93 FF                MOV     R7,A
+0F94 EF                MOV     A,R7
+0F95 F0                MOVX    @DPTR,A
+0F96         ?C0383:
+                                           ; SOURCE LINE # 346
+0F96 C2ED              CLR     MCO
+0F98 900000      R     MOV     DPTR,#DL
+0F9B 7402              MOV     A,#02H
+0F9D F0                MOVX    @DPTR,A
+0F9E         ?C0384:
+0F9E 900000      R     MOV     DPTR,#DL
+0FA1 E0                MOVX    A,@DPTR
+0FA2 14                DEC     A
+0FA3 F0                MOVX    @DPTR,A
+0FA4 900000      R     MOV     DPTR,#DL
+0FA7 E0                MOVX    A,@DPTR
+0FA8 FF                MOV     R7,A
+0FA9 EF                MOV     A,R7
+0FAA 70F2              JNZ     ?C0384
+0FAC 8002              SJMP    ?C0375
+0FAE         ?C0386:
+0FAE 80EE              SJMP    ?C0384
+0FB0         ?C0385:
+0FB0         ?C0375:
+0FB0 900000      R     MOV     DPTR,#is
+0FB3 E0                MOVX    A,@DPTR
+0FB4 04                INC     A
+0FB5 F0                MOVX    @DPTR,A
+0FB6 020000      R     LJMP    ?C0373
+0FB9         ?C0374:
+                                           ; SOURCE LINE # 347
+0FB9 C2EF              CLR     MDO
+                                           ; SOURCE LINE # 348
+0FBB 900000      R     MOV     DPTR,#js
+0FBE E0                MOVX    A,@DPTR
+0FBF FF                MOV     R7,A
+0FC0 EF                MOV     A,R7
+0FC1 B40702            CJNE    A,#07H,?C0387
+0FC4 D2EF              SETB    MDO
+0FC6         ?C0387:
+                                           ; SOURCE LINE # 349
+0FC6 D2EE              SETB    MDE
+                                           ; SOURCE LINE # 350
+0FC8 D2ED              SETB    MCO
+0FCA         ?C0388:
+0FCA 30EDFD            JNB     MCO,?C0388
+0FCD 8002              SJMP    ?C0389
+0FCF         ?C0390:
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 59  
+
+0FCF 80F9              SJMP    ?C0388
+0FD1         ?C0389:
+                                           ; SOURCE LINE # 351
+0FD1 900000      R     MOV     DPTR,#DL
+0FD4 7402              MOV     A,#02H
+0FD6 F0                MOVX    @DPTR,A
+0FD7         ?C0391:
+0FD7 900000      R     MOV     DPTR,#DL
+0FDA E0                MOVX    A,@DPTR
+0FDB 14                DEC     A
+0FDC F0                MOVX    @DPTR,A
+0FDD 900000      R     MOV     DPTR,#DL
+0FE0 E0                MOVX    A,@DPTR
+0FE1 FF                MOV     R7,A
+0FE2 EF                MOV     A,R7
+0FE3 70F2              JNZ     ?C0391
+0FE5 8002              SJMP    ?C0392
+0FE7         ?C0393:
+0FE7 80EE              SJMP    ?C0391
+0FE9         ?C0392:
+                                           ; SOURCE LINE # 352
+0FE9 C2ED              CLR     MCO
+0FEB C2EE              CLR     MDE
+0FED 900000      R     MOV     DPTR,#DL
+0FF0 7402              MOV     A,#02H
+0FF2 F0                MOVX    @DPTR,A
+0FF3         ?C0394:
+0FF3 900000      R     MOV     DPTR,#DL
+0FF6 E0                MOVX    A,@DPTR
+0FF7 14                DEC     A
+0FF8 F0                MOVX    @DPTR,A
+0FF9 900000      R     MOV     DPTR,#DL
+0FFC E0                MOVX    A,@DPTR
+0FFD FF                MOV     R7,A
+0FFE EF                MOV     A,R7
+0FFF 70F2              JNZ     ?C0394
+1001 8002              SJMP    ?C0372
+1003         ?C0396:
+1003 80EE              SJMP    ?C0394
+1005         ?C0395:
+1005         ?C0372:
+1005 900000      R     MOV     DPTR,#js
+1008 E0                MOVX    A,@DPTR
+1009 04                INC     A
+100A F0                MOVX    @DPTR,A
+100B 020000      R     LJMP    ?C0370
+100E         ?C0371:
+                                           ; SOURCE LINE # 353
+100E D2EE              SETB    MDE
+1010 900000      R     MOV     DPTR,#DL
+1013 7402              MOV     A,#02H
+1015 F0                MOVX    @DPTR,A
+1016         ?C0397:
+1016 900000      R     MOV     DPTR,#DL
+1019 E0                MOVX    A,@DPTR
+101A 14                DEC     A
+101B F0                MOVX    @DPTR,A
+101C 900000      R     MOV     DPTR,#DL
+101F E0                MOVX    A,@DPTR
+1020 FF                MOV     R7,A
+1021 EF                MOV     A,R7
+1022 70F2              JNZ     ?C0397
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 60  
+
+1024 8002              SJMP    ?C0398
+1026         ?C0399:
+1026 80EE              SJMP    ?C0397
+1028         ?C0398:
+                                           ; SOURCE LINE # 354
+1028 C2EF              CLR     MDO
+102A 900000      R     MOV     DPTR,#DL
+102D 7402              MOV     A,#02H
+102F F0                MOVX    @DPTR,A
+1030         ?C0400:
+1030 900000      R     MOV     DPTR,#DL
+1033 E0                MOVX    A,@DPTR
+1034 14                DEC     A
+1035 F0                MOVX    @DPTR,A
+1036 900000      R     MOV     DPTR,#DL
+1039 E0                MOVX    A,@DPTR
+103A FF                MOV     R7,A
+103B EF                MOV     A,R7
+103C 70F2              JNZ     ?C0400
+103E 8002              SJMP    ?C0401
+1040         ?C0402:
+1040 80EE              SJMP    ?C0400
+1042         ?C0401:
+                                           ; SOURCE LINE # 355
+1042 D2ED              SETB    MCO
+1044         ?C0403:
+1044 30EDFD            JNB     MCO,?C0403
+1047 8002              SJMP    ?C0404
+1049         ?C0405:
+1049 80F9              SJMP    ?C0403
+104B         ?C0404:
+104B 900000      R     MOV     DPTR,#DL
+104E 7402              MOV     A,#02H
+1050 F0                MOVX    @DPTR,A
+1051         ?C0406:
+1051 900000      R     MOV     DPTR,#DL
+1054 E0                MOVX    A,@DPTR
+1055 14                DEC     A
+1056 F0                MOVX    @DPTR,A
+1057 900000      R     MOV     DPTR,#DL
+105A E0                MOVX    A,@DPTR
+105B FF                MOV     R7,A
+105C EF                MOV     A,R7
+105D 70F2              JNZ     ?C0406
+105F 8002              SJMP    ?C0407
+1061         ?C0408:
+1061 80EE              SJMP    ?C0406
+1063         ?C0407:
+1063 D2EF              SETB    MDO
+                                           ; SOURCE LINE # 356
+1065 900000      R     MOV     DPTR,#buf_ch
+1068 E0                MOVX    A,@DPTR
+1069 FF                MOV     R7,A
+106A EF                MOV     A,R7
+106B C4                SWAP    A
+106C 540F              ANL     A,#0FH
+106E FF                MOV     R7,A
+106F EF                MOV     A,R7
+1070 75F00A            MOV     B,#0AH
+1073 A4                MUL     AB
+1074 FF                MOV     R7,A
+1075 900000      R     MOV     DPTR,#buf_ch
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 61  
+
+1078 E0                MOVX    A,@DPTR
+1079 FE                MOV     R6,A
+107A EE                MOV     A,R6
+107B 540F              ANL     A,#0FH
+107D FE                MOV     R6,A
+107E EF                MOV     A,R7
+107F 2E                ADD     A,R6
+1080 FF                MOV     R7,A
+1081 900000      R     MOV     DPTR,#tmp_rw
+1084 EF                MOV     A,R7
+1085 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 357
+1086 900000      R     MOV     DPTR,#tmp_rw
+1089 E0                MOVX    A,@DPTR
+108A FF                MOV     R7,A
+108B 8FA3              MOV     SEC,R7
+                                           ; SOURCE LINE # 358
+108D 900000      R     MOV     DPTR,#buf_ch+01H
+1090 E0                MOVX    A,@DPTR
+1091 FF                MOV     R7,A
+1092 EF                MOV     A,R7
+1093 C4                SWAP    A
+1094 540F              ANL     A,#0FH
+1096 FF                MOV     R7,A
+1097 EF                MOV     A,R7
+1098 75F00A            MOV     B,#0AH
+109B A4                MUL     AB
+109C FF                MOV     R7,A
+109D 900000      R     MOV     DPTR,#buf_ch+01H
+10A0 E0                MOVX    A,@DPTR
+10A1 FE                MOV     R6,A
+10A2 EE                MOV     A,R6
+10A3 540F              ANL     A,#0FH
+10A5 FE                MOV     R6,A
+10A6 EF                MOV     A,R7
+10A7 2E                ADD     A,R6
+10A8 FF                MOV     R7,A
+10A9 900000      R     MOV     DPTR,#tmp_rw
+10AC EF                MOV     A,R7
+10AD F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 359
+10AE 900000      R     MOV     DPTR,#tmp_rw
+10B1 E0                MOVX    A,@DPTR
+10B2 FF                MOV     R7,A
+10B3 8FA4              MOV     MIN,R7
+                                           ; SOURCE LINE # 360
+10B5 900000      R     MOV     DPTR,#buf_ch+02H
+10B8 E0                MOVX    A,@DPTR
+10B9 FF                MOV     R7,A
+10BA EF                MOV     A,R7
+10BB C4                SWAP    A
+10BC 540F              ANL     A,#0FH
+10BE FF                MOV     R7,A
+10BF EF                MOV     A,R7
+10C0 75F00A            MOV     B,#0AH
+10C3 A4                MUL     AB
+10C4 FF                MOV     R7,A
+10C5 900000      R     MOV     DPTR,#buf_ch+02H
+10C8 E0                MOVX    A,@DPTR
+10C9 FE                MOV     R6,A
+10CA EE                MOV     A,R6
+10CB 540F              ANL     A,#0FH
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 62  
+
+10CD FE                MOV     R6,A
+10CE EF                MOV     A,R7
+10CF 2E                ADD     A,R6
+10D0 FF                MOV     R7,A
+10D1 900000      R     MOV     DPTR,#tmp_rw
+10D4 EF                MOV     A,R7
+10D5 F0                MOVX    @DPTR,A
+                                           ; SOURCE LINE # 361
+10D6 900000      R     MOV     DPTR,#tmp_rw
+10D9 E0                MOVX    A,@DPTR
+10DA FF                MOV     R7,A
+10DB 8FA5              MOV     HOUR,R7
+                                           ; SOURCE LINE # 362
+10DD 75A101            MOV     TIMECON,#01H
+                                           ; SOURCE LINE # 365
+10E0         ?C0409:
+10E0 22                RET     
+             ; FUNCTION setup_ADC (END)
+
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 63  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+P0 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0080H  1
+P1 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0090H  1
+P3 . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B0H  1
+ADCSTAT. . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D8H  1
+IE . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A8H  1
+TIMECON. . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A1H  1
+ekran. . . . . . . . . . . . . . . . .  EXTERN   XDATA  U_CHAR   -----  1
+IP . . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00B8H  1
+MM . . . . . . . . . . . . . . . . . .  EXTERN   IDATA  ARRAY    -----  7
+I2CCON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00E8H  1
+napr . . . . . . . . . . . . . . . . .  EXTERN   DATA   BIT      -----  1
+SCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0098H  1
+TCON . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   0088H  1
+b_err_cl . . . . . . . . . . . . . . .  EXTERN   XDATA  U_CHAR   -----  1
+TABX_CH_A. . . . . . . . . . . . . . .  * TAG *  -----  STRUCT   -----  16
+  NAME_PAR . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0000H  1
+  R_IZM. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0001H  1
+  Frm_Dat. . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0002H  1
+  LA_TAB . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0003H  1
+  NA_P1. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0004H  1
+  NA_P2. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0005H  1
+  NA_P3. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0006H  1
+  NA_P5. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0007H  1
+  NA_P4. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0008H  1
+  N_RAZ. . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   0009H  1
+  KF_CRD . . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   000AH  1
+  KF_WIND. . . . . . . . . . . . . . .  MEMBER   -----  U_CHAR   000BH  1
+  KF_KORZ. . . . . . . . . . . . . . .  MEMBER   -----  U_INT    000CH  2
+  KF_KORZ1 . . . . . . . . . . . . . .  MEMBER   -----  U_INT    000EH  2
+HOUR . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A5H  1
+cmr. . . . . . . . . . . . . . . . . .  EXTERN   IDATA  U_LONG   -----  4
+Str_CH_A . . . . . . . . . . . . . . .  EXTERN   XDATA  ARRAY    -----  208
+CMRX1_K1 . . . . . . . . . . . . . . .  EXTERN   IDATA  U_LONG   -----  4
+CMRX1_K2 . . . . . . . . . . . . . . .  EXTERN   IDATA  U_LONG   -----  4
+SPICON . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00F8H  1
+MDE. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EEH  1
+Ves_kol. . . . . . . . . . . . . . . .  EXTERN   XDATA  U_INT    -----  2
+MDI. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00ECH  1
+SEC. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A3H  1
+setup_ADC. . . . . . . . . . . . . . .  PUBLIC   CODE   PROC     0000H  -----
+  DL . . . . . . . . . . . . . . . . .  AUTO     XDATA  U_CHAR   0000H  1
+  tmp_rw . . . . . . . . . . . . . . .  AUTO     XDATA  U_CHAR   0001H  1
+  is . . . . . . . . . . . . . . . . .  AUTO     XDATA  U_CHAR   0002H  1
+  js . . . . . . . . . . . . . . . . .  AUTO     XDATA  U_CHAR   0003H  1
+  buf_ch . . . . . . . . . . . . . . .  AUTO     XDATA  ARRAY    0004H  8
+  adcbuf . . . . . . . . . . . . . . .  AUTO     XDATA  ARRAY    000CH  20
+  wadc . . . . . . . . . . . . . . . .  STATIC   DATA   U_CHAR   0000H  1
+  zadc . . . . . . . . . . . . . . . .  STATIC   IDATA  U_CHAR   0000H  1
+  N_CH . . . . . . . . . . . . . . . .  STATIC   DATA   U_CHAR   0001H  1
+MCO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EDH  1
+MDO. . . . . . . . . . . . . . . . . .  ABSBIT   -----  BIT      00EFH  1
+MIN. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00A4H  1
+cnt_dol. . . . . . . . . . . . . . . .  EXTERN   IDATA  U_INT    -----  2
+T2CON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C8H  1
+lopatka. . . . . . . . . . . . . . . .  EXTERN   XDATA  U_INT    -----  2
+Mom_tr . . . . . . . . . . . . . . . .  EXTERN   XDATA  U_INT    -----  2
+BUF_FL_D . . . . . . . . . . . . . . .  * TAG *  -----  STRUCT   -----  4
+C51 COMPILER V9.00   SETUP_ADC                                                             05/21/2013 15:05:03 PAGE 64  
+
+NAME                                    CLASS   MSPACE  TYPE    OFFSET  SIZE
+====                                    =====   ======  ====    ======  ====
+
+
+  DAT_CRD. . . . . . . . . . . . . . .  MEMBER   -----  U_LONG   0000H  4
+PSW. . . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00D0H  1
+WDCON. . . . . . . . . . . . . . . . .  SFR      DATA   U_CHAR   00C0H  1
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   4321    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =     32    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =      1    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,61 @@
+; .\assemb.SRC generated from: assemb.c
+; COMPILER INVOKED BY:
+;        d:\Keil4\C51\BIN\C51.EXE assemb.c LARGE OPTIMIZE(0,SPEED) BROWSE NOAREGS DEBUG OBJECTEXTEND CODE LISTINCLUDE SYMBOLS TABS(2) SRC(.\assemb.SRC)
+
+
+NAME	ASSEMB
+
+?PR?lbuf_cop?ASSEMB  SEGMENT CODE 
+	PUBLIC	lbuf_cop
+; 				
+; 
+;  // #include "main.h"
+;  // #define LBUF_SIZE    28
+; 
+; //extern  xdata unsigned char  lbuf [LBUF_SIZE];	   // первые 64
+; //extern xdata unsigned char  lbuf_dn [LBUF_SIZE];
+; 
+; void lbuf_cop () //using 0
+
+	RSEG  ?PR?lbuf_cop?ASSEMB
+lbuf_cop:
+	USING	0
+			; SOURCE LINE # 9
+; {//	data unsigned char j3;
+			; SOURCE LINE # 10
+;  
+;   // 	for(j3=0;j3<LBUF_SIZE-1;j3++) 	{ 		 
+; //	  lbuf_dn[j3]=lbuf[j3];	}
+; 
+; #pragma asm
+; 
+	  
+; 	mov r0,#0
+	  mov r0,#0
+; 	mov r1,#192
+	  mov r1,#192
+; 	mov r3,#28
+	  mov r3,#28
+;   l1:
+	  l1:
+; 	MOVx A,@R0
+	  MOVx A,@R0
+; 	movx @r1,a
+	  movx @r1,a
+; 	inc r0
+	  inc r0
+; 	inc r1
+	  inc r1
+; 	djnz r3,  l1
+	  djnz r3,  l1
+; 
+	  
+; #pragma endasm
+; 
+; }
+			; SOURCE LINE # 29
+?C0001:
+	RET  	
+; END OF lbuf_cop
+
+	END

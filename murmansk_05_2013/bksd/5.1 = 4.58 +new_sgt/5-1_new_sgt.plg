@@ -1,0 +1,99 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\keil_project\all_project\4.x\5.1 = 4.58 +new_sgt\5.1_new_sgt.uvproj
+Project File Date:  01/09/2013
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling Main_bkcd.c...
+MAIN_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling Setup_ADC.c...
+SETUP_ADC.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling setup_bkcd.c...
+SETUP_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling task3_bkcd.c...
+TASK3_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+TASK3_BKCD.C(720): error C141: syntax error near '`'
+TASK3_BKCD.C(721): error C141: syntax error near '`'
+TASK3_BKCD.C(721): error C202: 'RELE2': undefined identifier
+TASK3_BKCD.C(2167): error C215: illegal type conversion
+TASK3_BKCD.C(2190): error C215: illegal type conversion
+TASK3_BKCD.C(2213): error C215: illegal type conversion
+TASK3_BKCD.C(2236): error C215: illegal type conversion
+TASK3_BKCD.C(2363): error C233: 'PPK': undefined label
+TASK3_BKCD.C(2363): error C233: 'PR': undefined label
+assembling START_AD.A51...
+compiling assemb.c...
+ASSEMB.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+Target not created
+Rebuild target 'Target 1'
+compiling Main_bkcd.c...
+MAIN_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling Setup_ADC.c...
+SETUP_ADC.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling setup_bkcd.c...
+SETUP_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling task3_bkcd.c...
+TASK3_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+assembling START_AD.A51...
+compiling assemb.c...
+ASSEMB.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+assembling assemb.src...
+linking...
+BL51 BANKED LINKER/LOCATER V6.22 - SN: K1SMC-M43KLC
+COPYRIGHT KEIL ELEKTRONIK GmbH 1987 - 2009
+"Main_bkcd.obj",
+"Setup_ADC.obj",
+"setup_bkcd.obj",
+"task3_bkcd.obj",
+"START_AD.obj",
+"assemb.obj" 
+TO "5-1_new_sgt" 
+RAMSIZE(256) 
+XDATA( 0X0000-0X07FF )
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: C106H BYTE (2412%) *
+******************************************************************************
+Program Size: data=242.0 xdata=1701 code=51237
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+*** FATAL ERROR L250: CODE SIZE LIMIT IN RESTRICTED VERSION EXCEEDED
+    MODULE:  D:\KEIL4\C51\LIB\C51L.LIB (-----)
+    LIMIT:   0800H BYTES
+Target not created
+Rebuild target 'Target 1'
+compiling Main_bkcd.c...
+MAIN_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling Setup_ADC.c...
+SETUP_ADC.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling setup_bkcd.c...
+SETUP_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+compiling task3_bkcd.c...
+TASK3_BKCD.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+assembling START_AD.A51...
+compiling assemb.c...
+ASSEMB.C(1): warning C500: LICENSE ERROR (R208: RENEW LICENSE ID CODE (LIC))
+assembling assemb.src...
+linking...
+BL51 BANKED LINKER/LOCATER V6.22 - SN: K1SMC-M43KLC
+COPYRIGHT KEIL ELEKTRONIK GmbH 1987 - 2009
+"Main_bkcd.obj",
+"Setup_ADC.obj",
+"setup_bkcd.obj",
+"task3_bkcd.obj",
+"START_AD.obj",
+"assemb.obj" 
+TO "5-1_new_sgt" 
+RAMSIZE(256) 
+XDATA( 0X0000-0X07FF )
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: C106H BYTE (2412%) *
+******************************************************************************
+Program Size: data=242.0 xdata=1701 code=51237
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
+*** FATAL ERROR L250: CODE SIZE LIMIT IN RESTRICTED VERSION EXCEEDED
+    MODULE:  D:\KEIL4\C51\LIB\C51L.LIB (-----)
+    LIMIT:   0800H BYTES
+Target not created
